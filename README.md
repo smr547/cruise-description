@@ -1,2 +1,2 @@
-# cruise-description
-Language and tools for captains planning a yacht cruise
+# Cruise description language
+A set of tools for captains planning yacht cruises.
