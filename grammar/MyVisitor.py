@@ -3,50 +3,30 @@ __author__ = 'smr'
 from CdlVisitor import CdlVisitor
 from CdlParser import CdlParser
 
+class Location(object):
+    def __init__(self, identifier, name, lat_long):
+        self.identifier = identifier
+        self.name = name
+        self.lat_long = lat_long
+
+    def __str__(self):
+        return "Location: identifier=%s, name=%s" % (self.identifier, self.name)
 
 class MyVisitor(CdlVisitor):
 
-    # Visit a parse tree produced by CdlParser#cruise.
-    def visitCruise(self, ctx:CdlParser.CruiseContext):
-        return self.visitChildren(ctx)
+    def __init__(self):
+        self.locations = {}
 
-
-    # Visit a parse tree produced by CdlParser#location_definition.
-    def visitLocation_definition(self, ctx:CdlParser.Location_definitionContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by CdlParser#location.
     def visitLocation(self, ctx:CdlParser.LocationContext):
-        print("%s=%s"%(ctx.identifier().getText(),ctx.placename().getText()))
+        loc = Location(ctx.identifier().getText(), ctx.placename().getText(), None)
+        self.locations[loc.identifier] = loc
         return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by CdlParser#placename.
-    def visitPlacename(self, ctx:CdlParser.PlacenameContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by CdlParser#identifier.
-    def visitIdentifier(self, ctx:CdlParser.IdentifierContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by CdlParser#cruise_definition.
-    def visitCruise_definition(self, ctx:CdlParser.Cruise_definitionContext):
-        return self.visitChildren(ctx)
-
 
     # Visit a parse tree produced by CdlParser#destination_line.
     def visitDestination_line(self, ctx:CdlParser.Destination_lineContext):
-        print(ctx.identifier().getText())
+        if ctx.identifier().getText() not in self.locations:
+            loc = Location(ctx.identifier().getText(), ctx.identifier().getText(), None)
+            self.locations[loc.identifier] = loc
         return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by CdlParser#title.
-    def visitTitle(self, ctx:CdlParser.TitleContext):
-        return self.visitChildren(ctx)
-
-
 
 del CdlParser

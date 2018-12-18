@@ -20,3 +20,8 @@ if __name__ == '__main__':
 
     visitor = MyVisitor()
     visitor.visit(tree)
+
+    # list all unique locations
+
+    for loc in visitor.locations.values():
+        print(loc)
