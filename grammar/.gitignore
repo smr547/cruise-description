@@ -1,2 +1,4 @@
 *.interp
 *.tokens
+Cdl*.py
+__*

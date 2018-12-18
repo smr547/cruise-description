@@ -9,14 +9,14 @@ cruise              : (location_definition)+ cruise_definition EOF ;
  
 location_definition : location NEWLINE ;
 
-location            : LOCATION WHITESPACE id WHITESPACE IS WHITESPACE placename ;
+location            : LOCATION WHITESPACE identifier WHITESPACE IS WHITESPACE placename ;
 
 placename           : (WORD | WHITESPACE)+ ;
 
-id                  : WORD ;
+identifier          : WORD ;
 
 cruise_definition   : CRUISE WHITESPACE title NEWLINE (destination_line)+ ;
-destination_line    : WHITESPACE id NEWLINE ;
+destination_line    : WHITESPACE identifier NEWLINE ;
 title               : TEXT ;
 
 /*
@@ -44,8 +44,6 @@ CRUISE          : C R U I S E ;
 IS              : I S ;
 
 WORD            : (LOWERCASE | UPPERCASE | '_')+ ;
-
-ID              : WORD ;
 
 WHITESPACE      : (' ' | '\t')+ ;
 
