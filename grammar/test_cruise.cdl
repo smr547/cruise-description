@@ -1,6 +1,25 @@
 location Sant_Carles is Sant Carles de la Rapita
+location Barcelona is Port of Barcelona Spain
+location Blanes is Blanes Spain
+location Roses is Roses Spain
+location Menton is Menton Italy
+location Cerbre is Cape Cerbre France
+location Vendres is Port Vendres
 
 cruise (Shakedown 2019)
 	Sant_Carles
 	Tarragona
 	Barcelona
+	Blanes
+	Roses
+	Cerbre
+	Vendres
+	Toulon
+	Hyeres
+	Frejus
+	Cannes
+	Nice
+	Monaco
+	Menton
+	Imperia
+	Calvi
