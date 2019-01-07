@@ -37,6 +37,7 @@ class MyVisitor(CdlVisitor):
     def __init__(self):
         self.locations = {}
         self.title = None
+        self.visitations = []
 
     def visitTitle(self, ctx:CdlParser.TitleContext):
         self.title = ctx.getText()
@@ -50,9 +51,14 @@ class MyVisitor(CdlVisitor):
 
     # Visit a parse tree produced by CdlParser#destination_line.
     def visitDestination_line(self, ctx:CdlParser.Destination_lineContext):
+        loc = None
         if ctx.identifier().getText() not in self.locations:
             loc = Location(ctx.identifier().getText(), ctx.identifier().getText(), None)
             self.locations[loc.identifier] = loc
+        else:
+            loc = self.locations[ctx.identifier().getText()]
+
+        self.visitations.append(loc)
         return self.visitChildren(ctx)
 
 if __name__ == '__main__':
@@ -74,9 +80,11 @@ if __name__ == '__main__':
     kml = simplekml.Kml()
 
 
-    route = []
     for loc in visitor.locations.values():
         pnt = kml.newpoint(name=loc.identifier, description=loc.name, coords=[loc.coords])
+
+    route = []
+    for loc in visitor.visitations:
         route.append(loc.coords)
 
     ls = kml.newlinestring(name=visitor.title)
