@@ -28,7 +28,7 @@ A trip from one major destination to another, involving stopovers along the way 
 Cruise will typically involve no changes in crew or passengers.
 
 A cruise starts in one Locations, has a series of stopovers, and ends at a final destination (typically a major port or 
-marina. It can be viewed as a sequence of legs.
+marina). It can be viewed as a sequence of legs.
 
 A cruise has attributes:
 
@@ -41,7 +41,18 @@ A cruise has attributes:
 A part of a cruise involving the vessel moving from one stopover location to another (possibly with some intevening 
 waypoints). Has properties
 
-* sequence of locations
+* depature location
+* sequence of visitations (locations) along the way, the last being the destination for the leg
+* period (from departure date/time to destination arrival date/time)
+* duration (derived from period)
+
+## Visitation 
+A planned arrival at a location as part of a Leg of a cruise. Properties are
+
+* Location
+* Planned arrival date/time
+* Stopover duration (zero for waypoints on the leg)
+* description including comments, planned activities and points of interest
 
 
 ## Location
@@ -51,6 +62,7 @@ A named place or point of interest. Has properties
 * shortname (some unique abbreviation of the location name)
 * name (fully qualified name of the location)
 * position (longitude and latitude)
+* description
 
 A Location may be a destination, a place for a planned stopover or simply a point of navigational interst (a waypoint)
 
@@ -71,3 +83,28 @@ A natural person travelling on board the vessel in the role of  crew member, pas
 ** Nationality (country of issue)
 ** Issue date
 ** Expiry date
+
+# Other terms that may be of interest
+
+## Route
+A sequence of locations representing the planned track of the vessel. If a route is given a name then it could be
+considered a "standard route" that could be utilised to describe a Leg simply by adding the time period over which the 
+Route is to be traversed.
+
+## Track
+The actual path of the vessel across the ground. The track consists of 
+
+* a sequence of Timepoints
+
+Where a Timepoint has properties:
+
+* Date/time 
+* Position (long, lat, [alititude])
+
+## Voyage
+Synonym for Cruise perhaps
+
+## Passage
+May be useful to describe a Leg with duration greater than 12 hours and/or involving nightime sailing.
+
+
