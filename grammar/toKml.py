@@ -45,9 +45,11 @@ class MyVisitor(CdlVisitor):
 
 
     def visitLocation(self, ctx:CdlParser.LocationContext):
-        loc = Location(ctx.identifier().getText(), ctx.placename().getText(), None)
+        positionVisitor = PositionVisitor()
+        positionVisitor.visitChildren(ctx)
+        loc = Location(ctx.identifier().getText(), ctx.placename().getText(), positionVisitor.coords_tuple())
         self.locations[loc.identifier] = loc
-        return self.visitChildren(ctx)
+        return
 
     # Visit a parse tree produced by CdlParser#destination_line.
     def visitDestination_line(self, ctx:CdlParser.Destination_lineContext):
@@ -60,6 +62,21 @@ class MyVisitor(CdlVisitor):
 
         self.visitations.append(loc)
         return self.visitChildren(ctx)
+
+class PositionVisitor(CdlVisitor):
+    def __init__(self):
+        self.coords = []
+
+    def visitNumber(self, ctx:CdlParser.NumberContext):
+        self.coords.append(float(ctx.getText()))
+        return 
+
+    def coords_tuple(self):
+        if len(self.coords) > 1:
+            return tuple(self.coords)
+        else:
+            return None
+    
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:

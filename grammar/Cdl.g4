@@ -9,14 +9,23 @@ cruise              : (location_definition)+ cruise_definition EOF ;
  
 location_definition : location NEWLINE ;
 
-location            : LOCATION WHITESPACE identifier WHITESPACE IS WHITESPACE placename ;
+location            : LOCATION WS identifier WS (AT WS position WS)?  IS WS placename ;
 
-placename           : (WORD | WHITESPACE)+ ;
+
+lng: number;
+lat: number;
+
+number
+ : INT
+ | REAL
+ ;
+position            : lng WS lat;
+placename           : (WORD | WS)+ ;
 
 identifier          : WORD ;
 
-cruise_definition   : CRUISE WHITESPACE title NEWLINE (destination_line)+ ;
-destination_line    : WHITESPACE identifier NEWLINE ;
+cruise_definition   : CRUISE WS title NEWLINE (destination_line)+ ;
+destination_line    : WS identifier NEWLINE ;
 title               : TEXT ;
 
 /*
@@ -40,12 +49,33 @@ fragment UPPERCASE  : [A-Z] ;
 
 LOCATION        : L O C A T I O N ;
 CRUISE          : C R U I S E ;
+AT		: A T;
 
 IS              : I S ;
 
 WORD            : (LOWERCASE | UPPERCASE | '_')+ ;
 
-WHITESPACE      : (' ' | '\t')+ ;
+
+
+PLUS: '+';
+MINUS: '-';
+
+
+INT
+ : '0'
+ | [1-9] [0-9]*
+ | PLUS [1-9] [0-9]*
+ | MINUS [1-9] [0-9]*
+ ;
+
+REAL
+ : [0-9]* '.' [0-9]+
+ | PLUS [0-9]* '.' [0-9]+
+ | MINUS [0-9]* '.' [0-9]+
+ ;
+
+
+WS      : (' ' | '\t')+ ;
 
 TEXT            : ('['|'(') ~[\]]+ (']'|')');
 
