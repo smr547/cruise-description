@@ -14,17 +14,20 @@ from CdlParser import CdlParser
 from CdlVisitor import CdlVisitor
 from CdlParser import CdlParser
 
-from geolocator import GeoLocator
+from geolocator import CachedGeoLocator
 import simplekml
 
+
+locator = CachedGeoLocator()
+locator.load()
+
 class Location(object):
-    locator = GeoLocator()
 
     def __init__(self, identifier, name, coords):
         self.identifier = identifier
         self.name = name
         if coords is None:
-            loc = self.locator.get_location(name)
+            loc = locator.get_location(name)
             self.coords = (loc['lng'],  loc['lat'])
         else:
             self.coords = coords
@@ -112,3 +115,5 @@ if __name__ == '__main__':
     ls.style.linestyle.color = simplekml.Color.red
 
     print(kml.kml())
+
+    locator.save()

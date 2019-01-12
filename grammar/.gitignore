@@ -2,3 +2,4 @@
 *.tokens
 Cdl*.py
 __*
+*.json
