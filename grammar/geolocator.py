@@ -15,7 +15,10 @@ class GeoLocator(object):
 
     def get_location(self, place_name:str):
         r = self.gmaps.geocode(place_name)
-        return r[0]['geometry']['location']
+        if len(r) > 0:
+            return r[0]['geometry']['location']
+        else:
+            raise ValueError("Unknown location %s" % (place_name, ))
 
 class CachedGeoLocator(GeoLocator):
     cache_filename = Path('locator_cache.json')

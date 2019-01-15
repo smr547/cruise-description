@@ -23,9 +23,11 @@ position            : lng WS lat;
 placename           : (WORD | WS)+ ;
 
 identifier          : WORD ;
-
+duration_units	    : NIGHT | NIGHTS ; 
+stay_duration       : INT ; 
+stay_duration_spec  : FOR WS stay_duration WS duration_units ;
 cruise_definition   : CRUISE WS title NEWLINE (destination_line)+ ;
-destination_line    : WS identifier NEWLINE ;
+destination_line    : WS identifier (WS stay_duration_spec)? NEWLINE ;
 title               : TEXT ;
 
 /*
@@ -43,6 +45,9 @@ fragment R	: ('R'|'r');
 fragment S	: ('S'|'s');
 fragment U	: ('U'|'u');
 fragment E	: ('E'|'e');
+fragment F	: ('F'|'f');
+fragment G	: ('G'|'g');
+fragment H	: ('H'|'h');
 
 fragment LOWERCASE  : [a-z] ;
 fragment UPPERCASE  : [A-Z] ;
@@ -50,6 +55,9 @@ fragment UPPERCASE  : [A-Z] ;
 LOCATION        : L O C A T I O N ;
 CRUISE          : C R U I S E ;
 AT		: A T;
+FOR		: F O R;
+NIGHT           : N I G H T;
+NIGHTS          : N I G H T S;
 
 IS              : I S ;
 

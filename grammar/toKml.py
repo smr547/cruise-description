@@ -17,6 +17,9 @@ from CdlParser import CdlParser
 from geolocator import CachedGeoLocator
 import simplekml
 
+def die(message):
+    sys.stderr.write(message + "\n")
+    sys.exit(1)
 
 locator = CachedGeoLocator()
 locator.load()
@@ -93,7 +96,12 @@ if __name__ == '__main__':
     tree = parser.cruise()
 
     visitor = MyVisitor()
-    visitor.visit(tree)
+
+    try:
+        visitor.visit(tree)
+    except ValueError as e:
+        locator.save()
+        die(str(e))
 
     # create simple KML file
 
@@ -115,5 +123,5 @@ if __name__ == '__main__':
     ls.style.linestyle.color = simplekml.Color.red
 
     print(kml.kml())
-
     locator.save()
+
