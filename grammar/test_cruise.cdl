@@ -30,6 +30,9 @@ location Gallura is Santa Teresa Gallura Sardinia
 location Torregrande is Torregrande  Sardinia
 location Tuelada is Tuelada Sardinia
 location Villasimius is Villasimius Sardinia
+location La_Spezia is La Spezia Italy
+location Termini is Termini Italy
+location Fanciullo is Fanciullo Italy
 
 cruise (Shakedown 2019)
 	Sant_Carles
@@ -59,3 +62,22 @@ cruise (Shakedown 2019)
 	Cagliari
 
 	Capri
+	Naples
+	Sorrento
+	Termini
+	Amalfi
+	Salerno
+	Capri
+	Ischia
+	Formia
+	Anzio
+	Ostia
+	Fanciullo
+	Orbetello
+	Follonica
+	Piombino
+	Portoferraio
+	Livorno
+	La_Spezia
+	Chiavari
+	Genoa
