@@ -1,3 +1,4 @@
 *.java
 *.class
 *.kml
+.DS_Store
