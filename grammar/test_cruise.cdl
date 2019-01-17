@@ -14,7 +14,6 @@ location Banifacio is Banifacio Corsica
 location Porto_Vecchio is Porto Vecchio Corsica
 location ST_FLOR is St Florent Corsica
 location Alghero is Alghero Sardinia
-
 location Arbatax is Arbatax Sardinia
 location Cagliari is Cagliari Sardinia
 location Calsetta is Calasetta Sardinia
@@ -34,10 +33,12 @@ location La_Spezia is La Spezia Italy
 location Termini is Termini Italy
 location Fanciullo is Fanciullo Italy
 
-cruise (Shakedown 2019)
+cruise  Shakedown
 	Sant_Carles
 	Tarragona for 1 night
 	Barcelona for 4 nights
+cruise  Barcelona to Nice
+	Barcelona
 	Blanes
 	Roses
 	Cerbre
@@ -48,11 +49,12 @@ cruise (Shakedown 2019)
 	Frejus
 	Cannes
 	Nice
+cruise  Nice to Naples via Corsica and Sardinia
+	Nice
 	Monaco
 	Menton
 	Imperia
 	Calvi
-
 	Propriano
 	Banifacio
 	Gallura
@@ -60,8 +62,9 @@ cruise (Shakedown 2019)
 	Cervo
 	Arbatax
 	Cagliari
-
 	Capri
+	Naples
+cruise  Naples to Genoa via Amalfi Coast and Cinque Terre
 	Naples
 	Sorrento
 	Termini

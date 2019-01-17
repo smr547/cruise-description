@@ -5,7 +5,7 @@ A cruise is named and consists of a series of locations
 Locations may be common names (as defined by Google) or explicitly defined locations
  */
  
-cruise              : (location_definition)+ cruise_definition EOF ;
+cruise              : (location_definition)+ (cruise_definition)+ EOF ;
  
 location_definition : location NEWLINE ;
 
@@ -28,7 +28,7 @@ stay_duration       : INT ;
 stay_duration_spec  : FOR WS stay_duration WS duration_units ;
 cruise_definition   : CRUISE WS title NEWLINE (destination_line)+ ;
 destination_line    : WS identifier (WS stay_duration_spec)? NEWLINE ;
-title               : TEXT ;
+title               : (WORD | WS)+ ;
 
 /*
  * Lexer Rules
