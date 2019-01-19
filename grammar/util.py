@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# List all the locations mentioned in a cruise description
+# Utilities
 #
 
 __author__ = 'smr'
@@ -83,12 +83,28 @@ class PositionVisitor(CdlVisitor):
         else:
             return None
     
+def build_vessel_season(cdl_filename=None):
+    '''
+    Build a VesselSeason instance from the CDL file
+    '''
 
-if __name__ == '__main__':
-    if len(sys.argv) > 1:
-        input_stream = FileStream(sys.argv[1])
-    else:
+    if cdl_filename is None:
         input_stream = InputStream(sys.stdin.readline())
+    else:
+        input_stream = FileStream(cdl_filename)
+
+    # no language support for Vessel or Season yet, so let's hard code them
+
+    season_name = cdl_filename
+    if season_name is None:
+        season_name = "unknown_season"
+    vessel = Vessel(888, "SV Trilogy", "Trilogy", "Australia", "123456")
+    season = Season(season_name)
+
+    # now parse the CDL file to create a VesselSeason instance to return
+
+    vessel_season = VesselSeason(vessel, season)
+
 
     lexer = CdlLexer(input_stream)
     token_stream = CommonTokenStream(lexer)
