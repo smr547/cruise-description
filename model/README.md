@@ -18,10 +18,20 @@ The vessel to be cruised. Has properties:
 * Description
 
 ## Season
-A period in which one or more cruises will be conducted in earnest. Has properties:
+A period in which one or more cruises will be conducted in earnesti, possibly involving multiple vesses. Has properties:
 
 * Title
 * duration (a time interval)
+
+A season includes the cruising of one or more vessels. A single vessel may be cruised for one or more seasons. 
+
+## VesselSeason
+
+Reresents the cruising activities of a single vessel in a single season. 
+
+* identifier (combination of the vessel identifier and season title
+* commencement location
+* commencement date
 
 ## Cruise
 A trip from one major destination to another, involving stopovers along the way for sightseeing and other activities. A
@@ -66,13 +76,16 @@ A named place or point of interest. Has properties
 
 A Location may be a destination, a place for a planned stopover or simply a point of navigational interst (a waypoint)
 
+# Crewing
+
+Our system should be able to track the persons on board each vessel at any point in time. Some additional concepts are
+therefore required.
 
 ## Person
 A natural person travelling on board the vessel in the role of  crew member, passenger or guest. Has attributes:
 
 * Name (first, middle, surname)
 * Shortname (initials)
-* Role
 * Gender
 * Address
 * Telephone
@@ -83,6 +96,15 @@ A natural person travelling on board the vessel in the role of  crew member, pas
 ** Nationality (country of issue)
 ** Issue date
 ** Expiry date
+
+## PersonRole
+The concept of a person occupying a role on a vessel for a period of time. Roles may be Passenger, Guest or a Crew Role
+(skipper, mate, navigator)
+
+## Compliment
+The collections of people on board at any point in time. Each person on board can be identified in a specific Role 
+Crew roles include skipper, mate, navigator etc. A person on board may also be a Guest or a Passenger (the latter pay to 
+to be transported on board the vessel).
 
 # Other terms that may be of interest
 

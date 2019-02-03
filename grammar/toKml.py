@@ -58,13 +58,13 @@ class MyVisitor(CdlVisitor):
         return
 
     # Visit a parse tree produced by CdlParser#destination_line.
-    def visitDestination_line(self, ctx:CdlParser.Destination_lineContext):
+    def visitVisitation_spec(self, ctx:CdlParser.Visitation_specContext):
         loc = None
-        if ctx.identifier().getText() not in self.locations:
-            loc = Location(ctx.identifier().getText(), ctx.identifier().getText(), None)
+        if ctx.location_identifier().getText() not in self.locations:
+            loc = Location(ctx.location_identifier().getText(), ctx.location_identifier().getText(), None)
             self.locations[loc.identifier] = loc
         else:
-            loc = self.locations[ctx.identifier().getText()]
+            loc = self.locations[ctx.location_identifier().getText()]
 
         self.visitations.append(loc)
         return self.visitChildren(ctx)
@@ -93,7 +93,7 @@ if __name__ == '__main__':
     lexer = CdlLexer(input_stream)
     token_stream = CommonTokenStream(lexer)
     parser = CdlParser(token_stream)
-    tree = parser.cruise()
+    tree = parser.cdl_file()
 
     visitor = MyVisitor()
 

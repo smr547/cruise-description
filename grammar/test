@@ -7,4 +7,4 @@ echo generating files
 antlr4 Cdl.g4
 echo done
 javac *.java
-grun Cdl cruise test_cruise.cdl -tokens -gui
+grun Cdl cdl_file test_cruise.cdl -tokens -gui

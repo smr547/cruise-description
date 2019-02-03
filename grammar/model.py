@@ -33,12 +33,11 @@ class PointOfInterest(Location):
         super(self, VisitedLocation).__init__(identifier, name, coords)    
 
 class Vessel(object):
-    def __init__(self, identifier, name, shortname, country_of_rego, rego_number):
+    def __init__(self, identifier, name, flag, rego):
         self.identifier = identifier
         self.name = name 
-        self.shortname = shortname 
-        self.country_of_rego = country_of_rego
-	self.rego_number = rego_number
+        self.flag = flag
+        self.rego = rego
         # todo: expand attributes
 
     def __str__(self):
@@ -60,26 +59,32 @@ class Season(object):
         return "%s: identifier=%s" % (type(self).__name__, self.identifier)
 
 class VesselSeason(object):
-    def __init__(self, vessel, season):
+    def __init__(self, vessel, season, cruises):
         self.vessel = vessel
         self.season = season
-        self.locations = []
-        self.cruises = []
+        self.cruises = cruises
+
+    def key(self):
+        return "%s/%s" % (self.vessel.identifier, self.season)
 
     def identifier(self):
-        return "%s/%s" % (self.vessel.identifier, self.season.identifier)
+        return "%s" % (self.key(), )
 
     def __str__(self):
         return "%s: identifier=%s, name=%s" % (type(self).__name__, self.identifier())
 
 class Cruise(object):
-    def __init__(self, vesselSeason, identifier, name, shortname, description):
+    def __init__(self, vesselSeason=None, identifier=None, name=None, shortname=None, description=None):
         self.vesselSeason = vesselSeason
-        self.identifier = identifier
+        self.identifier = identifier   # not defined in grammar yet
         self.name = name 
-        self.shortname = shortname 
-        self.description = description
-        self.legs = []
+        self.shortname = shortname    # not defined in grammar yet
+        self.description = description   # not defined in grammar yet
+        self.legs = []   # not defined in grammar yet
+        self.events = [] # ordered list of events - An Event is a Visitation or Crew movement
+
+    def add_event(self, event):
+        self.events.append(event)
 
     def __str__(self):
         return "%s: identifier=%s, name=%s" % (type(self).__name__, self.identifier, self.name)
@@ -96,12 +101,11 @@ class Leg(object):
         return "%s: identifier=%s, name=%s" % (type(self).__name__, self.identifier, self.name)
 
 class Visitation(object):
-    def __init__(self, leg, location, identifier, description, duration_days=0):
-        self.leg = leg
+    def __init__(self, location, stay_spec=None  description=None, duration_days=0):
         self.location = location
-        self.identifier = identifier
         self.description = description
-        self.duration _days= duration_days
+        self.stay_spec = stay_spec
+        self.duration_days= duration_days
 
     def is_stopover(self):
         return self.duration_days > 0
