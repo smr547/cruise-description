@@ -23,7 +23,7 @@ location            : LOCATION identifier (AT position)? IS placename NEWLINE;
 
 person_list         : (person_spec)+ ;
 
-vessel_season_spec  : SEASON season_identifier VESSEL vessel_identifier NEWLINE (cruise)+;
+vessel_season_spec  : SEASON season_identifier VESSEL vessel_identifier BEGINS IN location_identifier NEWLINE (cruise)+;
 
 /*
 cruise              : CRUISE title NEWLINE (crew_movement)* origin (event_line)* destination (crew_movement)* ;
@@ -58,8 +58,8 @@ stay_spec           : FOR stay_duration duration_units ;
 location_identifier : WORD ;
 vessel_identifier   : WORD ;
 season_identifier   : WORD ;
-joining_spec        : (CREW | GUEST) identifier JOINS (ON date)? (AS role_spec)?;
-leaving_spec        : (CREW | GUEST) identifier LEAVES (ON date)? ;
+joining_spec        : (CREW | GUEST) identifier JOINS (ON date)? (AS role_spec)? (IN location_identifier)?;
+leaving_spec        : (CREW | GUEST) identifier LEAVES (ON date)?  (IN location_identifier)?;
 role_spec           : SKIPPER | MATE ;
 title               : PHRASE ;
 name                : PHRASE ;
@@ -91,6 +91,7 @@ fragment P      : ('P'|'p');
 fragment W      : ('W'|'w');
 fragment J      : ('J'|'j');
 fragment K      : ('K'|'k');
+fragment B      : ('B'|'b');
 
 fragment LOWERCASE  : [a-z] ;
 fragment UPPERCASE  : [A-Z] ;
@@ -103,6 +104,7 @@ CRUISE          : C R U I S E ;
 AT              : A T;
 AS              : A S;
 ON              : O N;
+IN              : I N;
 FOR             : F O R;
 NIGHT           : N I G H T;
 NIGHTS          : N I G H T S;
@@ -114,6 +116,7 @@ CREW            : C R E W;
 GUEST           : G U E S T;
 JOINS           : J O I N S;
 LEAVES          : L E A V E S;
+BEGINS          : B E G I N S;
 
 /* Roles */
 
@@ -147,7 +150,7 @@ REAL
  ;
 
 PHRASE
-   : QUOTE (WORD | ' ' | '\t')* QUOTE ;
+   : QUOTE (WORD | ' ' | ';' | ',' | '-')* QUOTE ;
 
 WS      : (' ' | '\t')+  -> skip;
 
