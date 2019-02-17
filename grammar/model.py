@@ -101,7 +101,7 @@ class Leg(object):
         return "%s: identifier=%s, name=%s" % (type(self).__name__, self.identifier, self.name)
 
 class Visitation(object):
-    def __init__(self, location, stay_spec=None  description=None, duration_days=0):
+    def __init__(self, location, stay_spec=None, description=None, duration_days=0):
         self.location = location
         self.description = description
         self.stay_spec = stay_spec

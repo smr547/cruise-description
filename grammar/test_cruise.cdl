@@ -2,12 +2,17 @@ vessel Trilogy name: "Trilogy" flag: "Australia" rego: 12345
 
 location Sant_Carles is "Sant Carles de la Rapita"
 location Barcelona is "Port of Barcelona Spain"
+location Tarragona is "Port of Tarragona Spain"
 location Blanes is "Blanes Spain"
 location WPa at 6.7 43.2 is "a waypoint"
 location Roses is "Roses Spain"
 location Menton is "Menton Italy"
 location Nice is "Port de Villefranche-sur-Mer, France"
 location Cerbre is "Cape Cerbre France"
+location Toulon is "Toulon France"
+location Hyeres is "Hyeres France"
+location Frejus is "Frejus France"
+location Cannes is "Cannes France"
 location Vendres is "Port Vendres"
 location Bastia is "Bastia Corsica"
 location Calvi is "Calvi Corsica"
@@ -32,9 +37,27 @@ location Gallura is "Santa Teresa Gallura Sardinia"
 location Torregrande is "Torregrande  Sardinia"
 location Tuelada is "Tuelada Sardinia"
 location Villasimius is "Villasimius Sardinia"
+location Imperia is "Imperia Italy"
 location La_Spezia is "La Spezia Italy"
-location Termini is "Termini Italy"
 location Fanciullo is "Fanciullo Italy"
+location Naples is "Naples Italy"
+location Sorrento is "Sorrento Italy"
+location Termini is "Termini Italy"
+location Amalfi is "Amalfi Italy"
+location Salerno is "Salerno Italy"
+location Capri is "Capri Italy"
+location Ischia is "Ischia Italy"
+location Formia is "Formia Italy"
+location Anzio is "Anzio Italy"
+location Ostia is "Ostia Italy"
+location Orbetello is "Orbetello Italy"
+location Follonica is "Follonica Italy"
+location Piombino is "Piombino Italy"
+location Portoferraio is "Portoferraio Italy"
+location Livorno is "Livorno Italy"
+location Chiavari is "Chiavari Italy"
+location Genoa is "Genoa Italy"
+location Monaco is "Monaco"
 
 person smr name: "Steven Michael Ring"
 person isf name: "Irene Sarah Farthing"
@@ -54,10 +77,10 @@ season Steven_cruise vessel Trilogy begins in Sant_Carles
 cruise  "Shakedown"
 	Sant_Carles
         crew smr joins on 31/3/19 as skipper in Sant_Carles
-        crew wp  joins on 07/4/19 as mate in Sant_Carles
+        crew wp  joins on 08/4/19 as mate in Sant_Carles
 	Tarragona for 1 night
 	Barcelona for 4 nights
-        crew wp leaves on 14/4/19
+        crew wp leaves on 16/4/19
 
 cruise  "Barcelona to Nice"
         crew gh joins on 16/4/19 in Barcelona
