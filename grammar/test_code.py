@@ -24,6 +24,8 @@ class TestCdlAnalyser(unittest.TestCase):
             print(type(s))
             for c in s.cruises:
                 print("   %s" % (str(c), ))
+                for e in c.events:
+                    print("   -> %s %s" % (type(e), str(e), ))
 
 class TestStringMethods(unittest.TestCase):
 

@@ -37,7 +37,12 @@ destination         : visitation_spec NEWLINE ;
 crew_movement       : (joining_spec | leaving_spec) NEWLINE  ;
 */
 
-event_line          : (visitation_spec | joining_spec | leaving_spec) NEWLINE ;
+event_line          : (visitation_spec | via_waypoints | joining_spec | leaving_spec) NEWLINE ;
+
+/*
+specify a list of waypoints (zero stay-length visitations) along the route taking vessel to next destination
+*/
+via_waypoints       : VIA (location_identifier | COMMA)+ ;
 
 lng: number;
 lat: number;
@@ -119,6 +124,7 @@ GUEST           : G U E S T;
 JOINS           : J O I N S;
 LEAVES          : L E A V E S;
 BEGINS          : B E G I N S;
+VIA             : V I A;
 
 /* Roles */
 
@@ -137,6 +143,7 @@ PLUS: '+';
 MINUS: '-';
 SLASH: '/';
 QUOTE: '"';
+COMMA: ',';
 
 INT
  : '0'

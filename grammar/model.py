@@ -85,6 +85,7 @@ class Cruise(object):
         self.events = [] # ordered list of events - An Event is a Visitation or Crew movement
 
     def add_event(self, event):
+        # print("adding:  %s %s" % (type(event), str(event), ))
         self.events.append(event)
 
     def __str__(self):
@@ -103,17 +104,21 @@ class Leg(object):
         return "%s: identifier=%s, name=%s" % (type(self).__name__, self.identifier, self.name)
 
 class Visitation(object):
-    def __init__(self, location, stay_spec=None, description=None, duration_days=0):
+    def __init__(self, location, stay_spec=None, description=None):
         self.location = location
         self.description = description
         self.stay_spec = stay_spec
-        self.duration_days= duration_days
+        self.duration_days= 0
+        if stay_spec is not None:
+            self.duration_days= stay_spec.get_duration_days()
+       
+        
 
     def is_stopover(self):
         return self.duration_days > 0
 
     def __str__(self):
-        return "%s: identifier=%s, location=%s" % (type(self).__name__, self.identifier, self.location.name)
+        return "%s: location=%s (stay %d days)" % (type(self).__name__, self.location.identifier, self.duration_days)
 
 
 if __name__ == '__main__':
