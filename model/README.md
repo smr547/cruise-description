@@ -46,6 +46,8 @@ A cruise has attributes:
 * Duration
 * Persons on board (collection of Persons)
 * Sequence of legs
+* scheduled depature date
+* departure location
 
 ## Leg
 A part of a cruise involving the vessel moving from one stopover location to another (possibly with some intevening 

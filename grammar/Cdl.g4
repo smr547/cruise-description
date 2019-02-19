@@ -29,7 +29,7 @@ vessel_season_spec  : SEASON season_identifier VESSEL vessel_identifier BEGINS I
 cruise              : CRUISE title NEWLINE (crew_movement)* origin (event_line)* destination (crew_movement)* ;
 */
 
-cruise              : CRUISE title NEWLINE (event_line)+ ;
+cruise              : CRUISE title DEPARTS location_identifier ON date NEWLINE (event_line)+ ;
 /*
 origin              : visitation_spec NEWLINE ;
 destination         : visitation_spec NEWLINE ;
@@ -92,6 +92,7 @@ fragment W      : ('W'|'w');
 fragment J      : ('J'|'j');
 fragment K      : ('K'|'k');
 fragment B      : ('B'|'b');
+fragment D      : ('D'|'d');
 
 fragment LOWERCASE  : [a-z] ;
 fragment UPPERCASE  : [A-Z] ;
@@ -108,6 +109,7 @@ IN              : I N;
 FOR             : F O R;
 NIGHT           : N I G H T;
 NIGHTS          : N I G H T S;
+DEPARTS   	: D E P A R T S;
 NAME            : N A M E;
 COLON           : ':';
 FLAG            : F L A G;

@@ -74,7 +74,7 @@ person rb name: "Rena Brettle"
 
 season Steven_cruise vessel Trilogy begins in Sant_Carles
 
-cruise  "Shakedown"
+cruise  "Shakedown" departs Sant_Carles on 14/4/19
 	Sant_Carles
         crew smr joins on 31/3/19 as skipper in Sant_Carles
         crew wp  joins on 08/4/19 as mate in Sant_Carles
@@ -82,73 +82,73 @@ cruise  "Shakedown"
 	Barcelona for 4 nights
         crew wp leaves on 16/4/19
 
-cruise  "Barcelona to Nice"
+cruise  "Barcelona to Nice" departs Barcelona on 14/4/19
         crew gh joins on 16/4/19 in Barcelona
         crew cm joins on 16/4/19 in Barcelona
         crew sjr joins on 16/4/19 in Barcelona
         crew pjr joins on 16/4/19 in Barcelona
         crew ar joins on 16/4/19 in Barcelona
 	Barcelona
-	Blanes
-	Roses
-	Cerbre
-	Vendres
-	Toulon
-	Hyeres
+	Blanes for 1 night
+	Roses for 1 night
+	Cerbre for 1 night
+	Vendres for 1 night
+	Toulon for 1 night
+	Hyeres for 1 night
 	WPa
-	Frejus
-	Cannes
-	Nice
+	Frejus for 1 night
+	Cannes for 1 night
+	Nice for 4 nights
 	crew gh leaves on 30/4/19 in Nice
 	crew cm leaves on 30/4/19 in Nice
 	crew sjr leaves on 1/5/19 in Nice
 	crew ar leaves on 1/5/19 in Nice
 	crew pjr leaves on 1/5/19 in Nice
 
-cruise  "Nice to Naples via Corsica and Sardinia"
+cruise  "Nice to Naples via Corsica and Sardinia" departs Nice on 3/5/19
 	crew po joins on 1/5/19 as mate in Nice
 	crew wp joins on 1/5/19 in Nice
 	crew rb joins on 1/5/19 in Nice
 	crew isf joins on 2/5/19 in Nice 
 	Nice
-	Monaco
-	Menton
-	Imperia
-	Calvi
-	Propriano
-	Banifacio
-	Gallura
-	Maddalena
-	Cervo
-	Arbatax
-	Cagliari
-	Capri
-	Naples
+	Monaco for 1 night
+	Menton for 1 night
+	Imperia for 1 night
+	Calvi for 1 night
+	Propriano for 1 night
+	Banifacio for 1 night
+	Gallura for 1 night
+	Maddalena for 1 night
+	Cervo for 1 night
+	Arbatax for 1 night
+	Cagliari for 1 night
+	Capri for 1 night
+	Naples for 1 night
 	crew wp leaves on 2/6/19 in Naples
 	crew rb leaves on 2/6/19 in Naples
 
 
-cruise  "Naples to Genoa via Amalfi Coast and Cinque Terre"
+cruise  "Naples to Genoa via Amalfi Coast and Cinque Terre" departs Naples on 4/6/19
 	crew kmt joins on 2/6/19 in Naples
 	crew sgr joins on 2/6/19 in Naples
 	Naples
-	Sorrento
-	Termini
-	Amalfi
-	Salerno
-	Capri
-	Ischia
-	Formia
-	Anzio
-	Ostia
-	Fanciullo
-	Orbetello
-	Follonica
-	Piombino
-	Portoferraio
-	Livorno
-	La_Spezia
-	Chiavari
+	Sorrento for 1 night
+	Termini for 1 night
+	Amalfi for 1 night
+	Salerno for 1 night
+	Capri for 1 night
+	Ischia for 1 night
+	Formia for 1 night
+	Anzio for 1 night
+	Ostia for 1 night
+	Fanciullo for 1 night
+	Orbetello for 1 night
+	Follonica for 1 night
+	Piombino for 1 night
+	Portoferraio for 1 night
+	Livorno for 1 night
+	La_Spezia for 1 night
+	Chiavari for 1 night
 	Genoa
 	crew smr leaves on 30/6/19 in Genoa
 	crew isf leaves on 30/6/19 in Genoa

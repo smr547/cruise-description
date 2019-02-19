@@ -6,22 +6,24 @@ from CdlFileAnalyser import CdlFileAnalyser
 
 class TestCdlAnalyser(unittest.TestCase):
 
-    def test_analyser_instantiation(self):
-        analyser = CdlFileAnalyser()
-        self.assertTrue(analyser is not None)
-
-    def test_analysis(self):
+    def setUp(self):
         filename = './test_cruise.cdl'
         analyser = CdlFileAnalyser()
-        content = analyser.analyse(filename)
+        self.content = analyser.analyse(filename)
+
+
+    def test_analysis(self):
+        content = self.content
         self.assertTrue(content is not None)
 
     def test_analysis_returned_content(self):
-        filename = './test_cruise.cdl'
-        analyser = CdlFileAnalyser()
-        content = analyser.analyse(filename)
+        content = self.content
         seasons = content.vesselSeasons
         self.assertEqual(len(seasons), 1)
+        for s in seasons.values():
+            print(type(s))
+            for c in s.cruises:
+                print("   %s" % (str(c), ))
 
 class TestStringMethods(unittest.TestCase):
 

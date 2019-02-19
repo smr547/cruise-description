@@ -74,12 +74,13 @@ class VesselSeason(object):
         return "%s: identifier=%s, name=%s" % (type(self).__name__, self.identifier())
 
 class Cruise(object):
-    def __init__(self, vesselSeason=None, identifier=None, name=None, shortname=None, description=None):
+    def __init__(self, vesselSeason=None, name=None, shortname=None, description=None, departure_date=None,        departure_port=None):
         self.vesselSeason = vesselSeason
-        self.identifier = identifier   # not defined in grammar yet
         self.name = name 
         self.shortname = shortname    # not defined in grammar yet
         self.description = description   # not defined in grammar yet
+        self.departure_date = departure_date 
+        self.departure_port = departure_port
         self.legs = []   # not defined in grammar yet
         self.events = [] # ordered list of events - An Event is a Visitation or Crew movement
 
@@ -87,7 +88,8 @@ class Cruise(object):
         self.events.append(event)
 
     def __str__(self):
-        return "%s: identifier=%s, name=%s" % (type(self).__name__, self.identifier, self.name)
+        return "%s: name=%s departs %s on %s" % (type(self).__name__, self.name,
+            self.departure_port, self.departure_date)
 
 class Leg(object):
     def __init__(self, cruise, identifier, name, description):
