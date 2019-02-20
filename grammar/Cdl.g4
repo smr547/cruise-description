@@ -146,7 +146,8 @@ MATE            : M A T E;
 
 IS              : I S ;
 
-WORD            : (LOWERCASE | UPPERCASE | '_')+ ;
+WORD            : (LOWERCASE | UPPERCASE) (LOWERCASE | UPPERCASE | [0-9] | '_')* ;
+
 
 /* Dates and times */
 DATE            : [0-9] ([0-9])? SLASH [0-9] ([0-9])? SLASH [0-9] [0-9] ;
