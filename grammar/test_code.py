@@ -21,11 +21,11 @@ class TestCdlAnalyser(unittest.TestCase):
         seasons = content.vesselSeasons
         self.assertEqual(len(seasons), 1)
         for s in seasons.values():
-            print(type(s))
+            print(s.identifier())
             for c in s.cruises:
                 print("   %s" % (str(c), ))
                 for e in c.events:
-                    print("   -> %s %s" % (type(e), str(e), ))
+                    print("      -> %s" % (str(e), ))
 
 class TestStringMethods(unittest.TestCase):
 

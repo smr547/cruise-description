@@ -120,6 +120,26 @@ class Visitation(object):
     def __str__(self):
         return "%s: location=%s (stay %d days)" % (type(self).__name__, self.location.identifier, self.duration_days)
 
+class CrewEvent(object):
+    def __init__(self, person, join_not_leave=True, role=None, scheduled=None, location=None):
+        self.person = person
+        self.join_not_leave = join_not_leave
+        self.role = role
+        self.scheduled = scheduled
+        self.location = location
+
+    def event_name(self):
+        if self.join_not_leave:
+            return "joins"
+        return "leaves"
+
+    def __str__(self):
+        loc_id = None
+        if self.location is not None:
+            loc_id = self.location.identifier
+        return "%s: %s %s (role: %s, scheduled: %s, location: %s)" % (type(self).__name__, self.person.identifier,
+            self.event_name(), self.role, self.scheduled, loc_id)
+     
 
 if __name__ == '__main__':
     pass
