@@ -27,6 +27,10 @@ class TestCdlAnalyser(unittest.TestCase):
                 for e in c.events:
                     print("      -> %s" % (str(e), ))
 
+        for loc in content.locations.values():
+            if loc.identifier.startswith("WP"):
+                print(loc)
+
 class TestStringMethods(unittest.TestCase):
 
     def test_upper(self):

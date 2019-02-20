@@ -1,0 +1,13 @@
+vessel Trilogy name: "Trilogy" flag: "Australia" rego: 12345
+
+location WPa at 6.7 43.2 is "a waypoint"
+location WPb at 6.7 43.3 is "a waypoint"
+location WPc at 6 7'.33E 43 33'N is "a waypoint in decimal minutes notation"
+location WPd at 6 7'.33E 43 33'.0N is "a waypoint in decimal minutes notation"
+
+season Steven_cruise vessel Trilogy begins in Sant_Carles
+
+cruise  "Shakedown" departs WPa on 14/4/19
+	WPa
+	WPb
+        WPc

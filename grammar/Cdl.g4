@@ -21,7 +21,7 @@ location_list       : (location)+ ;
 
 location            : LOCATION identifier (AT position)? IS placename NEWLINE;
 
-person_list         : (person_spec)+ ;
+person_list         : (person_spec)* ;
 
 vessel_season_spec  : SEASON season_identifier VESSEL vessel_identifier BEGINS IN location_identifier NEWLINE (cruise)+;
 
@@ -44,12 +44,24 @@ specify a list of waypoints (zero stay-length visitations) along the route takin
 */
 via_waypoints       : VIA (location_identifier | COMMA)+ ;
 
-lng: number;
-lat: number;
+lng: (dec_deg | long_deg_min);
+lat: (dec_deg | lat_deg_min);
+
+dec_deg             : number ;
+
+long_deg_min        : degrees decimal_minutes ew_hemisphere ;
+lat_deg_min         : degrees decimal_minutes ns_hemisphere ;
+
+degrees             : UNSIGNED_INT ;
+decimal_minutes     : UNSIGNED_INT APOSTROPHIE (UNSIGNED_REAL)? ;
+ew_hemisphere       : 'E' | 'W' ;
+ns_hemisphere       : 'N' | 'S' ;
 
 number
- : INT
- | REAL
+ : UNSIGNED_INT
+ | SIGNED_INT
+ | UNSIGNED_REAL
+ | SIGNED_REAL
  ;
 position            : lng lat;
 placename           : PHRASE ;
@@ -58,7 +70,7 @@ placename           : PHRASE ;
 identifier          : WORD ;
 duration_units      : NIGHT | NIGHTS ;
 visitation_spec     : location_identifier (stay_spec)? ;
-stay_duration       : INT ;
+stay_duration       : UNSIGNED_INT ;
 stay_spec           : FOR stay_duration duration_units ;
 location_identifier : WORD ;
 vessel_identifier   : WORD ;
@@ -69,7 +81,7 @@ role_spec           : SKIPPER | MATE ;
 title               : PHRASE ;
 name                : PHRASE ;
 flag                : PHRASE ;
-rego                : INT ;
+rego                : UNSIGNED_INT ;
 date                : DATE ;
 
 /*
@@ -144,17 +156,26 @@ MINUS: '-';
 SLASH: '/';
 QUOTE: '"';
 COMMA: ',';
+POINT: '.';
+APOSTROPHIE: '\'';
 
-INT
+
+UNSIGNED_INT
  : '0'
  | [1-9] [0-9]*
- | PLUS [1-9] [0-9]*
+ ;
+
+SIGNED_INT
+ : PLUS [1-9] [0-9]*
  | MINUS [1-9] [0-9]*
  ;
 
-REAL
+UNSIGNED_REAL
  : [0-9]* '.' [0-9]+
- | PLUS [0-9]* '.' [0-9]+
+ ;
+
+SIGNED_REAL
+ : PLUS [0-9]* '.' [0-9]+
  | MINUS [0-9]* '.' [0-9]+
  ;
 

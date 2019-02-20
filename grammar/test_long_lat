@@ -1,0 +1,10 @@
+#!/bin/bash
+
+shopt -s expand_aliases
+source ./setup_env
+
+echo generating files
+antlr4 Cdl.g4
+echo done
+javac *.java
+grun Cdl cdl_file test_long_lat.cdl -tokens -gui
