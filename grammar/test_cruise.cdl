@@ -1,81 +1,17 @@
-vessel Trilogy name: "Trilogy" flag: "Australia" rego: 12345
+vessel Trilogy name: "Trilogy" flag: "Australia" rego: 12345 speed: 7.5
 
-location Sant_Carles is "Sant Carles de la Rapita"
-location Barcelona is "Port of Barcelona Spain"
-location Tarragona is "Port of Tarragona Spain"
-location Blanes is "Blanes Spain"
 location WPa at 6.7 43.2 is "a waypoint"
 location WPb at 6.7 43.3 is "a waypoint"
-location WPc at 6 7'.33E 43 33'N is "a decimal minutes location"
-location WPd at 6 7'.33E 43 33'.0S is "a waypoint in decimal minutes notation"
-location WPe at 150 37'.03E 34 1'.0S is "somewhere near Wollongong"
-location Roses is "Roses Spain"
-location Menton is "Menton Italy"
-location Nice is "Port de Villefranche-sur-Mer, France"
-location Cerbre is "Cape Cerbre France"
-location Toulon is "Toulon France"
-location Hyeres is "Hyeres France"
-location Frejus is "Frejus France"
-location Cannes is "Cannes France"
-location Vendres is "Port Vendres"
-location Bastia is "Bastia Corsica"
-location Calvi is "Calvi Corsica"
-location Macinaggio is "Macinaggio Corsica"
-location Propriano is "Propriano Corsica"
-location Banifacio is "Banifacio Corsica"
-location Porto_Vecchio is "Porto Vecchio Corsica"
-location ST_FLOR is "St Florent Corsica"
-location Alghero is "Alghero Sardinia"
-location Arbatax is "Arbatax Sardinia"
-location Cagliari is "Cagliari Sardinia"
-location Calsetta is "Calasetta Sardinia"
-location Carloforte is "Carloforte Sardinia"
-location Castelsardo is "Castelsardo Sardina"
-location Rossa is "Isola Rossa Sardina"
-location Maddalena is "Maddalena Archipelago Sardina"
-location Olbia is "Olbia Sardinia"
-location Cervo is "Porto Cervo Sardinia"
-location Torres is "Porto Torres Sardinia"
-location Portoscuso is "Portoscuso Sardinia"
-location Gallura is "Santa Teresa Gallura Sardinia"
-location Torregrande is "Torregrande  Sardinia"
-location Tuelada is "Tuelada Sardinia"
-location Villasimius is "Villasimius Sardinia"
-location Imperia is "Imperia Italy"
-location La_Spezia is "La Spezia Italy"
-location Fanciullo is "Fanciullo Italy"
-location Naples is "Naples Italy"
-location Sorrento is "Sorrento Italy"
-location Termini is "Termini Italy"
-location Amalfi is "Amalfi Italy"
-location Salerno is "Salerno Italy"
-location Capri is "Capri Italy"
-location Ischia is "Ischia Italy"
-location Formia is "Formia Italy"
-location Anzio is "Anzio Italy"
-location Ostia is "Ostia Italy"
-location Orbetello is "Orbetello Italy"
-location Follonica is "Follonica Italy"
-location Piombino is "Piombino Italy"
-location Portoferraio is "Portoferraio Italy"
-location Livorno is "Livorno Italy"
-location Chiavari is "Chiavari Italy"
-location Genoa is "Genoa Italy"
-location Monaco is "Monaco"
-$include ./imray_fmcc_ss_IV.cdl
 
-person smr name: "Steven Michael Ring"
-person isf name: "Irene Sarah Farthing"
-person po name: "Peter Olaf Otteson"
-person gh name: "Graeme Hubbard"
-person cm name: "Cheryl Meikle"
-person sjr name: "Steven James Ring"
-person pjr name: "Patrick James Ring"
-person ar name: "Alice Ring"
-person kmt name: "Karyn Marie Talty"
-person sgr name: "Stephen Gordon Reeves"
-person wp name: "Wayne Petschack"
-person rb name: "Rena Brettle"
+$include ./imray_fmcc_ss_IV.cdl
+$include ./locations_spain.cdl
+$include ./locations_france.cdl
+$include ./locations_italy.cdl
+$include ./locations_corsica.cdl
+$include ./locations_sardinia.cdl
+
+$include ./people.cdl
+
 
 season Steven_cruise vessel Trilogy begins in Sant_Carles
 

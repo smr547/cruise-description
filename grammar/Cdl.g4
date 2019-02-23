@@ -11,7 +11,7 @@ A CDL file specifies the cruising plan for one or more vessels. A single file ca
 
 cdl_file            : fleet_spec location_list person_list (vessel_season_spec)+ EOF;
 
-vessel_spec         : VESSEL identifier NAME COLON name FLAG COLON flag REGO COLON rego NEWLINE ;
+vessel_spec         : VESSEL identifier NAME COLON name FLAG COLON flag REGO COLON rego SPEED COLON speed NEWLINE ;
 
 person_spec         : PERSON identifier NAME COLON name NEWLINE ;
 
@@ -47,6 +47,7 @@ via_waypoints       : VIA (location_identifier | COMMA)+ ;
 lng: (dec_deg | long_deg_min);
 lat: (dec_deg | lat_deg_min);
 
+speed               : number ;
 dec_deg             : number ;
 
 long_deg_min        : degrees decimal_minutes ew_hemisphere ;
@@ -137,6 +138,7 @@ JOINS           : J O I N S;
 LEAVES          : L E A V E S;
 BEGINS          : B E G I N S;
 VIA             : V I A;
+SPEED           : S P E E D ;
 
 /* Roles */
 

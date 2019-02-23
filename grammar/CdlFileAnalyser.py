@@ -40,11 +40,12 @@ def get_text(ctx):
     return None
 
 class Vessel(object):
-    def __init__(self, identifier, name, flag, rego):
+    def __init__(self, identifier, name, flag, rego, speed_kts):
         self.identifier = identifier
         self.name = name
         self.flag = flag 
         self.rego = rego
+        self.speed_kts = speed_kts
         # todo: expand attributes
 
     def __str__(self):
@@ -120,7 +121,8 @@ class VesselVisitor(CdlVisitor):
             ctx.identifier().getText(),
             ctx.name().getText(),
             remove_quotes(ctx.flag().getText()),
-            remove_quotes(ctx.rego().getText()))
+            remove_quotes(ctx.rego().getText()),
+            float(ctx.speed().getText()))
 
 class LocationVisitor(CdlVisitor):
     def __init__(self):
