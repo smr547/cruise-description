@@ -21,6 +21,9 @@ cruise "2019 Season - Part 1"
 
 Tools based on Cruise Definition Language (CDL)
 
-1. CDL -> KML to visualise cruise on Google Earth
-1. CDL -> cruise plan (departure/arrival schedule)
-1. CDL -> weather outlook
+1. CDL -> KML to view the cruising plans via Google Earth
+1. CDL -> cruise schedule (departure/arrival schedule)
+1. CDL -> Crew schedule and joining instructions
+1. CDL -> Crew Itinerary 
+1. CDL -> Customs, Immigration and Port Authority documentation
+1. CDL -> tide predictions and weather outlook
