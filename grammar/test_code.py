@@ -3,6 +3,26 @@
 import unittest
 from CdlFileAnalyser import CdlFileAnalyser
 
+import datetime
+import pytz
+from tzwhere import tzwhere
+tzw = tzwhere.tzwhere()  # this line is VERY expensive: >4 sec runtime!!
+
+class TestTz(unittest.TestCase):
+
+    def test_find_tz_with_lat_long(self):
+        timezone_str = tzw.tzNameAt(37.3880961, -5.9823299) # Seville coordinates
+        self.assertEqual(timezone_str, "Europe/Madrid")
+        timezone = pytz.timezone(timezone_str)
+        dt = datetime.datetime.now()
+        print(dt)
+        print(dt.isoformat())
+        print(timezone.utcoffset(dt))
+        dt = datetime.datetime.now(timezone)
+        print(dt)
+        print(dt.isoformat())
+
+#> datetime.timedelta(0, 7200)
 
 class TestCdlAnalyser(unittest.TestCase):
 

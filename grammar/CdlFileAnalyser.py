@@ -19,7 +19,7 @@ from CdlParser import CdlParser
 
 from geolocator import CachedGeoLocator
 import simplekml
-from model import Location, Person, VesselSeason, Cruise, Visitation, CrewEvent, Leg
+from model import Location, Person, Vessel, VesselSeason, Cruise, Visitation, CrewEvent, Leg
 
 def die(message):
     stderr.write(str(message) + "\n")
@@ -38,18 +38,6 @@ def get_text(ctx):
     if ctx is not None:
         return ctx.getText()
     return None
-
-class Vessel(object):
-    def __init__(self, identifier, name, flag, rego, speed_kts):
-        self.identifier = identifier
-        self.name = name
-        self.flag = flag 
-        self.rego = rego
-        self.speed_kts = speed_kts
-        # todo: expand attributes
-
-    def __str__(self):
-        return "%s: identifier=%s, name=%s" % (type(self).__name__, self.identifier, self.name)
 
 class StaySpec(object):
     def __init__(self, period, units):

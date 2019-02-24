@@ -7,6 +7,7 @@ __author__ = 'smr'
 
 from geolocator import CachedGeoLocator
 from geopy.distance import great_circle
+from datetime import timedelta
 
 locator = CachedGeoLocator()
 locator.load()
@@ -43,11 +44,12 @@ class PointOfInterest(Location):
         super(self, VisitedLocation).__init__(identifier, name, coords)    
 
 class Vessel(object):
-    def __init__(self, identifier, name, flag, rego):
+    def __init__(self, identifier, name, flag, rego, speed_kts):
         self.identifier = identifier
-        self.name = name 
+        self.name = name
         self.flag = flag
         self.rego = rego
+        self.speed_kts = speed_kts
         # todo: expand attributes
 
     def __str__(self):
@@ -103,6 +105,9 @@ class Cruise(object):
         for leg in self.legs:
             dist += leg.distance_NM()
         return dist
+
+    def cruising_speed_KTS(self):
+        return self.vesselSeason.vessel.speed_kts
             
     def __str__(self):
         return "%s: name=%s departs %s on %s %d events, distance %d NM" % (type(self).__name__, self.name,
@@ -126,6 +131,9 @@ class Leg(object):
             dist += hop.distance_NM()
         return dist
 
+    def sailing_time(self):
+        return timedelta(hours=self.distance_NM()/self.cruise.cruising_speed_KTS())
+
     def hops(self):
         if self._hops is None:
             self._hops = []
@@ -134,7 +142,7 @@ class Leg(object):
         return self._hops
 
     def __str__(self):
-        return "%s: from %s to %s dist_NM=%f" % (type(self).__name__, self.origin().identifier, self.destination().identifier, self.distance_NM())
+        return "%s: from %s to %s dist_NM=%f time=%s" % (type(self).__name__, self.origin().identifier, self.destination().identifier, self.distance_NM(), str(self.sailing_time()))
 
 class Hop(object):
     def __init__(self, from_location : Location, to_location : Location):
