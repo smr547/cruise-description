@@ -24,12 +24,10 @@ class TestCdlAnalyser(unittest.TestCase):
             print(s.identifier())
             for c in s.cruises:
                 print("   %s" % (str(c), ))
-                for e in c.events:
-                    print("      -> %s" % (str(e), ))
-
-        for loc in content.locations.values():
-            if loc.identifier.startswith("WP"):
-                print(loc)
+                for l in c.legs:
+                    print("      -> %s" % (str(l), ))
+                for l in c.events:
+                    print("      -> %s" % (str(l), ))
 
 class TestStringMethods(unittest.TestCase):
 

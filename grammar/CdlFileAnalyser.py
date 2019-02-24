@@ -19,7 +19,7 @@ from CdlParser import CdlParser
 
 from geolocator import CachedGeoLocator
 import simplekml
-from model import Person, VesselSeason, Cruise, Visitation, CrewEvent
+from model import Location, Person, VesselSeason, Cruise, Visitation, CrewEvent, Leg
 
 def die(message):
     stderr.write(str(message) + "\n")
@@ -62,19 +62,6 @@ class StaySpec(object):
 
     def __str__(self):
         return "%s: period=%s units=%s" % (type(self).__name__, str(self.period), self.units)
-
-class Location(object):
-    def __init__(self, identifier, name, coords):
-        self.identifier = identifier
-        self.name = name
-        if coords is None:
-            loc = locator.get_location(name)
-            self.coords = (loc['lng'],  loc['lat'])
-        else:
-            self.coords = coords
-
-    def __str__(self):
-        return "Location: identifier=%s, name=%s %s" % (self.identifier, self.name, str(self.coords))
 
 class CdlFile(object):
     def __init__(self):
@@ -217,6 +204,8 @@ class CdlFileVisitor(CdlVisitor):
             vs = visitor.visit(vsc)
             self.result.add_vessel_season(vs)
 
+        
+
         return self.result
 
 class VesselSeasonVisitor(CdlVisitor):
@@ -262,6 +251,21 @@ class CruiseVisitor(CdlVisitor):
         for event_line in ctx.event_line():
             eventVisitor.visit(event_line)
 
+        # build the legs for this cruise
+         
+        current_leg = None
+        for event in cruise.events:
+            if isinstance(event, CrewEvent):
+                continue
+            if current_leg is None:
+                current_leg = Leg(cruise)
+                current_leg.visitations.append(event)
+            else:
+                current_leg.visitations.append(event)
+                if event.is_stopover():   # which ends this leg
+                    cruise.legs.append(current_leg)
+                    current_leg = Leg(cruise)
+                    current_leg.visitations.append(event)
         return cruise
 
 class EventVisitor(CdlVisitor):
@@ -364,6 +368,7 @@ class CdlFileAnalyser(object):
                         output.write(rec)
             else:
                 output.write(line)
+        fin.close()
 
         # now process CDL source from memory 
 
