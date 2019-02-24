@@ -1,4 +1,6 @@
+#!/usr/bin/env python3
 
+from sys import argv
 import os
 import googlemaps
 import json
@@ -40,3 +42,9 @@ class CachedGeoLocator(GeoLocator):
         if place_name not in self.cache:
             self.cache[place_name] = super(CachedGeoLocator, self).get_location(place_name)
         return self.cache[place_name]
+
+if __name__ == "__main__":
+    locator = CachedGeoLocator()
+    locator.load()
+    print(locator.get_location(argv[1]))
+    
