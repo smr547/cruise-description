@@ -69,7 +69,7 @@ placename           : PHRASE ;
 
 
 identifier          : WORD ;
-duration_units      : NIGHT | NIGHTS ;
+duration_units      : NIGHT | NIGHTS | HOURS ;
 visitation_spec     : location_identifier (stay_spec)? ;
 stay_duration       : UNSIGNED_INT ;
 stay_spec           : FOR stay_duration duration_units ;
@@ -127,6 +127,7 @@ IN              : I N;
 FOR             : F O R;
 NIGHT           : N I G H T;
 NIGHTS          : N I G H T S;
+HOURS           : H O U R S;
 DEPARTS   	: D E P A R T S;
 NAME            : N A M E;
 COLON           : ':';

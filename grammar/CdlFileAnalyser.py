@@ -72,6 +72,12 @@ class CdlFile(object):
         else:
             self.persons[key] = person
 
+    def get_person(self, person_id):
+        if person_id is not None:
+            if person_id not in self.persons:
+                raise ValueError("Unknown person %s" % (person_id, ))
+            return self.persons[person_id]
+
     def add_location(self, location : Location):
         key = location.identifier
         if key in self.locations:
@@ -86,6 +92,11 @@ class CdlFile(object):
         else:
             self.vesselSeasons[key] = vessel_season
 
+    def get_location(self, location_id : str):
+        if location_id is not None:
+            if location_id not in self.locations:
+                raise ValueError("%s not a defined location" % (location_id, ))
+            return self.locations[location_id]
 
 class VesselVisitor(CdlVisitor):
     def __init__(self):
@@ -158,10 +169,6 @@ class LongLatVisitor(CdlVisitor):
             self.value = -self.value
 
 
-
-
-
-
 class CdlFileVisitor(CdlVisitor):
 
     def __init__(self):
@@ -230,7 +237,7 @@ class CruiseVisitor(CdlVisitor):
     def visitCruise(self, ctx:CdlParser.CruiseContext):
         cruise =  Cruise(name=remove_quotes(ctx.title().getText()),
             departure_date=ctx.date().getText(),
-            departure_port=ctx.location_identifier().getText()
+            departure_port=self.cdl_file.get_location(ctx.location_identifier().getText())
             )
 
         # events
@@ -262,23 +269,9 @@ class EventVisitor(CdlVisitor):
         super(EventVisitor, self).__init__();
         self.cdl_file = cdl_file
         self.cruise = cruise
-
-    def __get_person(self, person_id):
-        if person_id is not None:
-            if person_id not in self.cdl_file.persons:
-                raise ValueError("Unknown person %s in crew movement" % (person_id, ))
-            return self.cdl_file.persons[person_id]
-
-    def __get_location(self, location_id):
-        if location_id is not None:
-            if location_id not in self.cdl_file.locations:
-                raise ValueError("%s not a defined location" % (location_id, ))
-            return self.cdl_file.locations[location_id]
-
-
     def visitJoining_spec(self, ctx:CdlParser.Joining_specContext):
-        person = self.__get_person(ctx.identifier().getText())
-        location = self.__get_location(get_text(ctx.location_identifier()))
+        person = self.cdl_file.get_person(ctx.identifier().getText())
+        location = self.cdl_file.get_location(get_text(ctx.location_identifier()))
 
         e = CrewEvent(person, join_not_leave=True,
             role=get_text(ctx.role_spec()),
@@ -288,25 +281,22 @@ class EventVisitor(CdlVisitor):
         return
 
     def visitLeaving_spec(self, ctx:CdlParser.Leaving_specContext):
-        person = self.__get_person(ctx.identifier().getText())
-        location = self.__get_location(get_text(ctx.location_identifier()))
+        person = self.cdl_file.get_person(ctx.identifier().getText())
+        location = self.cdl_file.get_location(get_text(ctx.location_identifier()))
 
         e = CrewEvent(person, join_not_leave=False,
             scheduled=get_text(ctx.date()),
             location=location)
         self.cruise.add_event(e)
 
-
-
     def visitVia_waypoints(self, ctx:CdlParser.Via_waypointsContext):
         for lid_ctx in ctx.location_identifier():
-            location = self.__get_location(get_text(lid_ctx))
+            location = self.cdl_file.get_location(get_text(lid_ctx))
             self.cruise.add_event(Visitation(location, stay_spec=None))
         return
-        
 
     def visitVisitation_spec(self, ctx:CdlParser.Visitation_specContext):
-        location = self.__get_location(ctx.location_identifier().getText())
+        location = self.cdl_file.get_location(ctx.location_identifier().getText())
 
         # stay spec
         

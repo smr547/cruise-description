@@ -7,12 +7,16 @@ __author__ = 'smr'
 
 from geolocator import CachedGeoLocator
 from geopy.distance import great_circle
-from datetime import timedelta
+from datetime import timedelta, datetime
+from timezonefinder import TimezoneFinder
+import pytz
 
 locator = CachedGeoLocator()
 locator.load()
 
 class Location(object):
+
+    _tf = TimezoneFinder()
 
     def __init__(self, identifier, name, coords):
         self.identifier = identifier
@@ -24,13 +28,19 @@ class Location(object):
             self.coords = coords
 
     def lat(self):
-        return self.coords[0]
+        return self.coords[1]
 
     def lng(self):
-        return self.coords[1]
+        return self.coords[0]
 
     def asLatLongTuple(self):
         return (self.lat(), self.lng())
+
+    def timezone_name(self):
+        return self._tf.timezone_at(lng=self.lng(), lat=self.lat())
+
+    def get_timezone(self):
+        return pytz.timezone(self.timezone_name())
 
     def __str__(self):
         return "%s: identifier=%s, name=%s" % (type(self).__name__, self.identifier, self.name)
@@ -106,6 +116,13 @@ class Cruise(object):
             dist += leg.distance_NM()
         return dist
 
+    def get_visitations(self):
+        visitations = []
+        for e in self.events:
+            if isinstance(e, Visitation):
+                visitations.append(e)
+        return visitations
+
     def cruising_speed_KTS(self):
         return self.vesselSeason.vessel.speed_kts
             
@@ -154,15 +171,31 @@ class Hop(object):
 
 
 class Visitation(object):
-    def __init__(self, location, stay_spec=None, description=None):
+    def __init__(self, location : Location, stay_spec=None, description=None):
         self.location = location
         self.description = description
         self.stay_spec = stay_spec
         self.duration_days= 0
+        self._arrival_dt = None
+        self._computed_duration = None
+
         if stay_spec is not None:
             self.duration_days= stay_spec.get_duration_days()
        
-        
+       
+    def get_arrival_dt(self):
+        return self._arrival_dt 
+       
+    def get_departure_dt(self):
+        if self._arrival_dt is not None and self._computed_duration is not None:
+            return self._scheduled_arrival_dt + self._computed_duration
+
+    def set_arrival_dt(self, a_dt : datetime):
+        self._arrival_dt = a_dt
+
+    def set_computed_duration(self, duration : timedelta):
+        self._computed_duration = duration
+
 
     def is_stopover(self):
         return self.duration_days > 0
