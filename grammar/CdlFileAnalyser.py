@@ -243,7 +243,7 @@ class CruiseVisitor(CdlVisitor):
         dep_date = datetime.strptime(ctx.date().getText(), date_format)
         dep_time = datetime.strptime(ctx.time().getText(), time_format)
         cruise =  Cruise(name=remove_quotes(ctx.title().getText()),
-            departure_date=dep_date,
+            departure_date=dep_date.date(),
             departure_time=dep_time.time(),
             departure_port=self.cdl_file.get_location(ctx.location_identifier().getText())
             )

@@ -1,7 +1,8 @@
 # Trilogy/Steven_cruise
 Generated from file test_cruise.cdl
 ## Shakedown
-Cruise from Sant_Carles to Barcelona departs 2019-04-14 00:00:00 distance 97 NM
+Cruise from Sant_Carles to Barcelona departs 2019-04-14 distance 97 NM
+
 Date/time    | Event | Destination | Comment
 ------------ | ----- | ----------- | ------------------
 19-04-14 1000 | depart | Sant_Carles |
@@ -9,7 +10,8 @@ Date/time    | Event | Destination | Comment
 19-04-15 1657 | arrive |  Barcelona |
 
 ## Barcelona to Nice
-Cruise from Barcelona to Nice departs 2019-04-17 00:00:00 distance 354 NM
+Cruise from Barcelona to Nice departs 2019-04-17 distance 354 NM
+
 Date/time    | Event | Destination | Comment
 ------------ | ----- | ----------- | ------------------
 19-04-17 1000 | depart | Barcelona |
@@ -27,7 +29,8 @@ Date/time    | Event | Destination | Comment
 19-04-30 1221 | arrive |  Nice |
 
 ## Nice to Naples via Corsica and Sardinia
-Cruise from Nice to Naples departs 2019-05-03 00:00:00 distance 703 NM
+Cruise from Nice to Naples departs 2019-05-03 distance 703 NM
+
 Date/time    | Event | Destination | Comment
 ------------ | ----- | ----------- | ------------------
 19-05-03 1000 | depart | Nice |
@@ -46,7 +49,8 @@ Date/time    | Event | Destination | Comment
 19-05-17 1246 | arrive |  Naples |
 
 ## Naples to Genoa via Amalfi Coast and Cinque Terre
-Cruise from Naples to Genoa departs 2019-06-04 00:00:00 distance 476 NM
+Cruise from Naples to Genoa departs 2019-06-04 distance 476 NM
+
 Date/time    | Event | Destination | Comment
 ------------ | ----- | ----------- | ------------------
 19-06-04 1000 | depart | Naples |

@@ -26,6 +26,7 @@ if __name__ == '__main__':
         for c in vs.cruises:
             print("## %s" % (c.name, ))
             print(c.get_description())
+            print("")
 
             print("Date/time    | Event | Destination | Comment")
             print("------------ | ----- | ----------- | ------------------")
