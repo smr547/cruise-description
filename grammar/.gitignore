@@ -6,3 +6,4 @@ __*
 
 # don't ignore these ones
 !CdlFileAnalyser.py
+!cdl_preprocessor.py

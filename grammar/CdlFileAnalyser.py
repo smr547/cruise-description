@@ -9,6 +9,7 @@ __author__ = 'smr'
 
 from sys import stdin, stdout, stderr, exit, argv
 from io import StringIO
+from cdl_preprocessor import preprocess
 from antlr4 import *
 from antlr4.InputStream import InputStream
 from CdlLexer import CdlLexer
@@ -334,26 +335,9 @@ class CdlFileAnalyser(object):
         '''
         Build a CdlFile instance from the CDL file
         '''
+        # run source through the preprocessor
 
-        # select input stream
-
-        output = StringIO()
-        if cdl_filename is None:
-            fin = stdin
-        else:
-            fin = open(cdl_filename, 'r')
-
-        # read source into memory, including files where specified
-
-        for line in fin:
-            if line.startswith("$include "):
-                filename = line[8:-1].strip()
-                with open(filename) as f:
-                    for rec in f:
-                        output.write(rec)
-            else:
-                output.write(line)
-        fin.close()
+        output = preprocess(cdl_filename)
 
         # now process CDL source from memory 
 
@@ -365,6 +349,7 @@ class CdlFileAnalyser(object):
         visitor = CdlFileVisitor()
         cdl_file = visitor.visit(tree)
         locator.save()
+        output.close()
         return cdl_file
 
 if __name__ == '__main__':
