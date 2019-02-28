@@ -128,6 +128,9 @@ class Cruise(object):
                 visitations.append(e)
         return visitations
 
+    def get_destination_port(self):
+        return self.get_visitations()[-1].location
+
     def cruising_speed_KTS(self):
         return self.vesselSeason.vessel.speed_kts
 
@@ -143,6 +146,12 @@ class Cruise(object):
         dt = self.departure_port.get_timezone().localize(dt)
         return dt
             
+    def get_description(self):
+        return "Cruise from %s to %s departs %s distance %d NM" % (
+            self.departure_port.identifier, 
+            self.get_destination_port().identifier,
+            self._departure_date, round(self.distance_NM()))
+
     def __str__(self):
         return "%s: name=%s departs %s on %s %d events, distance %d NM" % (type(self).__name__, self.name,
             self.departure_port, self._departure_date, len(self.events), round(self.distance_NM()))
