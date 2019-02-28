@@ -15,7 +15,7 @@ if __name__ == '__main__':
     analyser = CdlFileAnalyser()
     content = analyser.analyse(filename)
 
-    dt_format = "%y-%m-%d %H%M"
+    dt_format = "%Y-%m-%d %H%M"
     for vs in content.vesselSeasons.values():
         print("# %s" % (vs.identifier(), ))
         print("Generated from file %s" % (filename, ))
@@ -41,6 +41,8 @@ if __name__ == '__main__':
                         v.location.identifier,
                         hours(v.get_computed_duration()),
                         hours(v.get_planned_duration_td())))
+                    print("%s | depart | %s | " % (v.get_departure_dt().strftime(dt_format), 
+                        v.location.identifier))
                 else:
                     print("%s | waypoint | %s |" % (v.get_arrival_dt().strftime(dt_format), v.location.identifier))
             v = visits[-1]
