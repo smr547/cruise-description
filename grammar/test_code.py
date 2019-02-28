@@ -3,35 +3,25 @@
 import unittest
 from CdlFileAnalyser import CdlFileAnalyser
 from scheduler import schedule_season
-from timezonefinder import TimezoneFinder
-import datetime
-import pytz
-from tzwhere import tzwhere
-tzw = tzwhere.tzwhere()  # this line is VERY expensive: >4 sec runtime!!
-tf = TimezoneFinder()
+# from timezonefinder import TimezoneFinder
+# from datetime import datetime, date, time
+# import pytz
+#deprecated - does not work for some lat/longs# from tzwhere import tzwhere
+#deprecated - does not work for some lat/longs# tzw = tzwhere.tzwhere()  # this line is VERY expensive: >4 sec runtime!!
+# tf = TimezoneFinder()
 
-class TestTz(unittest.TestCase):
-
-    def test_find_tz_with_lat_long(self):
-        pass
-        timezone_str = tzw.tzNameAt(37.3880961, -5.9823299) # Seville coordinates
-        self.assertEqual(timezone_str, "Europe/Madrid")
-        timezone = pytz.timezone(timezone_str)
-        dt = datetime.datetime.now()
-        print(dt)
-        print(dt.isoformat())
-        print(timezone.utcoffset(dt))
-        dt = datetime.datetime.now(timezone)
-        print(dt)
-        print(dt.isoformat())
-
-#> datetime.timedelta(0, 7200)
 class TestScheduler(unittest.TestCase):
 
     def setUp(self):
         filename = './test_cruise.cdl'
         analyser = CdlFileAnalyser()
         self.content = analyser.analyse(filename)
+
+    def test_cruise_departures(self):
+        for vs in self.content.vesselSeasons.values():
+            for c in vs.cruises:
+                print("Cruise %s departs from %s at %s" % (c.name, c.departure_port.identifier, 
+                    c.get_departure_dt().isoformat()))
 
     def test_scheduler(self):
         for vs in self.content.vesselSeasons.values():

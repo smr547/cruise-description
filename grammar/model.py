@@ -26,6 +26,7 @@ class Location(object):
             self.coords = (loc['lng'],  loc['lat'])
         else:
             self.coords = coords
+        self.timezone = None
 
     def lat(self):
         return self.coords[1]
@@ -40,7 +41,9 @@ class Location(object):
         return self._tf.timezone_at(lng=self.lng(), lat=self.lat())
 
     def get_timezone(self):
-        return pytz.timezone(self.timezone_name())
+        if self.timezone is None:
+            self.timezone = pytz.timezone(self.timezone_name())
+        return self.timezone
 
     def __str__(self):
         return "%s: identifier=%s, name=%s" % (type(self).__name__, self.identifier, self.name)
@@ -96,12 +99,14 @@ class VesselSeason(object):
         return "%s: identifier=%s, name=%s" % (type(self).__name__, self.identifier())
 
 class Cruise(object):
-    def __init__(self, vesselSeason=None, name=None, shortname=None, description=None, departure_date=None,        departure_port=None):
+    def __init__(self, vesselSeason=None, name=None, shortname=None, description=None, departure_date=None,
+            departure_time=None, departure_port=None):
         self.vesselSeason = vesselSeason
         self.name = name 
         self.shortname = shortname    # not defined in grammar yet
         self.description = description   # not defined in grammar yet
-        self.departure_date = departure_date 
+        self._departure_date = departure_date  # should be datetime.date
+        self._departure_time = departure_time  # should be datetime.time
         self.departure_port = departure_port
         self.legs = []   # not defined in grammar yet
         self.events = [] # ordered list of events - An Event is a Visitation or Crew movement
@@ -125,10 +130,22 @@ class Cruise(object):
 
     def cruising_speed_KTS(self):
         return self.vesselSeason.vessel.speed_kts
+
+    def get_departure_dt(self):
+        '''
+        Return the user specified departure date/time as a timezone aware datetime object
+        localised to the local timezone of the departure port
+        '''
+
+        if self._departure_date is None or self._departure_time is None:
+            raise ValueError("Departure date/time has not been specified for %s" % (self.name, ))
+        dt = datetime.combine(self._departure_date , self._departure_time)
+        dt = self.departure_port.get_timezone().localize(dt)
+        return dt
             
     def __str__(self):
         return "%s: name=%s departs %s on %s %d events, distance %d NM" % (type(self).__name__, self.name,
-            self.departure_port, self.departure_date, len(self.events), round(self.distance_NM()))
+            self.departure_port, self._departure_date, len(self.events), round(self.distance_NM()))
 
 class Leg(object):
     def __init__(self, cruise):

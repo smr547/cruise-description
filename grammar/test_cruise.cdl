@@ -15,7 +15,7 @@ $include ./people.cdl
 
 season Steven_cruise vessel Trilogy begins in Sant_Carles
 
-cruise  "Shakedown" departs Sant_Carles on 14/4/19
+cruise  "Shakedown" departs Sant_Carles on 14/4/19 at 1000
 	Sant_Carles
         crew smr joins on 31/3/19 as skipper in Sant_Carles
         crew wp  joins on 08/4/19 as mate in Sant_Carles
@@ -23,7 +23,7 @@ cruise  "Shakedown" departs Sant_Carles on 14/4/19
 	Barcelona for 4 nights
         crew wp leaves on 16/4/19
 
-cruise  "Barcelona to Nice" departs Barcelona on 14/4/19
+cruise  "Barcelona to Nice" departs Barcelona on 14/4/19 at 1000
         crew gh joins on 16/4/19 in Barcelona
         crew cm joins on 16/4/19 in Barcelona
         crew sjr joins on 16/4/19 in Barcelona
@@ -46,7 +46,7 @@ cruise  "Barcelona to Nice" departs Barcelona on 14/4/19
 	crew ar leaves on 1/5/19 in Nice
 	crew pjr leaves on 1/5/19 in Nice
 
-cruise  "Nice to Naples via Corsica and Sardinia" departs Nice on 3/5/19
+cruise  "Nice to Naples via Corsica and Sardinia" departs Nice on 3/5/19 at 1000
 	crew po joins on 1/5/19 as mate in Nice
 	crew wp joins on 1/5/19 in Nice
 	crew rb joins on 1/5/19 in Nice
@@ -69,7 +69,7 @@ cruise  "Nice to Naples via Corsica and Sardinia" departs Nice on 3/5/19
 	crew rb leaves on 2/6/19 in Naples
 
 
-cruise  "Naples to Genoa via Amalfi Coast and Cinque Terre" departs Naples on 4/6/19
+cruise  "Naples to Genoa via Amalfi Coast and Cinque Terre" departs Naples on 4/6/19 at 1000
 	crew kmt joins on 2/6/19 in Naples
 	crew sgr joins on 2/6/19 in Naples
 	Naples

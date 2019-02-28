@@ -16,6 +16,7 @@ from CdlParser import CdlParser
 
 from CdlVisitor import CdlVisitor
 from CdlParser import CdlParser
+from datetime import datetime
 
 from geolocator import CachedGeoLocator
 import simplekml
@@ -27,6 +28,9 @@ def die(message):
 
 locator = CachedGeoLocator()
 locator.load()
+
+date_format = "%d/%m/%y"
+time_format = "%H%M"
 
 def remove_quotes(aString : str):
     if aString.startswith('"') and aString.endswith('"'):
@@ -235,8 +239,11 @@ class CruiseVisitor(CdlVisitor):
         self.cdl_file = cdl_file
 
     def visitCruise(self, ctx:CdlParser.CruiseContext):
+        dep_date = datetime.strptime(ctx.date().getText(), date_format)
+        dep_time = datetime.strptime(ctx.time().getText(), time_format)
         cruise =  Cruise(name=remove_quotes(ctx.title().getText()),
-            departure_date=ctx.date().getText(),
+            departure_date=dep_date,
+            departure_time=dep_time.time(),
             departure_port=self.cdl_file.get_location(ctx.location_identifier().getText())
             )
 

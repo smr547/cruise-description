@@ -29,7 +29,7 @@ vessel_season_spec  : SEASON season_identifier VESSEL vessel_identifier BEGINS I
 cruise              : CRUISE title NEWLINE (crew_movement)* origin (event_line)* destination (crew_movement)* ;
 */
 
-cruise              : CRUISE title DEPARTS location_identifier ON date NEWLINE (event_line)+ ;
+cruise              : CRUISE title DEPARTS location_identifier ON date AT time  NEWLINE (event_line)+ ;
 /*
 origin              : visitation_spec NEWLINE ;
 destination         : visitation_spec NEWLINE ;
@@ -84,6 +84,7 @@ name                : PHRASE ;
 flag                : PHRASE ;
 rego                : UNSIGNED_INT ;
 date                : DATE ;
+time                : TIME ;
 
 /*
  * Lexer Rules
@@ -154,6 +155,7 @@ WORD            : (LOWERCASE | UPPERCASE) (LOWERCASE | UPPERCASE | [0-9] | '_')*
 
 /* Dates and times */
 DATE            : [0-9] ([0-9])? SLASH [0-9] ([0-9])? SLASH [0-9] [0-9] ;
+TIME            : [0-2] [0-3] [0-5] [0-9] ;
 
 PLUS: '+';
 MINUS: '-';
