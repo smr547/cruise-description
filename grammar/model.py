@@ -199,19 +199,25 @@ class Visitation(object):
         if stay_spec is not None:
             self.duration_days= stay_spec.get_duration_days()
        
-       
+    def get_planned_duration_td(self):
+        return timedelta(days=self.stay_spec.get_duration_days())
+        
+   
     def get_arrival_dt(self):
         return self._arrival_dt 
        
     def get_departure_dt(self):
         if self._arrival_dt is not None and self._computed_duration is not None:
-            return self._scheduled_arrival_dt + self._computed_duration
+            return self._arrival_dt + self._computed_duration
 
     def set_arrival_dt(self, a_dt : datetime):
         self._arrival_dt = a_dt
 
     def set_computed_duration(self, duration : timedelta):
         self._computed_duration = duration
+
+    def get_computed_duration(self):
+        return self._computed_duration
 
 
     def is_stopover(self):

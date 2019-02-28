@@ -1,13 +1,12 @@
 
-from model import VesselSeason, Cruise
+from model import VesselSeason, Cruise, Hop
+from datetime import datetime, timedelta, time
 
 
 def schedule_season(vessel_season : VesselSeason):
     '''
     schedule all cruises in the specified vessel's season
     '''
-    print("Scheduling vessel/season %s" % (vessel_season.identifier(),))
-    print(type(vessel_season.cruises))
     last_cruise = None
     for ci in range(0, len(vessel_season.cruises)):
         c = vessel_season.cruises[ci]
@@ -23,9 +22,6 @@ def schedule_cruise(this_cruise, last_cruise=None, next_cruise=None):
     '''
     schedule the visitations and legs in the specified cruise
     '''
-    
-    print("    Scheduling cruise %s" % (this_cruise.name,))
-
     # prior to departure, the vessel is deemed to be at it's "first visitation"
     # the first visitation must correspond to the cruise departure point
 
@@ -38,5 +34,48 @@ def schedule_cruise(this_cruise, last_cruise=None, next_cruise=None):
     # the departure datetime is specified in CDL so it take precedence
     # Note that the departure time for the cruise is the departure time for the first visitation
     # therefore we set an arbitrary duration for the first visitation
+
+    dv = visits[0]  # departure visitation
+    dv.set_arrival_dt(c.get_departure_dt())
+    dv.set_computed_duration(timedelta(0))
+
+    # consider each subsequent visitation in turn
+    default_departure_time = time(hour=10)
+    speed_KTS = c.vesselSeason.vessel.speed_kts
+    current_vi = 1
+    while current_vi < len(visits) :
+        last_v = visits[current_vi-1]
+        v = visits[current_vi] 
+        h = Hop(last_v.location, v.location)
+        duration = timedelta(hours=h.distance_NM()/speed_KTS)
+
+        arrival = last_v.get_departure_dt() + duration
+        arrival = arrival.astimezone(v.location.get_timezone())
+        v.set_arrival_dt(arrival)
+
+        # if this visitation is a waypoint there is no stay duration
+
+        if v.is_stopover():
+            this_planned_stopover_duration = v.get_planned_duration_td()
+            next_departure = arrival + this_planned_stopover_duration
+            next_departure = datetime.combine(next_departure.date(), default_departure_time)
+            next_departure = v.location.get_timezone().localize(next_departure)
+            duration = next_departure - arrival
+        else:
+            duration = timedelta(0)
+
+        
+        v.set_computed_duration(duration)
+        current_vi += 1
+
+
+            
+
+        
+       
+  
+
+
+
 
      

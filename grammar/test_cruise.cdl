@@ -23,7 +23,7 @@ cruise  "Shakedown" departs Sant_Carles on 14/4/19 at 1000
 	Barcelona for 4 nights
         crew wp leaves on 16/4/19
 
-cruise  "Barcelona to Nice" departs Barcelona on 14/4/19 at 1000
+cruise  "Barcelona to Nice" departs Barcelona on 17/4/19 at 1000
         crew gh joins on 16/4/19 in Barcelona
         crew cm joins on 16/4/19 in Barcelona
         crew sjr joins on 16/4/19 in Barcelona
@@ -31,13 +31,14 @@ cruise  "Barcelona to Nice" departs Barcelona on 14/4/19 at 1000
         crew ar joins on 16/4/19 in Barcelona
 	Barcelona
 	Blanes for 1 night
-	Roses for 1 night
+	Roses for 2 night
 	Cerbre for 1 night
-	Vendres for 1 night
+	Vendres for 2 night
 	Toulon for 1 night
 	Hyeres for 1 night
 	via WPa, WPb
 	Frejus for 1 night
+        Antibes for 2 nights
 	Cannes for 1 night
 	Nice for 4 nights
 	crew gh leaves on 30/4/19 in Nice
