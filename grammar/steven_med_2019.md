@@ -1,11 +1,7 @@
 # Trilogy/Steven_cruise
 Generated from file test_cruise.cdl
 ## Shakedown
-<<<<<<< HEAD
 Cruise from Sant_Carles to Barcelona departs 2019-04-14 distance 97 NM
-=======
-Cruise from Sant_Carles to Barcelona departs 2019-04-14 00:00:00 distance 97 NM
->>>>>>> 75bf0492b5f4916cb6c142f0fbe85cdb64c1fe97
 
 Date/time    | Event | Destination | Comment
 ------------ | ----- | ----------- | ------------------
@@ -14,11 +10,7 @@ Date/time    | Event | Destination | Comment
 19-04-15 1657 | arrive |  Barcelona |
 
 ## Barcelona to Nice
-<<<<<<< HEAD
 Cruise from Barcelona to Nice departs 2019-04-17 distance 354 NM
-=======
-Cruise from Barcelona to Nice departs 2019-04-17 00:00:00 distance 354 NM
->>>>>>> 75bf0492b5f4916cb6c142f0fbe85cdb64c1fe97
 
 Date/time    | Event | Destination | Comment
 ------------ | ----- | ----------- | ------------------
@@ -37,11 +29,7 @@ Date/time    | Event | Destination | Comment
 19-04-30 1221 | arrive |  Nice |
 
 ## Nice to Naples via Corsica and Sardinia
-<<<<<<< HEAD
 Cruise from Nice to Naples departs 2019-05-03 distance 703 NM
-=======
-Cruise from Nice to Naples departs 2019-05-03 00:00:00 distance 703 NM
->>>>>>> 75bf0492b5f4916cb6c142f0fbe85cdb64c1fe97
 
 Date/time    | Event | Destination | Comment
 ------------ | ----- | ----------- | ------------------
@@ -61,11 +49,7 @@ Date/time    | Event | Destination | Comment
 19-05-17 1246 | arrive |  Naples |
 
 ## Naples to Genoa via Amalfi Coast and Cinque Terre
-<<<<<<< HEAD
 Cruise from Naples to Genoa departs 2019-06-04 distance 476 NM
-=======
-Cruise from Naples to Genoa departs 2019-06-04 00:00:00 distance 476 NM
->>>>>>> 75bf0492b5f4916cb6c142f0fbe85cdb64c1fe97
 
 Date/time    | Event | Destination | Comment
 ------------ | ----- | ----------- | ------------------
