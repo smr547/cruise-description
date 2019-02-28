@@ -16,17 +16,16 @@ if __name__ == '__main__':
     content = analyser.analyse(filename)
 
     dt_format = "%y-%m-%d %H%M"
-    print("# %s" % (filename, ))
     for vs in content.vesselSeasons.values():
-        print("## %s" % (vs.identifier, ))
+        print("# %s" % (vs.identifier(), ))
+        print("Generated from file %s" % (filename, ))
         schedule_season(vs)
           
         # display some results
 
         for c in vs.cruises:
-            print("### %s" % (c.name, ))
+            print("## %s" % (c.name, ))
             print(c.get_description())
-            print("#### Timetable")
 
             print("Date/time    | Event | Destination | Comment")
             print("------------ | ----- | ----------- | ------------------")
