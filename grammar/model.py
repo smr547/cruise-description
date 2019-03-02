@@ -121,6 +121,10 @@ class Cruise(object):
             dist += leg.distance_NM()
         return dist
 
+    def elapsed_time_td(self):
+        visits = self.get_visitations()
+        return visits[-1].get_arrival_dt() - visits[0].get_departure_dt()
+
     def get_visitations(self):
         visitations = []
         for e in self.events:
@@ -134,6 +138,12 @@ class Cruise(object):
     def cruising_speed_KTS(self):
         return self.vesselSeason.vessel.speed_kts
 
+    def distance_NM(self):
+        dist = 0.0 
+        for leg in self.legs:
+            dist += leg.distance_NM()
+        return dist
+    
     def get_departure_dt(self):
         '''
         Return the user specified departure date/time as a timezone aware datetime object
@@ -167,6 +177,9 @@ class Leg(object):
 
     def destination(self):
         return self.visitations[-1].location
+
+    def name(self):
+        return "%s to %s" % (self.origin().identifier, self.destination().identifier)
 
     def distance_NM(self):
         dist = 0.0

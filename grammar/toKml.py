@@ -5,124 +5,89 @@
 
 __author__ = 'smr'
 
-import sys
-from antlr4 import *
-from antlr4.InputStream import InputStream
-from CdlLexer import CdlLexer
-from CdlParser import CdlParser
+#!/usr/bin/env python3
 
-from CdlVisitor import CdlVisitor
-from CdlParser import CdlParser
-
-from geolocator import CachedGeoLocator
+from sys import argv
+from CdlFileAnalyser import CdlFileAnalyser
+from scheduler import schedule_season
+from datetime import datetime, timedelta
 import simplekml
+from math import ceil
 
-def die(message):
-    sys.stderr.write(message + "\n")
-    sys.exit(1)
-
-locator = CachedGeoLocator()
-locator.load()
-
-class Location(object):
-
-    def __init__(self, identifier, name, coords):
-        self.identifier = identifier
-        self.name = name
-        if coords is None:
-            loc = locator.get_location(name)
-            self.coords = (loc['lng'],  loc['lat'])
-        else:
-            self.coords = coords
-
-    def __str__(self):
-        return "Location: identifier=%s, name=%s" % (self.identifier, self.name)
-
-class MyVisitor(CdlVisitor):
-
-    def __init__(self):
-        self.locations = {}
-        self.title = None
-        self.visitations = []
-
-    def visitTitle(self, ctx:CdlParser.TitleContext):
-        self.title = ctx.getText()
-        return self.visitChildren(ctx)
-
-
-    def visitLocation(self, ctx:CdlParser.LocationContext):
-        positionVisitor = PositionVisitor()
-        positionVisitor.visitChildren(ctx)
-        loc = Location(ctx.identifier().getText(), ctx.placename().getText(), positionVisitor.coords_tuple())
-        self.locations[loc.identifier] = loc
-        return
-
-    # Visit a parse tree produced by CdlParser#destination_line.
-    def visitVisitation_spec(self, ctx:CdlParser.Visitation_specContext):
-        loc = None
-        if ctx.location_identifier().getText() not in self.locations:
-            loc = Location(ctx.location_identifier().getText(), ctx.location_identifier().getText(), None)
-            self.locations[loc.identifier] = loc
-        else:
-            loc = self.locations[ctx.location_identifier().getText()]
-
-        self.visitations.append(loc)
-        return self.visitChildren(ctx)
-
-class PositionVisitor(CdlVisitor):
-    def __init__(self):
-        self.coords = []
-
-    def visitNumber(self, ctx:CdlParser.NumberContext):
-        self.coords.append(float(ctx.getText()))
-        return 
-
-    def coords_tuple(self):
-        if len(self.coords) > 1:
-            return tuple(self.coords)
-        else:
-            return None
-    
+# def hours(td : timedelta):
+#     secs = td.total_seconds()
+#     hours = round(secs/3600.0)
+#     return hours
 
 if __name__ == '__main__':
-    if len(sys.argv) > 1:
-        input_stream = FileStream(sys.argv[1])
-    else:
-        input_stream = InputStream(sys.stdin.readline())
+    filename = argv[1]
+    analyser = CdlFileAnalyser()
+    content = analyser.analyse(filename)
 
-    lexer = CdlLexer(input_stream)
-    token_stream = CommonTokenStream(lexer)
-    parser = CdlParser(token_stream)
-    tree = parser.cdl_file()
+    dt_format = "%Y-%m-%d %H%M"
 
-    visitor = MyVisitor()
+    # document
 
-    try:
-        visitor.visit(tree)
-    except ValueError as e:
-        locator.save()
-        die(str(e))
+    kml = simplekml.Kml(open=1)
+    desc = "Generated from CDL file %s at %s" % (filename, datetime.now().isoformat())
+    doc = kml.newdocument(name=filename, description=desc, open=1)
 
-    # create simple KML file
+    # locations
 
-    kml = simplekml.Kml()
+    desc = "All of the locations mentioned in the CDL source file"
+    loc_folder = doc.newfolder(name="Locations", description=desc, open=0, visibility=0)
+
+    for loc in content.locations.values():
+        pnt = loc_folder.newpoint(name=loc.identifier, description=loc.name, coords=[loc.coords])
+
+    # vessel/seasons
+    for vs in content.vesselSeasons.values():
+        # schedule this season
+        schedule_season(vs)
+   
+        # prepare a folder for each vessel/season
+
+        description = "Plan for vessel %s, %s season" % (vs.vessel.identifier, vs.season)
+        vs_folder = doc.newfolder(name=vs.key(), description=desc, open=1)
+
+        # cruises
+        for c in vs.cruises:
+            desc = "%s cruise, %d nautical miles in %d days" % (c.name, 
+                round(c.distance_NM()), 
+                int(ceil(c.elapsed_time_td().total_seconds()/86400.0)))
+            c_folder = vs_folder.newfolder(name=c.name, description=desc, open=0, visibility=1)
+
+#            # draw the route
+#            route = []
+#            for v in c.get_visitations():
+#                route.append(v.location.coords)
+#
+#            ls = c_folder.newlinestring(name=c.name)
+#            ls.coords = route
+#            ls.style.linestyle.width = 10
+#            ls.style.linestyle.color = simplekml.Color.red
+
+            # draw it as legs
+            leg_no = 0
+            for leg in c.legs:
+                leg_no += 1
+                desc = "%d nautical miles in %d hours." % (
+                    round(leg.distance_NM()), 
+                    round(leg.sailing_time().total_seconds()/3600.0)) 
+                leg_folder = c_folder.newfolder(name=leg.name(), description=desc)
+
+                # draw the route
+                route = []
+                for v in leg.visitations:
+                    route.append(v.location.coords)
+
+                ls = leg_folder.newlinestring(name=leg.name())
+                ls.coords = route
+                ls.style.linestyle.width = 10
+                ls.style.linestyle.color = simplekml.Color.red
 
 
-    for loc in visitor.locations.values():
-        pnt = kml.newpoint(name=loc.identifier, description=loc.name, coords=[loc.coords])
-
-    route = []
-    for loc in visitor.visitations:
-        route.append(loc.coords)
-
-    ls = kml.newlinestring(name=visitor.title)
-    ls.coords = route
-    # ls.extrude = 1
-    # ls.altitudemode = simplekml.AltitudeMode.relativetoground
-    ls.style.linestyle.width = 10
-    ls.style.linestyle.color = simplekml.Color.red
-    ls.description = '<![CDATA[This is a description of the planned cruise<br/><hr /><a href="http://doc.trolltech.com/3.3/qstylesheet.html">Here is a link</a> to something interesting<hr />]]>'
+    # all done, output the kml
 
     print(kml.kml())
-    locator.save()
 
