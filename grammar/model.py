@@ -10,6 +10,7 @@ from geopy.distance import great_circle
 from datetime import timedelta, datetime
 from timezonefinder import TimezoneFinder
 import pytz
+from math import ceil
 
 locator = CachedGeoLocator()
 locator.load()
@@ -241,6 +242,10 @@ class Visitation(object):
     def get_computed_duration(self):
         return self._computed_duration
 
+    def get_duration_description(self):
+        cd = self.get_computed_duration()
+        hours = int(ceil(cd.total_seconds()/3600.0))
+        return "%d hours" % (hours, )
 
     def is_stopover(self):
         return self.duration_days > 0

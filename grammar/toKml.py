@@ -86,6 +86,32 @@ if __name__ == '__main__':
                 ls.style.linestyle.width = 10
                 ls.style.linestyle.color = simplekml.Color.red
 
+            # stopovers
+
+            stop_folder = c_folder.newfolder(name="stopovers", visibility=1, open=0)
+            for leg in c.legs:
+                ll_comment = ""
+                last_leg = leg == c.legs[-1]
+                if last_leg:
+                    ll_comment = "(end of %s cruise)" % (leg.cruise.name, )
+                sv = leg.visitations[-1]    # stopover visitation
+                # buiild the stopover description 
+                desc = "%s stopover %s</br>%s</br>arrived %s</br>depart  %s" % (
+                    leg.destination().identifier,
+                    ll_comment,
+                    sv.get_duration_description(),
+                    sv.get_arrival_dt().strftime(dt_format),
+                    sv.get_departure_dt().strftime(dt_format))
+                pnt = stop_folder.newpoint(
+                    name=leg.destination().identifier, 
+                    coords=[leg.destination().coords],
+                    description=desc)
+                if last_leg:
+                    pnt.style.iconstyle.icon.href = 'http://maps.google.com/mapfiles/kml/shapes/flag.png'
+                else:
+                    pnt.style.iconstyle.icon.href = 'http://maps.google.com/mapfiles/kml/shapes/marina.png'
+            
+
 
     # all done, output the kml
 
