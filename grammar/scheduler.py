@@ -1,5 +1,5 @@
 
-from model import VesselSeason, Cruise, Hop
+from model import VesselSeason, Cruise, Hop, Warning
 from datetime import datetime, timedelta, time
 
 
@@ -63,6 +63,12 @@ def schedule_cruise(this_cruise, last_cruise=None, next_cruise=None):
             duration = next_departure - arrival
         else:
             duration = timedelta(0)
+
+        # generate warnings
+        v.clear_warnings()
+        arrival_time = v.get_arrival_dt().time()
+        if arrival_time < time(hour=6) or arrival_time > time(hour=18):
+            v.add_warning(Warning("Nightime arrival"))
 
         
         v.set_computed_duration(duration)

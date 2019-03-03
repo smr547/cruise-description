@@ -37,10 +37,14 @@ if __name__ == '__main__':
             for i in range(1,len(visits)-1):
                 v = visits[i]
                 if v.is_stopover():
-                    print("%s | arrive | %s | stay %d hours (expected %d)" % (v.get_arrival_dt().strftime(dt_format), 
-                        v.location.identifier,
+                    desc = "stay %s hours (expected %d)" % (
                         hours(v.get_computed_duration()),
-                        hours(v.get_planned_duration_td())))
+                        hours(v.get_planned_duration_td()))
+                    for w in v.get_warnings():
+                        desc += "</br>%s" % (w.message)
+                    print("%s | arrive | %s | %s" % (v.get_arrival_dt().strftime(dt_format), 
+                        v.location.identifier,
+                        desc))
                     print("%s | depart | %s | " % (v.get_departure_dt().strftime(dt_format), 
                         v.location.identifier))
                 else:

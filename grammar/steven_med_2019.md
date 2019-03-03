@@ -11,7 +11,7 @@ Date/time    | Event | Destination | Comment
 2019-04-15 1657 | arrive |  Barcelona |
 
 ## Barcelona to Nice
-Cruise from Barcelona to Nice departs 2019-04-17 distance 354 NM
+Cruise from Barcelona to Nice departs 2019-04-17 distance 343 NM
 
 Date/time    | Event | Destination | Comment
 ------------ | ----- | ----------- | ------------------
@@ -24,7 +24,7 @@ Date/time    | Event | Destination | Comment
 2019-04-21 1000 | depart | Cerbre | 
 2019-04-21 1050 | arrive | Vendres | stay 47 hours (expected 48)
 2019-04-23 1000 | depart | Vendres | 
-2019-04-24 0551 | arrive | Toulon | stay 28 hours (expected 24)
+2019-04-24 0551 | arrive | Toulon | stay 28 hours (expected 24)</br>Nightime arrival
 2019-04-25 1000 | depart | Toulon | 
 2019-04-25 1120 | arrive | Hyeres | stay 23 hours (expected 24)
 2019-04-26 1000 | depart | Hyeres | 
@@ -32,11 +32,11 @@ Date/time    | Event | Destination | Comment
 2019-04-26 1449 | waypoint | WPb |
 2019-04-26 1604 | arrive | Frejus | stay 18 hours (expected 24)
 2019-04-27 1000 | depart | Frejus | 
-2019-04-27 1255 | arrive | Antibes | stay 45 hours (expected 48)
-2019-04-29 1000 | depart | Antibes | 
-2019-04-29 1045 | arrive | Cannes | stay 23 hours (expected 24)
-2019-04-30 1000 | depart | Cannes | 
-2019-04-30 1221 | arrive |  Nice |
+2019-04-27 1210 | arrive | Cannes | stay 22 hours (expected 24)
+2019-04-28 1000 | depart | Cannes | 
+2019-04-28 1045 | arrive | Antibes | stay 47 hours (expected 48)
+2019-04-30 1000 | depart | Antibes | 
+2019-04-30 1138 | arrive |  Nice |
 
 ## Nice to Naples via Corsica and Sardinia
 Cruise from Nice to Naples departs 2019-05-03 distance 703 NM
@@ -50,9 +50,9 @@ Date/time    | Event | Destination | Comment
 2019-05-05 1000 | depart | Menton | 
 2019-05-05 1342 | arrive | Imperia | stay 20 hours (expected 24)
 2019-05-06 1000 | depart | Imperia | 
-2019-05-06 2305 | arrive | Calvi | stay 11 hours (expected 24)
+2019-05-06 2305 | arrive | Calvi | stay 11 hours (expected 24)</br>Nightime arrival
 2019-05-07 1000 | depart | Calvi | 
-2019-05-07 1817 | arrive | Propriano | stay 16 hours (expected 24)
+2019-05-07 1817 | arrive | Propriano | stay 16 hours (expected 24)</br>Nightime arrival
 2019-05-08 1000 | depart | Propriano | 
 2019-05-08 1310 | arrive | Banifacio | stay 21 hours (expected 24)
 2019-05-09 1000 | depart | Banifacio | 
@@ -62,11 +62,11 @@ Date/time    | Event | Destination | Comment
 2019-05-11 1000 | depart | Maddalena | 
 2019-05-11 1122 | arrive | Cervo | stay 23 hours (expected 24)
 2019-05-12 1000 | depart | Cervo | 
-2019-05-12 2105 | arrive | Arbatax | stay 13 hours (expected 24)
+2019-05-12 2105 | arrive | Arbatax | stay 13 hours (expected 24)</br>Nightime arrival
 2019-05-13 1000 | depart | Arbatax | 
 2019-05-13 1743 | arrive | Cagliari | stay 16 hours (expected 24)
 2019-05-14 1000 | depart | Cagliari | 
-2019-05-16 0004 | arrive | Capri | stay 34 hours (expected 24)
+2019-05-16 0004 | arrive | Capri | stay 34 hours (expected 24)</br>Nightime arrival
 2019-05-17 1000 | depart | Capri | 
 2019-05-17 1246 | arrive |  Naples |
 

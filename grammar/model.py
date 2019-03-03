@@ -218,6 +218,7 @@ class Visitation(object):
         self.duration_days= 0
         self._arrival_dt = None
         self._computed_duration = None
+        self._warnings = []
 
         if stay_spec is not None:
             self.duration_days= stay_spec.get_duration_days()
@@ -250,6 +251,18 @@ class Visitation(object):
     def is_stopover(self):
         return self.duration_days > 0
 
+    def get_warnings(self):
+        return self._warnings
+
+    def clear_warnings(self):
+        self._warnings = []
+        return
+
+    def add_warning(self, warning : Warning):
+        self._warnings.append(warning)
+        return
+
+
     def __str__(self):
         return "%s: location=%s (stay %d days)" % (type(self).__name__, self.location.identifier, self.duration_days)
 
@@ -272,6 +285,12 @@ class CrewEvent(object):
             loc_id = self.location.identifier
         return "%s: %s %s (role: %s, scheduled: %s, location: %s)" % (type(self).__name__, self.person.identifier,
             self.event_name(), self.role, self.scheduled, loc_id)
+
+class Warning(object):
+    def __init__(self, message : str):
+        self.message = message
+
+    
      
 
 if __name__ == '__main__':
