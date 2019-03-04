@@ -39,7 +39,7 @@ if __name__ == '__main__':
                 from_v = visits[0]
                 to_v = visits[-1]
                 times = "%s<br/>%s" % (
-                    to_v.get_departure_dt().strftime(dt_format),
+                    from_v.get_departure_dt().strftime(dt_format),
                     to_v.get_arrival_dt().strftime(dt_format))
 
                 events = "departure<br/>arrival"
@@ -50,7 +50,7 @@ if __name__ == '__main__':
                     hours(to_v.get_computed_duration()),
                     hours(to_v.get_planned_duration_td()))
                 for w in leg.get_warnings():
-                    comments += "<br/><font color=\"red\">%s</font>" % (w.get_message())
+                    comments += "<br/>&#x1F534; %s" % (w.get_message())
 
                 print("%s | %s | %s | %s" % (times, events, locs, comments[5:]))
                 

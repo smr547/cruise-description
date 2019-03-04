@@ -97,3 +97,28 @@ def schedule_cruise(this_cruise, last_cruise=None, next_cruise=None):
         if arrival_time < time(hour=6) or arrival_time > time(hour=18):
             leg.add_warning(Warning("Nightime arrival"))
 
+    # consider the final arrival_dt in relation to the scheduled departure of the next cruise
+    # WARNING if arrival at destination is AFTER scheduled departure
+
+    if next_cruise is not None:
+        if arrival_dt > next_cruise.get_departure_dt():
+            leg.add_warning(Warning("Arrival in %s is AFTER schedule departure for %s" % (
+                v.location.identifier, 
+                next_cruise.get_destination_port().identifier)))
+        else:
+
+            # WARNING if arrival date/time does not allow specified stopover period
+            td = next_cruise.get_departure_dt().date() - arrival_dt.date()
+            days_at_destination = round(td.total_seconds()/86400.0)
+            planned_stay_days = v.duration_days
+            if days_at_destination < planned_stay_days:
+                leg.add_warning(Warning("Late arrival in %s allows only %d days stay (not %d as planned)" % (
+                    v.location.identifier, 
+                    days_at_destination,
+                    planned_stay_days)))
+
+            elif days_at_destination > planned_stay_days:
+                leg.add_warning(Warning("Early arrival in %s means a %d days stay (not %d as planned)" % (
+                    v.location.identifier,
+                    days_at_destination,
+                    planned_stay_days)))

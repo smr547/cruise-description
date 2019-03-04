@@ -312,6 +312,8 @@ class EventVisitor(CdlVisitor):
         visitor = StaySpecVisitor()
         if ctx.stay_spec() is not None:
             stay_spec = visitor.visit(ctx.stay_spec())
+        else:
+            stay_spec = StaySpec(1, "night")
         
         self.cruise.add_event(Visitation(location, stay_spec=stay_spec))
         return
@@ -323,7 +325,6 @@ class StaySpecVisitor(CdlVisitor):
 
     def visitStay_spec(self, ctx:CdlParser.Stay_specContext):
         return StaySpec(int(ctx.stay_duration().getText()), ctx.duration_units().getText())
-        return
 
     
 
