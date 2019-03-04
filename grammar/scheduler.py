@@ -63,25 +63,37 @@ def schedule_cruise(this_cruise, last_cruise=None, next_cruise=None):
             duration = next_departure - arrival
         else:
             duration = timedelta(0)
-
-        # generate warnings
-        v.clear_warnings()
-        arrival_time = v.get_arrival_dt().time()
-        if arrival_time < time(hour=6) or arrival_time > time(hour=18):
-            v.add_warning(Warning("Nightime arrival"))
-
         
         v.set_computed_duration(duration)
         current_vi += 1
 
+    # clear all warnings
+    for v in visits:
+        v.clear_warnings()
 
-            
+    # consider each leg
+    for leg in c.legs:
+
+        # nightime departure
+
+        v = leg.visitations[0]
+        departure_dt = v.get_departure_dt()
+        if departure_dt is not None:
+            departure_time = departure_dt.time()
+            if departure_time < time(hour=6) or departure_time > time(hour=18):
+                leg.add_warning(Warning("Nightime departure"))
 
         
-       
-  
+        v = leg.visitations[-1]
+        arrival_dt = v.get_arrival_dt()
 
+        # check for overnight passage
 
+        if arrival_dt.date() != departure_dt.date():
+            leg.add_warning(Warning("Overnight passage"))
 
+        # nightime arrival?
+        arrival_time = arrival_dt.time()
+        if arrival_time < time(hour=6) or arrival_time > time(hour=18):
+            leg.add_warning(Warning("Nightime arrival"))
 
-     

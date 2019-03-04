@@ -172,6 +172,7 @@ class Leg(object):
         self.cruise = cruise
         self.visitations = []
         self._hops = None
+        self._warnings = []
 
     def origin(self):
         return self.visitations[0].location
@@ -197,6 +198,17 @@ class Leg(object):
             for i in range(1,len(self.visitations)):
                 self._hops.append(Hop(self.visitations[i-1].location, self.visitations[i].location))
         return self._hops
+
+    def get_warnings(self):
+        return self._warnings
+
+    def clear_warnings(self):
+        self._warnings = []
+        return
+
+    def add_warning(self, warning : Warning):
+        self._warnings.append(warning)
+        return
 
     def __str__(self):
         return "%s: from %s to %s dist_NM=%f time=%s" % (type(self).__name__, self.origin().identifier, self.destination().identifier, self.distance_NM(), str(self.sailing_time()))
@@ -288,7 +300,11 @@ class CrewEvent(object):
 
 class Warning(object):
     def __init__(self, message : str):
-        self.message = message
+        self._message = message
+
+
+    def get_message(self):
+        return "WARNING: %s" % (self._message, )
 
     
      

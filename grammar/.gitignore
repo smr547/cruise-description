@@ -4,6 +4,7 @@ Cdl*.py
 __*
 *.json
 person_list.txt
+*.html
 
 # don't ignore these ones
 !CdlFileAnalyser.py
