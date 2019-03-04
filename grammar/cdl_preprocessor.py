@@ -29,7 +29,14 @@ def preprocess(cdl_filename=None):
                 filename = line[8:-1].strip()
                 with open(filename) as f:
                     for rec in f:
-                        output.write(rec)
+                        if rec.startswith("#"):
+                            pass    # its a comment line
+                        else:
+                            output.write(rec)
+
+            # leave comment lines out
+            elif line.startswith("#"):
+                pass    # its a comment line
             else:
                 output.write(line)
         fin.close()
