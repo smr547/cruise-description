@@ -3,14 +3,13 @@ vessel Trilogy name: "Trilogy" flag: "Australia" rego: 12345 speed: 7.5
 location WPa at 6.7 43.2 is "a waypoint"
 location WPb at 6.7 43.3 is "a waypoint"
 
-$include ./imray_fmcc_ss_IV.cdl
-$include ./locations_spain.cdl
-$include ./locations_france.cdl
-$include ./locations_italy.cdl
-$include ./locations_corsica.cdl
-$include ./locations_sardinia.cdl
+use https://smr547.github.io/locations/corsica.txt
+use https://smr547.github.io/locations/france_med_coast.txt
+use https://smr547.github.io/locations/sardinia.txt
+use https://smr547.github.io/locations/italy.txt
+use https://smr547.github.io/locations/spain_med_coast.txt
 
-$include ./people.cdl
+use file:///Users/stevenring/projects/cruise-description/grammar/people.cdl
 
 
 season Steven_cruise vessel Trilogy begins in Sant_Carles

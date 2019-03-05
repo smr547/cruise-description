@@ -2,6 +2,8 @@
 
 __author__ = 'smr'
 
+from urllib.parse import urlparse
+from urllib.request import urlopen
 from sys import stdin, stdout, stderr, exit, argv
 from io import StringIO
 
@@ -23,22 +25,38 @@ def preprocess(cdl_filename=None):
             fin = open(cdl_filename, 'r')
 
         # read source into memory, including files where specified
-
+        line_no = 1
         for line in fin:
-            if line.startswith("$include "):
-                filename = line[8:-1].strip()
-                with open(filename) as f:
-                    for rec in f:
-                        if rec.startswith("#"):
-                            pass    # its a comment line
-                        else:
-                            output.write(rec)
+            if line.startswith("use "):
+                url = line[4:-1].strip()
+                # check that's its a valid URL
+                p = urlparse(url)
+                if len(p.scheme) == 0:
+                    die("Cannot understand the URL in the 'use' statement at line %s (%s)" % (
+                        line_no,
+                        url ))
+                try:
+                    with urlopen(url) as f:
+                        for rec in f:
+                            rec = rec.decode('utf-8')
+                            if rec.startswith("#"):
+                                pass    # its a comment line
+                            else:
+                                output.write(rec)
+                except Exception as e:
+                    die("Cannot use URL at line %s (%s)\n%s" % (
+                        line_no,
+                        url,
+                        str(e)))
+                
 
             # leave comment lines out
             elif line.startswith("#"):
                 pass    # its a comment line
             else:
                 output.write(line)
+            line_no += 1
+
         fin.close()
         output.seek(0)
         return output
