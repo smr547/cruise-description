@@ -96,12 +96,13 @@ if __name__ == '__main__':
                     ll_comment = "(end of %s cruise)" % (leg.cruise.name, )
                 sv = leg.visitations[-1]    # stopover visitation
                 # buiild the stopover description 
-                desc = "%s stopover %s</br>%s</br>arrived %s</br>depart  %s" % (
+                desc = "%s stopover %s</br>%s</br>arrived %s</br>depart  %s</br>crew: %s" % (
                     leg.destination().identifier,
                     ll_comment,
                     sv.get_duration_description(),
                     sv.get_arrival_dt().strftime(dt_format),
-                    sv.get_departure_dt().strftime(dt_format))
+                    sv.get_departure_dt().strftime(dt_format),
+                    str(sv.crew))
                 pnt = stop_folder.newpoint(
                     name=leg.destination().identifier, 
                     coords=[leg.destination().coords],

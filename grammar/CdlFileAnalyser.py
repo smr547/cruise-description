@@ -21,7 +21,7 @@ from datetime import datetime
 
 from geolocator import CachedGeoLocator
 import simplekml
-from model import Location, Person, Vessel, VesselSeason, Cruise, Visitation, CrewEvent, Leg
+from model import CdlFile, Location, Person, Vessel, VesselSeason, Cruise, Visitation, CrewEvent, Leg, Crew, CrewRole
 
 def die(message):
     stderr.write(str(message) + "\n")
@@ -32,6 +32,10 @@ locator.load()
 
 date_format = "%d/%m/%y"
 time_format = "%H%M"
+
+# keep track of changing crew compliment as the file is processed
+
+crew = None
 
 def remove_quotes(aString : str):
     if aString.startswith('"') and aString.endswith('"'):
@@ -55,53 +59,6 @@ class StaySpec(object):
 
     def __str__(self):
         return "%s: period=%s units=%s" % (type(self).__name__, str(self.period), self.units)
-
-class CdlFile(object):
-    def __init__(self):
-        self.vessels = {}  # dict of all vessels in the fleet
-        self.persons = {}  # dict of all people  
-        self.vesselSeasons = {} # dict of all VesselSeasons in the file
-        self.locations = {} # dict of all locations in the file
-
-    def add_vessel(self, vessel : Vessel):
-        key = vessel.identifier
-        if key in self.vessels:
-            raise ValueError("Duplicate definitions for Vessel %s" % (key, ))
-        else:
-            self.vessels[key] = vessel
-
-    def add_person(self, person : Person):
-        key = person.identifier
-        if key in self.persons:
-            raise ValueError("Duplicate definitions for Person %s" % (key, ))
-        else:
-            self.persons[key] = person
-
-    def get_person(self, person_id):
-        if person_id is not None:
-            if person_id not in self.persons:
-                raise ValueError("Unknown person %s" % (person_id, ))
-            return self.persons[person_id]
-
-    def add_location(self, location : Location):
-        key = location.identifier
-        if key in self.locations:
-            raise ValueError("Duplicate definitions for Location %s" % (key, ))
-        else:
-            self.locations[key] = location
-
-    def add_vessel_season(self, vessel_season : VesselSeason):
-        key = vessel_season.key()
-        if key in self.vesselSeasons:
-            raise ValueError("Duplicate definitions for VesselSeason %s" % (key, ))
-        else:
-            self.vesselSeasons[key] = vessel_season
-
-    def get_location(self, location_id : str):
-        if location_id is not None:
-            if location_id not in self.locations:
-                raise ValueError("%s not a defined location" % (location_id, ))
-            return self.locations[location_id]
 
 class VesselVisitor(CdlVisitor):
     def __init__(self):
@@ -215,6 +172,7 @@ class VesselSeasonVisitor(CdlVisitor):
         self.cdl_file = cdl_file
 
     def visitVessel_season_spec(self, ctx:CdlParser.Vessel_season_specContext):
+        global crew
         vessel_id = ctx.vessel_identifier().getText()
         if vessel_id in self.cdl_file.vessels:
             vessel = self.cdl_file.vessels[vessel_id]
@@ -222,7 +180,8 @@ class VesselSeasonVisitor(CdlVisitor):
             raise ValueError("Vessel %s is not defined" % (vessel_id, ))
 
         season_id = ctx.season_identifier().getText()
- 
+
+        crew = Crew() 
         cruises = []
         result = VesselSeason(vessel, season_id, cruises)
         visitor = CruiseVisitor(self.cdl_file)
@@ -277,18 +236,24 @@ class EventVisitor(CdlVisitor):
         super(EventVisitor, self).__init__();
         self.cdl_file = cdl_file
         self.cruise = cruise
+
     def visitJoining_spec(self, ctx:CdlParser.Joining_specContext):
+        global crew
         person = self.cdl_file.get_person(ctx.identifier().getText())
         location = self.cdl_file.get_location(get_text(ctx.location_identifier()))
 
+
+        role =  get_text(ctx.role_spec())
         e = CrewEvent(person, join_not_leave=True,
-            role=get_text(ctx.role_spec()),
+            role=role,
             scheduled=get_text(ctx.date()),
             location=location)
         self.cruise.add_event(e)
+        crew = crew.add_crewRole(CrewRole(person, role))
         return
 
     def visitLeaving_spec(self, ctx:CdlParser.Leaving_specContext):
+        global crew
         person = self.cdl_file.get_person(ctx.identifier().getText())
         location = self.cdl_file.get_location(get_text(ctx.location_identifier()))
 
@@ -296,11 +261,12 @@ class EventVisitor(CdlVisitor):
             scheduled=get_text(ctx.date()),
             location=location)
         self.cruise.add_event(e)
+        crew = crew.del_crewRole(CrewRole(person))
 
     def visitVia_waypoints(self, ctx:CdlParser.Via_waypointsContext):
         for lid_ctx in ctx.location_identifier():
             location = self.cdl_file.get_location(get_text(lid_ctx))
-            self.cruise.add_event(Visitation(location, stay_spec=None))
+            self.cruise.add_event(Visitation(location, crew, stay_spec=None))
         return
 
     def visitVisitation_spec(self, ctx:CdlParser.Visitation_specContext):
@@ -315,7 +281,7 @@ class EventVisitor(CdlVisitor):
         else:
             stay_spec = StaySpec(1, "night")
         
-        self.cruise.add_event(Visitation(location, stay_spec=stay_spec))
+        self.cruise.add_event(Visitation(location, crew, stay_spec=stay_spec))
         return
 
 class StaySpecVisitor(CdlVisitor):

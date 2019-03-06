@@ -28,7 +28,7 @@ def schedule_cruise(this_cruise, last_cruise=None, next_cruise=None):
     c = this_cruise
     visits = c.get_visitations()
     if c.departure_port is not visits[0].location :
-        raise ValueError("Cruise %s must have departure port %s as first visitation" %
+        raise ValueError("Cruise %s must have departure port %s as first visitation (not %s)" %
             (c.name, c.departure_port.identifier, visits[0].location.identifier))
    
     # the departure datetime is specified in CDL so it take precedence

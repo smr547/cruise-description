@@ -49,13 +49,13 @@ class Location(object):
     def __str__(self):
         return "%s: identifier=%s, name=%s" % (type(self).__name__, self.identifier, self.name)
 
-class VisitedLocation(Location):
-    def __init__(self, identifier, name, coords):
-        super(self, VisitedLocation).__init__(identifier, name, coords)    
+class Person(object):
+    def __init__(self, identifier, name):
+        self.identifier = identifier
+        self.name = name 
 
-class PointOfInterest(Location):
-    def __init__(self, identifier, name, coords):
-        super(self, VisitedLocation).__init__(identifier, name, coords)    
+    def __str__(self):
+        return "%s: identifier=%s, name=%s" % (type(self).__name__, self.identifier, self.name)
 
 class Vessel(object):
     def __init__(self, identifier, name, flag, rego, speed_kts):
@@ -68,21 +68,6 @@ class Vessel(object):
 
     def __str__(self):
         return "%s: identifier=%s, name=%s" % (type(self).__name__, self.identifier, self.name)
-
-class Person(object):
-    def __init__(self, identifier, name):
-        self.identifier = identifier
-        self.name = name 
-
-    def __str__(self):
-        return "%s: identifier=%s, name=%s" % (type(self).__name__, self.identifier, self.name)
-
-class Season(object):
-    def __init__(self, identifier):
-        self.identifier = identifier
-
-    def __str__(self):
-        return "%s: identifier=%s" % (type(self).__name__, self.identifier)
 
 class VesselSeason(object):
     def __init__(self, vessel, season, cruises):
@@ -99,6 +84,114 @@ class VesselSeason(object):
     def __str__(self):
         return "%s: identifier=%s, name=%s" % (type(self).__name__, self.identifier())
 
+class CdlFile(object):
+    def __init__(self):
+        self.vessels = {}  # dict of all vessels in the fleet
+        self.persons = {}  # dict of all people  
+        self.vesselSeasons = {} # dict of all VesselSeasons in the file
+        self.locations = {} # dict of all locations in the file
+
+    def add_vessel(self, vessel : Vessel):
+        key = vessel.identifier
+        if key in self.vessels:
+            raise ValueError("Duplicate definitions for Vessel %s" % (key, ))
+        else:
+            self.vessels[key] = vessel
+
+    def add_person(self, person : Person):
+        key = person.identifier
+        if key in self.persons:
+            raise ValueError("Duplicate definitions for Person %s" % (key, ))
+        else:
+            self.persons[key] = person
+
+    def get_person(self, person_id):
+        if person_id is not None:
+            if person_id not in self.persons:
+                raise ValueError("Unknown person %s" % (person_id, ))
+            return self.persons[person_id]
+
+    def add_location(self, location : Location):
+        key = location.identifier
+        if key in self.locations:
+            raise ValueError("Duplicate definitions for Location %s" % (key, ))
+        else:
+            self.locations[key] = location
+
+    def add_vessel_season(self, vessel_season : VesselSeason):
+        key = vessel_season.key()
+        if key in self.vesselSeasons:
+            raise ValueError("Duplicate definitions for VesselSeason %s" % (key, ))
+        else:
+            self.vesselSeasons[key] = vessel_season
+
+    def get_location(self, location_id : str):
+        if location_id is not None:
+            if location_id not in self.locations:
+                raise ValueError("%s not a defined location" % (location_id, ))
+            return self.locations[location_id]
+
+class VisitedLocation(Location):
+    def __init__(self, identifier, name, coords):
+        super(self, VisitedLocation).__init__(identifier, name, coords)    
+
+class PointOfInterest(Location):
+    def __init__(self, identifier, name, coords):
+        super(self, VisitedLocation).__init__(identifier, name, coords)    
+
+class Season(object):
+    def __init__(self, identifier):
+        self.identifier = identifier
+
+    def __str__(self):
+        return "%s: identifier=%s" % (type(self).__name__, self.identifier)
+
+class CrewRole(object):
+    def __init__(self, person : Person, role : str=None):
+        self.person = person
+        self.role = role
+
+    def key(self):
+        return self.person.identifier
+
+    def __str__(self):
+        result = self.person.identifier
+        if self.role is not None:
+          result += " (" + self.role + ")"
+        return result
+
+class Crew(object):
+    '''
+    An immutable collection of CrewRoles
+    '''
+    def __init__(self, crewRoles:dict=None):
+        if crewRoles is None:
+            self._crewRoles = {}
+        else:
+            self._crewRoles = crewRoles
+
+    def add_crewRole(self, crewRole: CrewRole):
+        if crewRole.key() in self._crewRoles.keys() :
+            raise ValueError("% s is already in Crew" % (crewRole.key(), ))
+
+        d = self._crewRoles.copy()  # duplicate the crewRoles
+        d[crewRole.key()] = crewRole  # add the new crewRole
+        return Crew(d)  
+
+    def del_crewRole(self, crewRole: CrewRole):
+        if crewRole.key() not in self._crewRoles.keys() :
+            raise ValueError("%s is not in Crew" % (crewRole.key(), ))
+
+        d = self._crewRoles.copy()  # duplicate the crewRoles
+        d.pop(crewRole.key()) # delete the new crewRole
+        return Crew(d)  
+
+    def __str__(self):
+        result = ""
+        for cr in self._crewRoles.values():
+            result += ", " + str(cr)
+        return result[2:]
+
 class Cruise(object):
     def __init__(self, vesselSeason=None, name=None, shortname=None, description=None, departure_date=None,
             departure_time=None, departure_port=None):
@@ -113,7 +206,6 @@ class Cruise(object):
         self.events = [] # ordered list of events - An Event is a Visitation or Crew movement
 
     def add_event(self, event):
-        # print("adding:  %s %s" % (type(event), str(event), ))
         self.events.append(event)
 
     def distance_NM(self):
@@ -223,9 +315,10 @@ class Hop(object):
 
 
 class Visitation(object):
-    def __init__(self, location : Location, stay_spec=None, description=None):
+    def __init__(self, location : Location, crew : Crew, stay_spec=None, description=None):
         self.location = location
         self.description = description
+        self.crew = crew
         self.stay_spec = stay_spec
         self.duration_days= 0
         self._arrival_dt = None

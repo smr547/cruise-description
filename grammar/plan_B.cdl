@@ -13,7 +13,7 @@ season Steven_cruise vessel Trilogy begins in Sant_Carles
 cruise  "Sant Cales to Nice" departs Sant_Carles on 2/5/19 at 1000
 	Sant_Carles
         crew smr joins on 30/4/19 as skipper in Sant_Carles
-        crew isf joins on 30/4/19 as skipper in Sant_Carles
+        crew isf joins on 30/4/19 in Sant_Carles
         crew po  joins on 1/4/19 as mate in Sant_Carles
 	Toulon for 1 night
 	Hyeres for 1 night
@@ -22,12 +22,17 @@ cruise  "Sant Cales to Nice" departs Sant_Carles on 2/5/19 at 1000
 	Cannes for 1 night
 	Nice for 2 nights
 
-cruise  "Nice to Naples via Corsica and Sardinia" departs Nice on 10/5/19 at 1000
+cruise  "Nice to Calvi" departs Nice on 10/5/19 at 1000
 	Nice
 	Monaco for 1 night
 	Menton for 1 night
 	Imperia for 1 night
 	Calvi for 1 night
+
+cruise  "Calvi to Naples via Corsica and Sardinia" departs Calvi on 15/5/19 at 1000
+        Calvi
+	crew wp joins on 15/5/19 in Naples
+	crew rb joins on 15/5/19 in Naples
 	Propriano for 1 night
 	Banifacio for 1 night
 	Gallura for 1 night
