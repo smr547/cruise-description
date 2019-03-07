@@ -8,4 +8,4 @@ antlr4 Cdl.g4
 echo done
 javac *.java
 #grun Cdl cdl_file test_cruise.cdl -tokens -gui
-./cdl_preprocessor.py < test_cruise.cdl |  grun Cdl cdl_file test.tmp -tokens -gui
+./cdl_preprocessor.py < test_cruise.cdl |  grun Cdl cdl_file  -tokens -gui
