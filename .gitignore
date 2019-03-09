@@ -1,6 +1,5 @@
 *.java
 *.class
-*.kml
 *.swp
 *.pyc
 .DS_Store
