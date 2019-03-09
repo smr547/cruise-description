@@ -11,24 +11,29 @@ Date/time    | Event | From<br/>To | Comment
 2019-05-07 1000<br/>2019-05-07 1255 | departure<br/>arrival | Frejus<br/>Antibes | stay in Antibes is  21 hours (expected 24)
 2019-05-08 1000<br/>2019-05-08 1045 | departure<br/>arrival | Antibes<br/>Cannes | stay in Cannes is  23 hours (expected 24)
 2019-05-09 1000<br/>2019-05-09 1221 | departure<br/>arrival | Cannes<br/>Nice | stay in Nice is  46 hours (expected 48)<br/>&#x1F534; WARNING: Late arrival in Nice allows only 1 days stay (not 2 as planned)
-## Nice to Naples via Corsica and Sardinia
-Cruise from Nice to Naples departs 2019-05-10 distance 703 NM
+## Nice to Calvi
+Cruise from Nice to Calvi departs 2019-05-10 distance 137 NM
 
 Date/time    | Event | From<br/>To | Comment
 ------------ | ----- | --------- | ------------------
 2019-05-10 1000<br/>2019-05-10 1051 | departure<br/>arrival | Nice<br/>Monaco | stay in Monaco is  23 hours (expected 24)
 2019-05-11 1000<br/>2019-05-11 1038 | departure<br/>arrival | Monaco<br/>Menton | stay in Menton is  23 hours (expected 24)
 2019-05-12 1000<br/>2019-05-12 1342 | departure<br/>arrival | Menton<br/>Imperia | stay in Imperia is  20 hours (expected 24)
-2019-05-13 1000<br/>2019-05-13 2305 | departure<br/>arrival | Imperia<br/>Calvi | stay in Calvi is  11 hours (expected 24)<br/>&#x1F534; WARNING: Nightime arrival
-2019-05-14 1000<br/>2019-05-14 1817 | departure<br/>arrival | Calvi<br/>Propriano | stay in Propriano is  16 hours (expected 24)<br/>&#x1F534; WARNING: Nightime arrival
-2019-05-15 1000<br/>2019-05-15 1310 | departure<br/>arrival | Propriano<br/>Banifacio | stay in Banifacio is  21 hours (expected 24)
-2019-05-16 1000<br/>2019-05-16 1122 | departure<br/>arrival | Banifacio<br/>Gallura | stay in Gallura is  23 hours (expected 24)
-2019-05-17 1000<br/>2019-05-17 1130 | departure<br/>arrival | Gallura<br/>Maddalena | stay in Maddalena is  22 hours (expected 24)
-2019-05-18 1000<br/>2019-05-18 1122 | departure<br/>arrival | Maddalena<br/>Cervo | stay in Cervo is  23 hours (expected 24)
-2019-05-19 1000<br/>2019-05-19 2105 | departure<br/>arrival | Cervo<br/>Arbatax | stay in Arbatax is  13 hours (expected 24)<br/>&#x1F534; WARNING: Nightime arrival
-2019-05-20 1000<br/>2019-05-20 1743 | departure<br/>arrival | Arbatax<br/>Cagliari | stay in Cagliari is  16 hours (expected 24)
-2019-05-21 1000<br/>2019-05-23 0004 | departure<br/>arrival | Cagliari<br/>Capri | stay in Capri is  34 hours (expected 24)<br/>&#x1F534; WARNING: Overnight passage<br/>&#x1F534; WARNING: Nightime arrival
-2019-05-24 1000<br/>2019-05-24 1246 | departure<br/>arrival | Capri<br/>Naples | stay in Naples is  21 hours (expected 24)<br/>&#x1F534; WARNING: Early arrival in Naples means a 11 days stay (not 1 as planned)
+2019-05-13 1000<br/>2019-05-13 2305 | departure<br/>arrival | Imperia<br/>Calvi | stay in Calvi is  11 hours (expected 24)<br/>&#x1F534; WARNING: Nightime arrival<br/>&#x1F534; WARNING: Early arrival in Calvi means a 2 days stay (not 1 as planned)
+## Calvi to Naples via Corsica and Sardinia
+Cruise from Calvi to Naples departs 2019-05-15 distance 566 NM
+
+Date/time    | Event | From<br/>To | Comment
+------------ | ----- | --------- | ------------------
+2019-05-15 1000<br/>2019-05-15 1817 | departure<br/>arrival | Calvi<br/>Propriano | stay in Propriano is  16 hours (expected 24)<br/>&#x1F534; WARNING: Nightime arrival
+2019-05-16 1000<br/>2019-05-16 1310 | departure<br/>arrival | Propriano<br/>Banifacio | stay in Banifacio is  21 hours (expected 24)
+2019-05-17 1000<br/>2019-05-17 1122 | departure<br/>arrival | Banifacio<br/>Gallura | stay in Gallura is  23 hours (expected 24)
+2019-05-18 1000<br/>2019-05-18 1130 | departure<br/>arrival | Gallura<br/>Maddalena | stay in Maddalena is  22 hours (expected 24)
+2019-05-19 1000<br/>2019-05-19 1122 | departure<br/>arrival | Maddalena<br/>Cervo | stay in Cervo is  23 hours (expected 24)
+2019-05-20 1000<br/>2019-05-20 2105 | departure<br/>arrival | Cervo<br/>Arbatax | stay in Arbatax is  13 hours (expected 24)<br/>&#x1F534; WARNING: Nightime arrival
+2019-05-21 1000<br/>2019-05-21 1743 | departure<br/>arrival | Arbatax<br/>Cagliari | stay in Cagliari is  16 hours (expected 24)
+2019-05-22 1000<br/>2019-05-24 0004 | departure<br/>arrival | Cagliari<br/>Capri | stay in Capri is  34 hours (expected 24)<br/>&#x1F534; WARNING: Overnight passage<br/>&#x1F534; WARNING: Nightime arrival
+2019-05-25 1000<br/>2019-05-25 1246 | departure<br/>arrival | Capri<br/>Naples | stay in Naples is  21 hours (expected 24)<br/>&#x1F534; WARNING: Early arrival in Naples means a 10 days stay (not 1 as planned)
 ## Naples to Genoa via Amalfi Coast and Cinque Terre
 Cruise from Naples to Genoa departs 2019-06-04 distance 496 NM
 
