@@ -10,7 +10,7 @@ use file:///Users/stevenring/projects/cruise-description/grammar/people.cdl
 
 season Steven_cruise vessel Trilogy begins in Sant_Carles
 
-cruise  "Sant Cales to Nice" departs Sant_Carles on 2/5/19 at 1000
+cruise  "Sant Carles to Nice" departs Sant_Carles on 2/5/19 at 1000
 	Sant_Carles
         crew smr joins on 30/4/19 as skipper in Sant_Carles
         crew isf joins on 30/4/19 in Sant_Carles

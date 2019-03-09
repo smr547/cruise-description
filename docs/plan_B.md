@@ -1,6 +1,6 @@
 # Trilogy/Steven_cruise
 Generated from file ./plan_B.cdl
-## Sant Cales to Nice
+## Sant Carles to Nice
 Cruise from Sant_Carles to Nice departs 2019-05-02 distance 416 NM
 
 Date/time    | Event | From<br/>To | Comment

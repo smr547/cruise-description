@@ -5,7 +5,7 @@
         <Document id="2">
             <name>./plan_B.cdl</name>
             <open>1</open>
-            <description>Generated from CDL file ./plan_B.cdl at 2019-03-09T15:54:51.796552</description>
+            <description>Generated from CDL file ./plan_B.cdl at 2019-03-09T16:24:09.190381</description>
             <Folder id="3">
                 <name>Locations</name>
                 <visibility>0</visibility>
@@ -528,10 +528,10 @@
                 <open>1</open>
                 <description>All of the locations mentioned in the CDL source file</description>
                 <Folder id="151">
-                    <name>Sant Cales to Nice</name>
+                    <name>Sant Carles to Nice</name>
                     <visibility>1</visibility>
                     <open>0</open>
-                    <description>Sant Cales to Nice cruise, 416 nautical miles in 8 days</description>
+                    <description>Sant Carles to Nice cruise, 416 nautical miles in 8 days</description>
                     <Folder id="152">
                         <Style id="155">
                             <LineStyle id="156">
@@ -746,7 +746,7 @@
                         </Placemark>
                         <Placemark id="209">
                             <name>Nice</name>
-                            <description>Nice stopover (end of Sant Cales to Nice cruise)&lt;/br&gt;46 hours&lt;/br&gt;arrived 2019-05-09 1221&lt;/br&gt;depart  2019-05-11 1000&lt;/br&gt;crew: smr (skipper), isf, po (mate)</description>
+                            <description>Nice stopover (end of Sant Carles to Nice cruise)&lt;/br&gt;46 hours&lt;/br&gt;arrived 2019-05-09 1221&lt;/br&gt;depart  2019-05-11 1000&lt;/br&gt;crew: smr (skipper), isf, po (mate)</description>
                             <styleUrl>#210</styleUrl>
                             <Point id="208">
                                 <coordinates>7.308311499999999,43.6985187,0.0</coordinates>
