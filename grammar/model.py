@@ -12,18 +12,22 @@ from timezonefinder import TimezoneFinder
 import pytz
 from math import ceil
 
-locator = CachedGeoLocator()
-locator.load()
 
 class Location(object):
 
+    _locator = CachedGeoLocator().load()
     _tf = TimezoneFinder()
+
+    @classmethod
+    def save_cache(cls):
+        if cls._locator is not None:
+            cls._locator.save()
 
     def __init__(self, identifier, name, coords):
         self.identifier = identifier
         self.name = name
         if coords is None:
-            loc = locator.get_location(name)
+            loc = self._locator.get_location(name)
             self.coords = (loc['lng'],  loc['lat'])
         else:
             self.coords = coords

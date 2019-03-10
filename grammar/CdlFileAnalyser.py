@@ -19,16 +19,12 @@ from CdlVisitor import CdlVisitor
 from CdlParser import CdlParser
 from datetime import datetime
 
-from geolocator import CachedGeoLocator
 import simplekml
 from model import CdlFile, Location, Person, Vessel, VesselSeason, Cruise, Visitation, CrewEvent, Leg, Crew, CrewRole
 
 def die(message):
     stderr.write(str(message) + "\n")
     exit(1)
-
-locator = CachedGeoLocator()
-locator.load()
 
 date_format = "%d/%m/%y"
 time_format = "%H%M"
@@ -315,7 +311,7 @@ class CdlFileAnalyser(object):
     
         visitor = CdlFileVisitor()
         cdl_file = visitor.visit(tree)
-        locator.save()
+        Location.save_cache()
         output.close()
         return cdl_file
 
@@ -327,7 +323,7 @@ if __name__ == '__main__':
         analyser = CdlFileAnalyser()
         tree = analyser.analyse(filename)
     except ValueError as e:
-        locator.save()
+        Location.save_cache()
         die(e)
     # import pdb; pdb.set_trace()
     #
