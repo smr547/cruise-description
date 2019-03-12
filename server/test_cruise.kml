@@ -1,0 +1,2140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+    <Document id="1">
+        <open>1</open>
+        <Document id="2">
+            <name>test_cruise.cdl</name>
+            <open>1</open>
+            <description>Generated from CDL file test_cruise.cdl at 2019-03-10T18:51:45.865360</description>
+            <Folder id="3">
+                <name>Locations</name>
+                <visibility>0</visibility>
+                <open>0</open>
+                <description>All of the locations mentioned in the CDL source file</description>
+                <Placemark id="5">
+                    <name>Tuelada</name>
+                    <description>Tuelada, Sardinia</description>
+                    <Point id="4">
+                        <coordinates>8.726092699999999,38.9732933,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="7">
+                    <name>La_Spezia</name>
+                    <description>La Spezia Italy</description>
+                    <Point id="6">
+                        <coordinates>9.824082599999999,44.1024504,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="9">
+                    <name>Barcelona</name>
+                    <description>Port of Barcelona Spain</description>
+                    <Point id="8">
+                        <coordinates>2.1683645,41.3461764,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="11">
+                    <name>Anzio</name>
+                    <description>Anzio Italy</description>
+                    <Point id="10">
+                        <coordinates>12.6197253,41.4495955,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="13">
+                    <name>Cervo</name>
+                    <description>Porto Cervo, Sardinia</description>
+                    <Point id="12">
+                        <coordinates>9.535745,41.1315336,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="15">
+                    <name>VI_4</name>
+                    <description>SW end of Grande Sanguinaire</description>
+                    <Point id="14">
+                        <coordinates>8.554,42.851,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="17">
+                    <name>WPa</name>
+                    <description>a waypoint</description>
+                    <Point id="16">
+                        <coordinates>6.7,43.2,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="19">
+                    <name>Fanciullo</name>
+                    <description>Fanciullo Italy</description>
+                    <Point id="18">
+                        <coordinates>11.8219809,42.0608258,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="21">
+                    <name>Cerbre</name>
+                    <description>Cape Cerbre, France</description>
+                    <Point id="20">
+                        <coordinates>3.17389,42.441137,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="23">
+                    <name>Portoferraio</name>
+                    <description>Portoferraio Italy</description>
+                    <Point id="22">
+                        <coordinates>10.3211801,42.8108565,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="25">
+                    <name>Gallura</name>
+                    <description>Santa Teresa Gallura, Sardinia</description>
+                    <Point id="24">
+                        <coordinates>9.1880794,41.238987,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="27">
+                    <name>IV_3</name>
+                    <description>E of Cap Cepet light</description>
+                    <Point id="26">
+                        <coordinates>5.957833333333333,43.06883333333333,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="29">
+                    <name>Formia</name>
+                    <description>Formia Italy</description>
+                    <Point id="28">
+                        <coordinates>13.6068672,41.2559961,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="31">
+                    <name>IV_7</name>
+                    <description>E of LeTitan</description>
+                    <Point id="30">
+                        <coordinates>6.5633333333333335,43.05,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="33">
+                    <name>Salerno</name>
+                    <description>Salerno Italy</description>
+                    <Point id="32">
+                        <coordinates>14.7680961,40.68244079999999,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="35">
+                    <name>IV_2</name>
+                    <description>S of Cap Sicie</description>
+                    <Point id="34">
+                        <coordinates>5.859333333333334,43.037333333333336,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="37">
+                    <name>Termini</name>
+                    <description>Termini Italy</description>
+                    <Point id="36">
+                        <coordinates>14.3356601,40.5898116,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="39">
+                    <name>VI_3</name>
+                    <description>W of Ille de Gargalua light</description>
+                    <Point id="38">
+                        <coordinates>8.5235,42.37233333333333,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="41">
+                    <name>Calsetta</name>
+                    <description>Calasetta, Sardinia</description>
+                    <Point id="40">
+                        <coordinates>8.369288899999999,39.10979409999999,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="43">
+                    <name>Rossa</name>
+                    <description>Isola Rossa, Sardina</description>
+                    <Point id="42">
+                        <coordinates>8.875013599999999,41.012872,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="45">
+                    <name>Ajaccio</name>
+                    <description>Ajaccio Corsica</description>
+                    <Point id="44">
+                        <coordinates>8.738635,41.919229,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="47">
+                    <name>Capri</name>
+                    <description>Capri Italy</description>
+                    <Point id="46">
+                        <coordinates>14.222154,40.5532009,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="49">
+                    <name>Villasimius</name>
+                    <description>Villasimius, Sardinia</description>
+                    <Point id="48">
+                        <coordinates>9.5169862,39.1457895,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="51">
+                    <name>Banifacio</name>
+                    <description>Banifacio Corsica</description>
+                    <Point id="50">
+                        <coordinates>9.159269,41.38717399999999,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="53">
+                    <name>Torres</name>
+                    <description>Porto Torres, Sardinia</description>
+                    <Point id="52">
+                        <coordinates>8.402292899999999,40.8333682,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="55">
+                    <name>Genoa</name>
+                    <description>Genoa Italy</description>
+                    <Point id="54">
+                        <coordinates>8.946256,44.4056499,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="57">
+                    <name>IV_1</name>
+                    <description>W of Seche de Magnons Embiez</description>
+                    <Point id="56">
+                        <coordinates>5.7395,43.077666666666666,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="59">
+                    <name>Ischia</name>
+                    <description>Ischia Italy</description>
+                    <Point id="58">
+                        <coordinates>13.9028656,40.7270164,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="61">
+                    <name>VI_5</name>
+                    <description>W of Cape Muro</description>
+                    <Point id="60">
+                        <coordinates>8.6365,41.7395,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="63">
+                    <name>Olbia</name>
+                    <description>Olbia, Sardinia</description>
+                    <Point id="62">
+                        <coordinates>9.4964429,40.92357639999999,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="65">
+                    <name>Livorno</name>
+                    <description>Livorno Italy</description>
+                    <Point id="64">
+                        <coordinates>10.3105674,43.548473,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="67">
+                    <name>VI_2</name>
+                    <description>N of La Revellata</description>
+                    <Point id="66">
+                        <coordinates>8.724833333333333,42.60066666666667,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="69">
+                    <name>StFlorent</name>
+                    <description>St Florent Corsica</description>
+                    <Point id="68">
+                        <coordinates>9.303704,42.681846,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="71">
+                    <name>Castelsardo</name>
+                    <description>Castelsardo, Sardina</description>
+                    <Point id="70">
+                        <coordinates>8.708592,40.913692,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="73">
+                    <name>IV_5</name>
+                    <description>S of Cap dArmes</description>
+                    <Point id="72">
+                        <coordinates>6.206666666666667,42.96666666666667,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="75">
+                    <name>Toulon</name>
+                    <description>Toulon, France</description>
+                    <Point id="74">
+                        <coordinates>5.928,43.124228,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="77">
+                    <name>Hyeres</name>
+                    <description>Hyeres, France</description>
+                    <Point id="76">
+                        <coordinates>6.128639,43.120541,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="79">
+                    <name>Portoscuso</name>
+                    <description>Portoscuso, Sardinia</description>
+                    <Point id="78">
+                        <coordinates>8.3791741,39.2066208,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="81">
+                    <name>Amalfi</name>
+                    <description>Amalfi Italy</description>
+                    <Point id="80">
+                        <coordinates>14.6026805,40.6340026,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="83">
+                    <name>Vendres</name>
+                    <description>Port, Vendres</description>
+                    <Point id="82">
+                        <coordinates>3.106592,42.518487,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="85">
+                    <name>Ostia</name>
+                    <description>Ostia Italy</description>
+                    <Point id="84">
+                        <coordinates>12.2862694,41.7311182,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="87">
+                    <name>Naples</name>
+                    <description>Naples Italy</description>
+                    <Point id="86">
+                        <coordinates>14.26812,40.8517983,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="89">
+                    <name>Nice</name>
+                    <description>Port de Villefranche-sur-Mer, France</description>
+                    <Point id="88">
+                        <coordinates>7.308311499999999,43.6985187,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="91">
+                    <name>Bastia</name>
+                    <description>Bastia Corsica</description>
+                    <Point id="90">
+                        <coordinates>9.450880999999999,42.697283,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="93">
+                    <name>Antibes</name>
+                    <description>Antibes, France</description>
+                    <Point id="92">
+                        <coordinates>7.125102,43.58041799999999,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="95">
+                    <name>Alghero</name>
+                    <description>Alghero, Sardinia</description>
+                    <Point id="94">
+                        <coordinates>8.319294900000001,40.5579517,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="97">
+                    <name>Propriano</name>
+                    <description>Propriano Corsica</description>
+                    <Point id="96">
+                        <coordinates>8.901759199999999,41.6738915,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="99">
+                    <name>WPb</name>
+                    <description>a waypoint</description>
+                    <Point id="98">
+                        <coordinates>6.7,43.3,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="101">
+                    <name>Roses</name>
+                    <description>Roses Spain</description>
+                    <Point id="100">
+                        <coordinates>3.2080991,42.2605204,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="103">
+                    <name>Monaco</name>
+                    <description>Monaco</description>
+                    <Point id="102">
+                        <coordinates>7.424615799999999,43.73841760000001,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="105">
+                    <name>Torregrande</name>
+                    <description>Torregrande,  Sardinia</description>
+                    <Point id="104">
+                        <coordinates>8.516494,39.9071533,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="107">
+                    <name>Blanes</name>
+                    <description>Blanes Spain</description>
+                    <Point id="106">
+                        <coordinates>2.7902289,41.6759954,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="109">
+                    <name>Follonica</name>
+                    <description>Follonica Italy</description>
+                    <Point id="108">
+                        <coordinates>10.7593003,42.9226887,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="111">
+                    <name>Chiavari</name>
+                    <description>Chiavari Italy</description>
+                    <Point id="110">
+                        <coordinates>9.3199822,44.3168416,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="113">
+                    <name>Sorrento</name>
+                    <description>Sorrento Italy</description>
+                    <Point id="112">
+                        <coordinates>14.3757985,40.6262925,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="115">
+                    <name>VI_1</name>
+                    <description>E of Calvi Citadel</description>
+                    <Point id="114">
+                        <coordinates>8.774,42.5695,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="117">
+                    <name>Tarragona</name>
+                    <description>Port of Tarragona Spain</description>
+                    <Point id="116">
+                        <coordinates>1.2217558,41.09340650000001,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="119">
+                    <name>Cagliari</name>
+                    <description>Cagliari, Sardinia</description>
+                    <Point id="118">
+                        <coordinates>9.1216613,39.2238411,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="121">
+                    <name>Vecchio</name>
+                    <description>Porto Vecchio Corsica</description>
+                    <Point id="120">
+                        <coordinates>9.278311,41.591369,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="123">
+                    <name>Girolata</name>
+                    <description>Girolata Corsica</description>
+                    <Point id="122">
+                        <coordinates>8.611792,42.348707,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="125">
+                    <name>Arbatax</name>
+                    <description>Arbatax, Sardinia</description>
+                    <Point id="124">
+                        <coordinates>9.703558899999999,39.9334339,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="127">
+                    <name>IV_6</name>
+                    <description>S of Cap Blanc Lighthouse</description>
+                    <Point id="126">
+                        <coordinates>6.363333333333333,43.071666666666665,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="129">
+                    <name>Sant_Carles</name>
+                    <description>Sant Carles de la Rapita</description>
+                    <Point id="128">
+                        <coordinates>0.6251540999999999,40.6279226,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="131">
+                    <name>Cannes</name>
+                    <description>Cannes, France</description>
+                    <Point id="130">
+                        <coordinates>7.017369,43.552847,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="133">
+                    <name>IV_4</name>
+                    <description>Mid-channel Petite Passe</description>
+                    <Point id="132">
+                        <coordinates>6.152333333333333,43.01133333333333,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="135">
+                    <name>Menton</name>
+                    <description>Menton Italy</description>
+                    <Point id="134">
+                        <coordinates>7.505069700000001,43.7756428,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="137">
+                    <name>Maddalena</name>
+                    <description>Maddalena Archipelago, Sardina</description>
+                    <Point id="136">
+                        <coordinates>9.4062212,41.2435336,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="139">
+                    <name>Frejus</name>
+                    <description>Frejus, France</description>
+                    <Point id="138">
+                        <coordinates>6.737034,43.43315200000001,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="141">
+                    <name>Piombino</name>
+                    <description>Piombino Italy</description>
+                    <Point id="140">
+                        <coordinates>10.5258891,42.9256335,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="143">
+                    <name>Orbetello</name>
+                    <description>Orbetello Italy</description>
+                    <Point id="142">
+                        <coordinates>11.2124083,42.4396474,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="145">
+                    <name>Carloforte</name>
+                    <description>Carloforte, Sardinia</description>
+                    <Point id="144">
+                        <coordinates>8.3029808,39.140126,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="147">
+                    <name>Calvi</name>
+                    <description>Calvi Corsica</description>
+                    <Point id="146">
+                        <coordinates>8.757221999999999,42.567651,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="149">
+                    <name>Cargese</name>
+                    <description>Cargese Corsica</description>
+                    <Point id="148">
+                        <coordinates>8.595837999999999,42.13485499999999,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="151">
+                    <name>Macinaggio</name>
+                    <description>Macinaggio Corsica</description>
+                    <Point id="150">
+                        <coordinates>9.450356,42.958448,0.0</coordinates>
+                    </Point>
+                </Placemark>
+                <Placemark id="153">
+                    <name>Imperia</name>
+                    <description>Imperia Italy</description>
+                    <Point id="152">
+                        <coordinates>8.039517,43.8896857,0.0</coordinates>
+                    </Point>
+                </Placemark>
+            </Folder>
+            <Folder id="154">
+                <name>Trilogy/Steven_cruise</name>
+                <open>1</open>
+                <description>All of the locations mentioned in the CDL source file</description>
+                <Folder id="155">
+                    <name>Shakedown</name>
+                    <visibility>1</visibility>
+                    <open>0</open>
+                    <description>Shakedown cruise, 97 nautical miles in 2 days</description>
+                    <Folder id="156">
+                        <Style id="159">
+                            <LineStyle id="160">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Sant_Carles to Tarragona</name>
+                        <description>45 nautical miles in 6 hours.</description>
+                        <Placemark id="158">
+                            <name>Sant_Carles to Tarragona</name>
+                            <styleUrl>#159</styleUrl>
+                            <LineString id="157">
+                                <coordinates>0.6251540999999999,40.6279226,0.0 1.2217558,41.09340650000001,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="161">
+                        <Style id="164">
+                            <LineStyle id="165">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Tarragona to Barcelona</name>
+                        <description>52 nautical miles in 7 hours.</description>
+                        <Placemark id="163">
+                            <name>Tarragona to Barcelona</name>
+                            <styleUrl>#164</styleUrl>
+                            <LineString id="162">
+                                <coordinates>1.2217558,41.09340650000001,0.0 2.1683645,41.3461764,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="166">
+                        <Style id="169">
+                            <IconStyle id="170">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="171">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="174">
+                            <IconStyle id="175">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="176">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/flag.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <name>stopovers</name>
+                        <visibility>1</visibility>
+                        <open>0</open>
+                        <Placemark id="168">
+                            <name>Tarragona</name>
+                            <description>Tarragona stopover &lt;/br&gt;19 hours&lt;/br&gt;arrived 2019-04-14 1558&lt;/br&gt;depart  2019-04-15 1000&lt;/br&gt;crew: smr (skipper), wp (mate)</description>
+                            <styleUrl>#169</styleUrl>
+                            <Point id="167">
+                                <coordinates>1.2217558,41.09340650000001,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="173">
+                            <name>Barcelona</name>
+                            <description>Barcelona stopover (end of Shakedown cruise)&lt;/br&gt;90 hours&lt;/br&gt;arrived 2019-04-15 1657&lt;/br&gt;depart  2019-04-19 1000&lt;/br&gt;crew: smr (skipper), wp (mate)</description>
+                            <styleUrl>#174</styleUrl>
+                            <Point id="172">
+                                <coordinates>2.1683645,41.3461764,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                    </Folder>
+                </Folder>
+                <Folder id="177">
+                    <name>Barcelona to Nice</name>
+                    <visibility>1</visibility>
+                    <open>0</open>
+                    <description>Barcelona to Nice cruise, 343 nautical miles in 14 days</description>
+                    <Folder id="178">
+                        <Style id="181">
+                            <LineStyle id="182">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Barcelona to Blanes</name>
+                        <description>39 nautical miles in 5 hours.</description>
+                        <Placemark id="180">
+                            <name>Barcelona to Blanes</name>
+                            <styleUrl>#181</styleUrl>
+                            <LineString id="179">
+                                <coordinates>2.1683645,41.3461764,0.0 2.7902289,41.6759954,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="183">
+                        <Style id="186">
+                            <LineStyle id="187">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Blanes to Roses</name>
+                        <description>46 nautical miles in 6 hours.</description>
+                        <Placemark id="185">
+                            <name>Blanes to Roses</name>
+                            <styleUrl>#186</styleUrl>
+                            <LineString id="184">
+                                <coordinates>2.7902289,41.6759954,0.0 3.2080991,42.2605204,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="188">
+                        <Style id="191">
+                            <LineStyle id="192">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Roses to Cerbre</name>
+                        <description>13 nautical miles in 2 hours.</description>
+                        <Placemark id="190">
+                            <name>Roses to Cerbre</name>
+                            <styleUrl>#191</styleUrl>
+                            <LineString id="189">
+                                <coordinates>3.2080991,42.2605204,0.0 3.17389,42.441137,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="193">
+                        <Style id="196">
+                            <LineStyle id="197">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Cerbre to Vendres</name>
+                        <description>6 nautical miles in 1 hours.</description>
+                        <Placemark id="195">
+                            <name>Cerbre to Vendres</name>
+                            <styleUrl>#196</styleUrl>
+                            <LineString id="194">
+                                <coordinates>3.17389,42.441137,0.0 3.106592,42.518487,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="198">
+                        <Style id="201">
+                            <LineStyle id="202">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Vendres to Toulon</name>
+                        <description>149 nautical miles in 20 hours.</description>
+                        <Placemark id="200">
+                            <name>Vendres to Toulon</name>
+                            <styleUrl>#201</styleUrl>
+                            <LineString id="199">
+                                <coordinates>3.106592,42.518487,0.0 5.928,43.124228,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="203">
+                        <Style id="206">
+                            <LineStyle id="207">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Toulon to Hyeres</name>
+                        <description>10 nautical miles in 1 hours.</description>
+                        <Placemark id="205">
+                            <name>Toulon to Hyeres</name>
+                            <styleUrl>#206</styleUrl>
+                            <LineString id="204">
+                                <coordinates>5.928,43.124228,0.0 6.128639,43.120541,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="208">
+                        <Style id="211">
+                            <LineStyle id="212">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Hyeres to Frejus</name>
+                        <description>46 nautical miles in 6 hours.</description>
+                        <Placemark id="210">
+                            <name>Hyeres to Frejus</name>
+                            <styleUrl>#211</styleUrl>
+                            <LineString id="209">
+                                <coordinates>6.128639,43.120541,0.0 6.7,43.2,0.0 6.7,43.3,0.0 6.737034,43.43315200000001,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="213">
+                        <Style id="216">
+                            <LineStyle id="217">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Frejus to Cannes</name>
+                        <description>16 nautical miles in 2 hours.</description>
+                        <Placemark id="215">
+                            <name>Frejus to Cannes</name>
+                            <styleUrl>#216</styleUrl>
+                            <LineString id="214">
+                                <coordinates>6.737034,43.43315200000001,0.0 7.017369,43.552847,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="218">
+                        <Style id="221">
+                            <LineStyle id="222">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Cannes to Antibes</name>
+                        <description>6 nautical miles in 1 hours.</description>
+                        <Placemark id="220">
+                            <name>Cannes to Antibes</name>
+                            <styleUrl>#221</styleUrl>
+                            <LineString id="219">
+                                <coordinates>7.017369,43.552847,0.0 7.125102,43.58041799999999,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="223">
+                        <Style id="226">
+                            <LineStyle id="227">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Antibes to Nice</name>
+                        <description>12 nautical miles in 2 hours.</description>
+                        <Placemark id="225">
+                            <name>Antibes to Nice</name>
+                            <styleUrl>#226</styleUrl>
+                            <LineString id="224">
+                                <coordinates>7.125102,43.58041799999999,0.0 7.308311499999999,43.6985187,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="228">
+                        <Style id="231">
+                            <IconStyle id="232">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="233">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="236">
+                            <IconStyle id="237">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="238">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="241">
+                            <IconStyle id="242">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="243">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="246">
+                            <IconStyle id="247">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="248">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="251">
+                            <IconStyle id="252">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="253">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="256">
+                            <IconStyle id="257">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="258">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="261">
+                            <IconStyle id="262">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="263">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="266">
+                            <IconStyle id="267">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="268">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="271">
+                            <IconStyle id="272">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="273">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="276">
+                            <IconStyle id="277">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="278">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/flag.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <name>stopovers</name>
+                        <visibility>1</visibility>
+                        <open>0</open>
+                        <Placemark id="230">
+                            <name>Blanes</name>
+                            <description>Blanes stopover &lt;/br&gt;19 hours&lt;/br&gt;arrived 2019-04-17 1515&lt;/br&gt;depart  2019-04-18 1000&lt;/br&gt;crew: smr (skipper), ar, cm, pjr, gh, sjr</description>
+                            <styleUrl>#231</styleUrl>
+                            <Point id="229">
+                                <coordinates>2.7902289,41.6759954,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="235">
+                            <name>Roses</name>
+                            <description>Roses stopover &lt;/br&gt;42 hours&lt;/br&gt;arrived 2019-04-18 1605&lt;/br&gt;depart  2019-04-20 1000&lt;/br&gt;crew: smr (skipper), ar, cm, pjr, gh, sjr</description>
+                            <styleUrl>#236</styleUrl>
+                            <Point id="234">
+                                <coordinates>3.2080991,42.2605204,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="240">
+                            <name>Cerbre</name>
+                            <description>Cerbre stopover &lt;/br&gt;23 hours&lt;/br&gt;arrived 2019-04-20 1140&lt;/br&gt;depart  2019-04-21 1000&lt;/br&gt;crew: smr (skipper), ar, cm, pjr, gh, sjr</description>
+                            <styleUrl>#241</styleUrl>
+                            <Point id="239">
+                                <coordinates>3.17389,42.441137,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="245">
+                            <name>Vendres</name>
+                            <description>Vendres stopover &lt;/br&gt;48 hours&lt;/br&gt;arrived 2019-04-21 1050&lt;/br&gt;depart  2019-04-23 1000&lt;/br&gt;crew: smr (skipper), ar, cm, pjr, gh, sjr</description>
+                            <styleUrl>#246</styleUrl>
+                            <Point id="244">
+                                <coordinates>3.106592,42.518487,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="250">
+                            <name>Toulon</name>
+                            <description>Toulon stopover &lt;/br&gt;29 hours&lt;/br&gt;arrived 2019-04-24 0551&lt;/br&gt;depart  2019-04-25 1000&lt;/br&gt;crew: smr (skipper), ar, cm, pjr, gh, sjr</description>
+                            <styleUrl>#251</styleUrl>
+                            <Point id="249">
+                                <coordinates>5.928,43.124228,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="255">
+                            <name>Hyeres</name>
+                            <description>Hyeres stopover &lt;/br&gt;23 hours&lt;/br&gt;arrived 2019-04-25 1120&lt;/br&gt;depart  2019-04-26 1000&lt;/br&gt;crew: smr (skipper), ar, cm, pjr, gh, sjr</description>
+                            <styleUrl>#256</styleUrl>
+                            <Point id="254">
+                                <coordinates>6.128639,43.120541,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="260">
+                            <name>Frejus</name>
+                            <description>Frejus stopover &lt;/br&gt;18 hours&lt;/br&gt;arrived 2019-04-26 1604&lt;/br&gt;depart  2019-04-27 1000&lt;/br&gt;crew: smr (skipper), ar, cm, pjr, gh, sjr</description>
+                            <styleUrl>#261</styleUrl>
+                            <Point id="259">
+                                <coordinates>6.737034,43.43315200000001,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="265">
+                            <name>Cannes</name>
+                            <description>Cannes stopover &lt;/br&gt;22 hours&lt;/br&gt;arrived 2019-04-27 1210&lt;/br&gt;depart  2019-04-28 1000&lt;/br&gt;crew: smr (skipper), ar, cm, pjr, gh, sjr</description>
+                            <styleUrl>#266</styleUrl>
+                            <Point id="264">
+                                <coordinates>7.017369,43.552847,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="270">
+                            <name>Antibes</name>
+                            <description>Antibes stopover &lt;/br&gt;48 hours&lt;/br&gt;arrived 2019-04-28 1045&lt;/br&gt;depart  2019-04-30 1000&lt;/br&gt;crew: smr (skipper), ar, cm, pjr, gh, sjr</description>
+                            <styleUrl>#271</styleUrl>
+                            <Point id="269">
+                                <coordinates>7.125102,43.58041799999999,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="275">
+                            <name>Nice</name>
+                            <description>Nice stopover (end of Barcelona to Nice cruise)&lt;/br&gt;95 hours&lt;/br&gt;arrived 2019-04-30 1138&lt;/br&gt;depart  2019-05-04 1000&lt;/br&gt;crew: smr (skipper), ar, cm, pjr, gh, sjr</description>
+                            <styleUrl>#276</styleUrl>
+                            <Point id="274">
+                                <coordinates>7.308311499999999,43.6985187,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                    </Folder>
+                </Folder>
+                <Folder id="279">
+                    <name>Nice to Naples via Corsica and Sardinia</name>
+                    <visibility>1</visibility>
+                    <open>0</open>
+                    <description>Nice to Naples via Corsica and Sardinia cruise, 703 nautical miles in 15 days</description>
+                    <Folder id="280">
+                        <Style id="283">
+                            <LineStyle id="284">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Nice to Monaco</name>
+                        <description>6 nautical miles in 1 hours.</description>
+                        <Placemark id="282">
+                            <name>Nice to Monaco</name>
+                            <styleUrl>#283</styleUrl>
+                            <LineString id="281">
+                                <coordinates>7.308311499999999,43.6985187,0.0 7.424615799999999,43.73841760000001,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="285">
+                        <Style id="288">
+                            <LineStyle id="289">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Monaco to Menton</name>
+                        <description>5 nautical miles in 1 hours.</description>
+                        <Placemark id="287">
+                            <name>Monaco to Menton</name>
+                            <styleUrl>#288</styleUrl>
+                            <LineString id="286">
+                                <coordinates>7.424615799999999,43.73841760000001,0.0 7.505069700000001,43.7756428,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="290">
+                        <Style id="293">
+                            <LineStyle id="294">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Menton to Imperia</name>
+                        <description>28 nautical miles in 4 hours.</description>
+                        <Placemark id="292">
+                            <name>Menton to Imperia</name>
+                            <styleUrl>#293</styleUrl>
+                            <LineString id="291">
+                                <coordinates>7.505069700000001,43.7756428,0.0 8.039517,43.8896857,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="295">
+                        <Style id="298">
+                            <LineStyle id="299">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Imperia to Calvi</name>
+                        <description>98 nautical miles in 13 hours.</description>
+                        <Placemark id="297">
+                            <name>Imperia to Calvi</name>
+                            <styleUrl>#298</styleUrl>
+                            <LineString id="296">
+                                <coordinates>8.039517,43.8896857,0.0 8.757221999999999,42.567651,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="300">
+                        <Style id="303">
+                            <LineStyle id="304">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Calvi to Propriano</name>
+                        <description>62 nautical miles in 8 hours.</description>
+                        <Placemark id="302">
+                            <name>Calvi to Propriano</name>
+                            <styleUrl>#303</styleUrl>
+                            <LineString id="301">
+                                <coordinates>8.757221999999999,42.567651,0.0 8.901759199999999,41.6738915,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="305">
+                        <Style id="308">
+                            <LineStyle id="309">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Propriano to Banifacio</name>
+                        <description>24 nautical miles in 3 hours.</description>
+                        <Placemark id="307">
+                            <name>Propriano to Banifacio</name>
+                            <styleUrl>#308</styleUrl>
+                            <LineString id="306">
+                                <coordinates>8.901759199999999,41.6738915,0.0 9.159269,41.38717399999999,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="310">
+                        <Style id="313">
+                            <LineStyle id="314">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Banifacio to Gallura</name>
+                        <description>10 nautical miles in 1 hours.</description>
+                        <Placemark id="312">
+                            <name>Banifacio to Gallura</name>
+                            <styleUrl>#313</styleUrl>
+                            <LineString id="311">
+                                <coordinates>9.159269,41.38717399999999,0.0 9.1880794,41.238987,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="315">
+                        <Style id="318">
+                            <LineStyle id="319">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Gallura to Maddalena</name>
+                        <description>11 nautical miles in 2 hours.</description>
+                        <Placemark id="317">
+                            <name>Gallura to Maddalena</name>
+                            <styleUrl>#318</styleUrl>
+                            <LineString id="316">
+                                <coordinates>9.1880794,41.238987,0.0 9.4062212,41.2435336,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="320">
+                        <Style id="323">
+                            <LineStyle id="324">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Maddalena to Cervo</name>
+                        <description>10 nautical miles in 1 hours.</description>
+                        <Placemark id="322">
+                            <name>Maddalena to Cervo</name>
+                            <styleUrl>#323</styleUrl>
+                            <LineString id="321">
+                                <coordinates>9.4062212,41.2435336,0.0 9.535745,41.1315336,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="325">
+                        <Style id="328">
+                            <LineStyle id="329">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Cervo to Arbatax</name>
+                        <description>83 nautical miles in 11 hours.</description>
+                        <Placemark id="327">
+                            <name>Cervo to Arbatax</name>
+                            <styleUrl>#328</styleUrl>
+                            <LineString id="326">
+                                <coordinates>9.535745,41.1315336,0.0 9.703558899999999,39.9334339,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="330">
+                        <Style id="333">
+                            <LineStyle id="334">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Arbatax to Cagliari</name>
+                        <description>58 nautical miles in 8 hours.</description>
+                        <Placemark id="332">
+                            <name>Arbatax to Cagliari</name>
+                            <styleUrl>#333</styleUrl>
+                            <LineString id="331">
+                                <coordinates>9.703558899999999,39.9334339,0.0 9.1216613,39.2238411,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="335">
+                        <Style id="338">
+                            <LineStyle id="339">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Cagliari to Capri</name>
+                        <description>286 nautical miles in 38 hours.</description>
+                        <Placemark id="337">
+                            <name>Cagliari to Capri</name>
+                            <styleUrl>#338</styleUrl>
+                            <LineString id="336">
+                                <coordinates>9.1216613,39.2238411,0.0 14.222154,40.5532009,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="340">
+                        <Style id="343">
+                            <LineStyle id="344">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Capri to Naples</name>
+                        <description>21 nautical miles in 3 hours.</description>
+                        <Placemark id="342">
+                            <name>Capri to Naples</name>
+                            <styleUrl>#343</styleUrl>
+                            <LineString id="341">
+                                <coordinates>14.222154,40.5532009,0.0 14.26812,40.8517983,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="345">
+                        <Style id="348">
+                            <IconStyle id="349">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="350">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="353">
+                            <IconStyle id="354">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="355">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="358">
+                            <IconStyle id="359">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="360">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="363">
+                            <IconStyle id="364">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="365">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="368">
+                            <IconStyle id="369">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="370">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="373">
+                            <IconStyle id="374">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="375">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="378">
+                            <IconStyle id="379">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="380">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="383">
+                            <IconStyle id="384">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="385">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="388">
+                            <IconStyle id="389">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="390">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="393">
+                            <IconStyle id="394">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="395">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="398">
+                            <IconStyle id="399">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="400">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="403">
+                            <IconStyle id="404">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="405">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="408">
+                            <IconStyle id="409">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="410">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/flag.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <name>stopovers</name>
+                        <visibility>1</visibility>
+                        <open>0</open>
+                        <Placemark id="347">
+                            <name>Monaco</name>
+                            <description>Monaco stopover &lt;/br&gt;24 hours&lt;/br&gt;arrived 2019-05-03 1051&lt;/br&gt;depart  2019-05-04 1000&lt;/br&gt;crew: smr (skipper), wp, isf, po (mate), rb</description>
+                            <styleUrl>#348</styleUrl>
+                            <Point id="346">
+                                <coordinates>7.424615799999999,43.73841760000001,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="352">
+                            <name>Menton</name>
+                            <description>Menton stopover &lt;/br&gt;24 hours&lt;/br&gt;arrived 2019-05-04 1038&lt;/br&gt;depart  2019-05-05 1000&lt;/br&gt;crew: smr (skipper), wp, isf, po (mate), rb</description>
+                            <styleUrl>#353</styleUrl>
+                            <Point id="351">
+                                <coordinates>7.505069700000001,43.7756428,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="357">
+                            <name>Imperia</name>
+                            <description>Imperia stopover &lt;/br&gt;21 hours&lt;/br&gt;arrived 2019-05-05 1342&lt;/br&gt;depart  2019-05-06 1000&lt;/br&gt;crew: smr (skipper), wp, isf, po (mate), rb</description>
+                            <styleUrl>#358</styleUrl>
+                            <Point id="356">
+                                <coordinates>8.039517,43.8896857,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="362">
+                            <name>Calvi</name>
+                            <description>Calvi stopover &lt;/br&gt;11 hours&lt;/br&gt;arrived 2019-05-06 2305&lt;/br&gt;depart  2019-05-07 1000&lt;/br&gt;crew: smr (skipper), wp, isf, po (mate), rb</description>
+                            <styleUrl>#363</styleUrl>
+                            <Point id="361">
+                                <coordinates>8.757221999999999,42.567651,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="367">
+                            <name>Propriano</name>
+                            <description>Propriano stopover &lt;/br&gt;16 hours&lt;/br&gt;arrived 2019-05-07 1817&lt;/br&gt;depart  2019-05-08 1000&lt;/br&gt;crew: smr (skipper), wp, isf, po (mate), rb</description>
+                            <styleUrl>#368</styleUrl>
+                            <Point id="366">
+                                <coordinates>8.901759199999999,41.6738915,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="372">
+                            <name>Banifacio</name>
+                            <description>Banifacio stopover &lt;/br&gt;21 hours&lt;/br&gt;arrived 2019-05-08 1310&lt;/br&gt;depart  2019-05-09 1000&lt;/br&gt;crew: smr (skipper), wp, isf, po (mate), rb</description>
+                            <styleUrl>#373</styleUrl>
+                            <Point id="371">
+                                <coordinates>9.159269,41.38717399999999,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="377">
+                            <name>Gallura</name>
+                            <description>Gallura stopover &lt;/br&gt;23 hours&lt;/br&gt;arrived 2019-05-09 1122&lt;/br&gt;depart  2019-05-10 1000&lt;/br&gt;crew: smr (skipper), wp, isf, po (mate), rb</description>
+                            <styleUrl>#378</styleUrl>
+                            <Point id="376">
+                                <coordinates>9.1880794,41.238987,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="382">
+                            <name>Maddalena</name>
+                            <description>Maddalena stopover &lt;/br&gt;23 hours&lt;/br&gt;arrived 2019-05-10 1130&lt;/br&gt;depart  2019-05-11 1000&lt;/br&gt;crew: smr (skipper), wp, isf, po (mate), rb</description>
+                            <styleUrl>#383</styleUrl>
+                            <Point id="381">
+                                <coordinates>9.4062212,41.2435336,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="387">
+                            <name>Cervo</name>
+                            <description>Cervo stopover &lt;/br&gt;23 hours&lt;/br&gt;arrived 2019-05-11 1122&lt;/br&gt;depart  2019-05-12 1000&lt;/br&gt;crew: smr (skipper), wp, isf, po (mate), rb</description>
+                            <styleUrl>#388</styleUrl>
+                            <Point id="386">
+                                <coordinates>9.535745,41.1315336,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="392">
+                            <name>Arbatax</name>
+                            <description>Arbatax stopover &lt;/br&gt;13 hours&lt;/br&gt;arrived 2019-05-12 2105&lt;/br&gt;depart  2019-05-13 1000&lt;/br&gt;crew: smr (skipper), wp, isf, po (mate), rb</description>
+                            <styleUrl>#393</styleUrl>
+                            <Point id="391">
+                                <coordinates>9.703558899999999,39.9334339,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="397">
+                            <name>Cagliari</name>
+                            <description>Cagliari stopover &lt;/br&gt;17 hours&lt;/br&gt;arrived 2019-05-13 1743&lt;/br&gt;depart  2019-05-14 1000&lt;/br&gt;crew: smr (skipper), wp, isf, po (mate), rb</description>
+                            <styleUrl>#398</styleUrl>
+                            <Point id="396">
+                                <coordinates>9.1216613,39.2238411,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="402">
+                            <name>Capri</name>
+                            <description>Capri stopover &lt;/br&gt;34 hours&lt;/br&gt;arrived 2019-05-16 0004&lt;/br&gt;depart  2019-05-17 1000&lt;/br&gt;crew: smr (skipper), wp, isf, po (mate), rb</description>
+                            <styleUrl>#403</styleUrl>
+                            <Point id="401">
+                                <coordinates>14.222154,40.5532009,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="407">
+                            <name>Naples</name>
+                            <description>Naples stopover (end of Nice to Naples via Corsica and Sardinia cruise)&lt;/br&gt;22 hours&lt;/br&gt;arrived 2019-05-17 1246&lt;/br&gt;depart  2019-05-18 1000&lt;/br&gt;crew: smr (skipper), wp, isf, po (mate), rb</description>
+                            <styleUrl>#408</styleUrl>
+                            <Point id="406">
+                                <coordinates>14.26812,40.8517983,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                    </Folder>
+                </Folder>
+                <Folder id="411">
+                    <name>Naples to Genoa via Amalfi Coast and Cinque Terre</name>
+                    <visibility>1</visibility>
+                    <open>0</open>
+                    <description>Naples to Genoa via Amalfi Coast and Cinque Terre cruise, 497 nautical miles in 18 days</description>
+                    <Folder id="412">
+                        <Style id="415">
+                            <LineStyle id="416">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Naples to Sorrento</name>
+                        <description>17 nautical miles in 2 hours.</description>
+                        <Placemark id="414">
+                            <name>Naples to Sorrento</name>
+                            <styleUrl>#415</styleUrl>
+                            <LineString id="413">
+                                <coordinates>14.26812,40.8517983,0.0 14.3757985,40.6262925,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="417">
+                        <Style id="420">
+                            <LineStyle id="421">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Sorrento to Termini</name>
+                        <description>3 nautical miles in 0 hours.</description>
+                        <Placemark id="419">
+                            <name>Sorrento to Termini</name>
+                            <styleUrl>#420</styleUrl>
+                            <LineString id="418">
+                                <coordinates>14.3757985,40.6262925,0.0 14.3356601,40.5898116,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="422">
+                        <Style id="425">
+                            <LineStyle id="426">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Termini to Amalfi</name>
+                        <description>14 nautical miles in 2 hours.</description>
+                        <Placemark id="424">
+                            <name>Termini to Amalfi</name>
+                            <styleUrl>#425</styleUrl>
+                            <LineString id="423">
+                                <coordinates>14.3356601,40.5898116,0.0 14.6026805,40.6340026,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="427">
+                        <Style id="430">
+                            <LineStyle id="431">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Amalfi to Salerno</name>
+                        <description>9 nautical miles in 1 hours.</description>
+                        <Placemark id="429">
+                            <name>Amalfi to Salerno</name>
+                            <styleUrl>#430</styleUrl>
+                            <LineString id="428">
+                                <coordinates>14.6026805,40.6340026,0.0 14.7680961,40.68244079999999,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="432">
+                        <Style id="435">
+                            <LineStyle id="436">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Salerno to Capri</name>
+                        <description>30 nautical miles in 4 hours.</description>
+                        <Placemark id="434">
+                            <name>Salerno to Capri</name>
+                            <styleUrl>#435</styleUrl>
+                            <LineString id="433">
+                                <coordinates>14.7680961,40.68244079999999,0.0 14.222154,40.5532009,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="437">
+                        <Style id="440">
+                            <LineStyle id="441">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Capri to Ischia</name>
+                        <description>21 nautical miles in 3 hours.</description>
+                        <Placemark id="439">
+                            <name>Capri to Ischia</name>
+                            <styleUrl>#440</styleUrl>
+                            <LineString id="438">
+                                <coordinates>14.222154,40.5532009,0.0 13.9028656,40.7270164,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="442">
+                        <Style id="445">
+                            <LineStyle id="446">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Ischia to Formia</name>
+                        <description>40 nautical miles in 5 hours.</description>
+                        <Placemark id="444">
+                            <name>Ischia to Formia</name>
+                            <styleUrl>#445</styleUrl>
+                            <LineString id="443">
+                                <coordinates>13.9028656,40.7270164,0.0 13.6068672,41.2559961,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="447">
+                        <Style id="450">
+                            <LineStyle id="451">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Formia to Anzio</name>
+                        <description>53 nautical miles in 7 hours.</description>
+                        <Placemark id="449">
+                            <name>Formia to Anzio</name>
+                            <styleUrl>#450</styleUrl>
+                            <LineString id="448">
+                                <coordinates>13.6068672,41.2559961,0.0 12.6197253,41.4495955,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="452">
+                        <Style id="455">
+                            <LineStyle id="456">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Anzio to Ostia</name>
+                        <description>26 nautical miles in 3 hours.</description>
+                        <Placemark id="454">
+                            <name>Anzio to Ostia</name>
+                            <styleUrl>#455</styleUrl>
+                            <LineString id="453">
+                                <coordinates>12.6197253,41.4495955,0.0 12.2862694,41.7311182,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="457">
+                        <Style id="460">
+                            <LineStyle id="461">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Ostia to Fanciullo</name>
+                        <description>33 nautical miles in 4 hours.</description>
+                        <Placemark id="459">
+                            <name>Ostia to Fanciullo</name>
+                            <styleUrl>#460</styleUrl>
+                            <LineString id="458">
+                                <coordinates>12.2862694,41.7311182,0.0 11.8219809,42.0608258,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="462">
+                        <Style id="465">
+                            <LineStyle id="466">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Fanciullo to Orbetello</name>
+                        <description>41 nautical miles in 5 hours.</description>
+                        <Placemark id="464">
+                            <name>Fanciullo to Orbetello</name>
+                            <styleUrl>#465</styleUrl>
+                            <LineString id="463">
+                                <coordinates>11.8219809,42.0608258,0.0 11.2124083,42.4396474,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="467">
+                        <Style id="470">
+                            <LineStyle id="471">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Orbetello to Follonica</name>
+                        <description>41 nautical miles in 5 hours.</description>
+                        <Placemark id="469">
+                            <name>Orbetello to Follonica</name>
+                            <styleUrl>#470</styleUrl>
+                            <LineString id="468">
+                                <coordinates>11.2124083,42.4396474,0.0 10.7593003,42.9226887,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="472">
+                        <Style id="475">
+                            <LineStyle id="476">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Follonica to Piombino</name>
+                        <description>12 nautical miles in 2 hours.</description>
+                        <Placemark id="474">
+                            <name>Follonica to Piombino</name>
+                            <styleUrl>#475</styleUrl>
+                            <LineString id="473">
+                                <coordinates>10.7593003,42.9226887,0.0 10.5258891,42.9256335,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="477">
+                        <Style id="480">
+                            <LineStyle id="481">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Piombino to Portoferraio</name>
+                        <description>13 nautical miles in 2 hours.</description>
+                        <Placemark id="479">
+                            <name>Piombino to Portoferraio</name>
+                            <styleUrl>#480</styleUrl>
+                            <LineString id="478">
+                                <coordinates>10.5258891,42.9256335,0.0 10.3211801,42.8108565,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="482">
+                        <Style id="485">
+                            <LineStyle id="486">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Portoferraio to Livorno</name>
+                        <description>51 nautical miles in 7 hours.</description>
+                        <Placemark id="484">
+                            <name>Portoferraio to Livorno</name>
+                            <styleUrl>#485</styleUrl>
+                            <LineString id="483">
+                                <coordinates>10.3211801,42.8108565,0.0 10.3105674,43.548473,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="487">
+                        <Style id="490">
+                            <LineStyle id="491">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Livorno to La_Spezia</name>
+                        <description>45 nautical miles in 6 hours.</description>
+                        <Placemark id="489">
+                            <name>Livorno to La_Spezia</name>
+                            <styleUrl>#490</styleUrl>
+                            <LineString id="488">
+                                <coordinates>10.3105674,43.548473,0.0 9.824082599999999,44.1024504,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="492">
+                        <Style id="495">
+                            <LineStyle id="496">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>La_Spezia to Chiavari</name>
+                        <description>29 nautical miles in 4 hours.</description>
+                        <Placemark id="494">
+                            <name>La_Spezia to Chiavari</name>
+                            <styleUrl>#495</styleUrl>
+                            <LineString id="493">
+                                <coordinates>9.824082599999999,44.1024504,0.0 9.3199822,44.3168416,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="497">
+                        <Style id="500">
+                            <LineStyle id="501">
+                                <color>ff0000ff</color>
+                                <colorMode>normal</colorMode>
+                                <width>10</width>
+                            </LineStyle>
+                        </Style>
+                        <name>Chiavari to Genoa</name>
+                        <description>19 nautical miles in 3 hours.</description>
+                        <Placemark id="499">
+                            <name>Chiavari to Genoa</name>
+                            <styleUrl>#500</styleUrl>
+                            <LineString id="498">
+                                <coordinates>9.3199822,44.3168416,0.0 8.946256,44.4056499,0.0</coordinates>
+                            </LineString>
+                        </Placemark>
+                    </Folder>
+                    <Folder id="502">
+                        <Style id="505">
+                            <IconStyle id="506">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="507">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="510">
+                            <IconStyle id="511">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="512">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="515">
+                            <IconStyle id="516">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="517">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="520">
+                            <IconStyle id="521">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="522">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="525">
+                            <IconStyle id="526">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="527">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="530">
+                            <IconStyle id="531">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="532">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="535">
+                            <IconStyle id="536">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="537">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="540">
+                            <IconStyle id="541">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="542">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="545">
+                            <IconStyle id="546">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="547">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="550">
+                            <IconStyle id="551">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="552">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="555">
+                            <IconStyle id="556">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="557">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="560">
+                            <IconStyle id="561">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="562">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="565">
+                            <IconStyle id="566">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="567">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="570">
+                            <IconStyle id="571">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="572">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="575">
+                            <IconStyle id="576">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="577">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="580">
+                            <IconStyle id="581">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="582">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="585">
+                            <IconStyle id="586">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="587">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/marina.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <Style id="590">
+                            <IconStyle id="591">
+                                <colorMode>normal</colorMode>
+                                <scale>1</scale>
+                                <heading>0</heading>
+                                <Icon id="592">
+                                    <href>http://maps.google.com/mapfiles/kml/shapes/flag.png</href>
+                                </Icon>
+                            </IconStyle>
+                        </Style>
+                        <name>stopovers</name>
+                        <visibility>1</visibility>
+                        <open>0</open>
+                        <Placemark id="504">
+                            <name>Sorrento</name>
+                            <description>Sorrento stopover &lt;/br&gt;22 hours&lt;/br&gt;arrived 2019-06-04 1212&lt;/br&gt;depart  2019-06-05 1000&lt;/br&gt;crew: smr (skipper), kmt, isf, sgr, po (mate)</description>
+                            <styleUrl>#505</styleUrl>
+                            <Point id="503">
+                                <coordinates>14.3757985,40.6262925,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="509">
+                            <name>Termini</name>
+                            <description>Termini stopover &lt;/br&gt;24 hours&lt;/br&gt;arrived 2019-06-05 1026&lt;/br&gt;depart  2019-06-06 1000&lt;/br&gt;crew: smr (skipper), kmt, isf, sgr, po (mate)</description>
+                            <styleUrl>#510</styleUrl>
+                            <Point id="508">
+                                <coordinates>14.3356601,40.5898116,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="514">
+                            <name>Amalfi</name>
+                            <description>Amalfi stopover &lt;/br&gt;23 hours&lt;/br&gt;arrived 2019-06-06 1154&lt;/br&gt;depart  2019-06-07 1000&lt;/br&gt;crew: smr (skipper), kmt, isf, sgr, po (mate)</description>
+                            <styleUrl>#515</styleUrl>
+                            <Point id="513">
+                                <coordinates>14.6026805,40.6340026,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="519">
+                            <name>Salerno</name>
+                            <description>Salerno stopover &lt;/br&gt;23 hours&lt;/br&gt;arrived 2019-06-07 1114&lt;/br&gt;depart  2019-06-08 1000&lt;/br&gt;crew: smr (skipper), kmt, isf, sgr, po (mate)</description>
+                            <styleUrl>#520</styleUrl>
+                            <Point id="518">
+                                <coordinates>14.7680961,40.68244079999999,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="524">
+                            <name>Capri</name>
+                            <description>Capri stopover &lt;/br&gt;21 hours&lt;/br&gt;arrived 2019-06-08 1359&lt;/br&gt;depart  2019-06-09 1000&lt;/br&gt;crew: smr (skipper), kmt, isf, sgr, po (mate)</description>
+                            <styleUrl>#525</styleUrl>
+                            <Point id="523">
+                                <coordinates>14.222154,40.5532009,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="529">
+                            <name>Ischia</name>
+                            <description>Ischia stopover &lt;/br&gt;22 hours&lt;/br&gt;arrived 2019-06-09 1244&lt;/br&gt;depart  2019-06-10 1000&lt;/br&gt;crew: smr (skipper), kmt, isf, sgr, po (mate)</description>
+                            <styleUrl>#530</styleUrl>
+                            <Point id="528">
+                                <coordinates>13.9028656,40.7270164,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="534">
+                            <name>Formia</name>
+                            <description>Formia stopover &lt;/br&gt;19 hours&lt;/br&gt;arrived 2019-06-10 1517&lt;/br&gt;depart  2019-06-11 1000&lt;/br&gt;crew: smr (skipper), kmt, isf, sgr, po (mate)</description>
+                            <styleUrl>#535</styleUrl>
+                            <Point id="533">
+                                <coordinates>13.6068672,41.2559961,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="539">
+                            <name>Anzio</name>
+                            <description>Anzio stopover &lt;/br&gt;17 hours&lt;/br&gt;arrived 2019-06-11 1703&lt;/br&gt;depart  2019-06-12 1000&lt;/br&gt;crew: smr (skipper), kmt, isf, sgr, po (mate)</description>
+                            <styleUrl>#540</styleUrl>
+                            <Point id="538">
+                                <coordinates>12.6197253,41.4495955,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="544">
+                            <name>Ostia</name>
+                            <description>Ostia stopover &lt;/br&gt;21 hours&lt;/br&gt;arrived 2019-06-12 1327&lt;/br&gt;depart  2019-06-13 1000&lt;/br&gt;crew: smr (skipper), kmt, isf, sgr, po (mate)</description>
+                            <styleUrl>#545</styleUrl>
+                            <Point id="543">
+                                <coordinates>12.2862694,41.7311182,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="549">
+                            <name>Fanciullo</name>
+                            <description>Fanciullo stopover &lt;/br&gt;20 hours&lt;/br&gt;arrived 2019-06-13 1424&lt;/br&gt;depart  2019-06-14 1000&lt;/br&gt;crew: smr (skipper), kmt, isf, sgr, po (mate)</description>
+                            <styleUrl>#550</styleUrl>
+                            <Point id="548">
+                                <coordinates>11.8219809,42.0608258,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="554">
+                            <name>Orbetello</name>
+                            <description>Orbetello stopover &lt;/br&gt;19 hours&lt;/br&gt;arrived 2019-06-14 1525&lt;/br&gt;depart  2019-06-15 1000&lt;/br&gt;crew: smr (skipper), kmt, isf, sgr, po (mate)</description>
+                            <styleUrl>#555</styleUrl>
+                            <Point id="553">
+                                <coordinates>11.2124083,42.4396474,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="559">
+                            <name>Follonica</name>
+                            <description>Follonica stopover &lt;/br&gt;19 hours&lt;/br&gt;arrived 2019-06-15 1524&lt;/br&gt;depart  2019-06-16 1000&lt;/br&gt;crew: smr (skipper), kmt, isf, sgr, po (mate)</description>
+                            <styleUrl>#560</styleUrl>
+                            <Point id="558">
+                                <coordinates>10.7593003,42.9226887,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="564">
+                            <name>Piombino</name>
+                            <description>Piombino stopover &lt;/br&gt;23 hours&lt;/br&gt;arrived 2019-06-16 1134&lt;/br&gt;depart  2019-06-17 1000&lt;/br&gt;crew: smr (skipper), kmt, isf, sgr, po (mate)</description>
+                            <styleUrl>#565</styleUrl>
+                            <Point id="563">
+                                <coordinates>10.5258891,42.9256335,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="569">
+                            <name>Portoferraio</name>
+                            <description>Portoferraio stopover &lt;/br&gt;23 hours&lt;/br&gt;arrived 2019-06-17 1144&lt;/br&gt;depart  2019-06-18 1000&lt;/br&gt;crew: smr (skipper), kmt, isf, sgr, po (mate)</description>
+                            <styleUrl>#570</styleUrl>
+                            <Point id="568">
+                                <coordinates>10.3211801,42.8108565,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="574">
+                            <name>Livorno</name>
+                            <description>Livorno stopover &lt;/br&gt;18 hours&lt;/br&gt;arrived 2019-06-18 1647&lt;/br&gt;depart  2019-06-19 1000&lt;/br&gt;crew: smr (skipper), kmt, isf, sgr, po (mate)</description>
+                            <styleUrl>#575</styleUrl>
+                            <Point id="573">
+                                <coordinates>10.3105674,43.548473,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="579">
+                            <name>La_Spezia</name>
+                            <description>La_Spezia stopover &lt;/br&gt;18 hours&lt;/br&gt;arrived 2019-06-19 1602&lt;/br&gt;depart  2019-06-20 1000&lt;/br&gt;crew: smr (skipper), kmt, isf, sgr, po (mate)</description>
+                            <styleUrl>#580</styleUrl>
+                            <Point id="578">
+                                <coordinates>9.824082599999999,44.1024504,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="584">
+                            <name>Chiavari</name>
+                            <description>Chiavari stopover &lt;/br&gt;21 hours&lt;/br&gt;arrived 2019-06-20 1352&lt;/br&gt;depart  2019-06-21 1000&lt;/br&gt;crew: smr (skipper), kmt, isf, sgr, po (mate)</description>
+                            <styleUrl>#585</styleUrl>
+                            <Point id="583">
+                                <coordinates>9.3199822,44.3168416,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                        <Placemark id="589">
+                            <name>Genoa</name>
+                            <description>Genoa stopover (end of Naples to Genoa via Amalfi Coast and Cinque Terre cruise)&lt;/br&gt;22 hours&lt;/br&gt;arrived 2019-06-21 1235&lt;/br&gt;depart  2019-06-22 1000&lt;/br&gt;crew: smr (skipper), kmt, isf, sgr, po (mate)</description>
+                            <styleUrl>#590</styleUrl>
+                            <Point id="588">
+                                <coordinates>8.946256,44.4056499,0.0</coordinates>
+                            </Point>
+                        </Placemark>
+                    </Folder>
+                </Folder>
+            </Folder>
+        </Document>
+    </Document>
+</kml>
+
