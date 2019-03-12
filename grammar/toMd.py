@@ -11,7 +11,9 @@ def hours(td : timedelta):
     return hours
 
 if __name__ == '__main__':
-    filename = argv[1]
+    filename = None
+    if len(argv) > 1:
+        filename = argv[1]
     analyser = CdlFileAnalyser()
     content = analyser.analyse(filename)
 
