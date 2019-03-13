@@ -1,10 +1,10 @@
 vessel Trilogy name: "Trilogy" flag: "Australia" rego: 12345 speed: 7.5
 
-use https://smr547.github.io/locations/corsica.txt
-use https://smr547.github.io/locations/france_med_coast.txt
-use https://smr547.github.io/locations/sardinia.txt
-use https://smr547.github.io/locations/italy.txt
-use https://smr547.github.io/locations/spain_med_coast.txt
+use http://ws.planacruise.online:5000/locations/corsica.txt
+use http://ws.planacruise.online:5000/locations/france_med_coast.txt
+use http://ws.planacruise.online:5000/locations/sardinia.txt
+use http://ws.planacruise.online:5000/locations/italy.txt
+use http://ws.planacruise.online:5000/locations/spain_med_coast.txt
 
 use file:///Users/stevenring/projects/cruise-description/grammar/people.cdl
 
