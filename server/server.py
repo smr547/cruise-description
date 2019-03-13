@@ -44,6 +44,10 @@ def locations_file(subpath):
     try:
         with open(path, 'r') as f_in:
             r = f_in.read()
-            return  r, 200, {'Content-Type': 'text/plain; charset=utf-8'}
+            if path.endswith(".kml"):
+                headers = {'Content-Type': 'application/vnd.google-earth.kml+xml; charset=utf-8'}
+            else:
+                headers = {'Content-Type': 'text/plain; charset=utf-8'}
+            return  r, 200, headers
     except Exception:
         return "", 404

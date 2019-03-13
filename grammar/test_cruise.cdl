@@ -9,7 +9,7 @@ use https://smr547.github.io/locations/sardinia.txt
 use https://smr547.github.io/locations/italy.txt
 use https://smr547.github.io/locations/spain_med_coast.txt
 
-use file:///Users/stevenring/projects/cruise-description/grammar/people.cdl
+use file:///home/smring/projects/cruise-description/grammar/people.cdl
 
 
 season Steven_cruise vessel Trilogy begins in Sant_Carles
