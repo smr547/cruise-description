@@ -85,6 +85,7 @@ if __name__ == '__main__':
 
                 ls = leg_folder.newlinestring(name=leg.name())
                 ls.coords = route
+                ls.description = "%s<br/>%s" % (leg.name(), desc)
                 ls.style.linestyle.width = 10
                 ls.style.linestyle.color = simplekml.Color.red
 

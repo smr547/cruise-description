@@ -30,3 +30,8 @@ List all the the dependencies for this project
 ## GOOGLE_API_KEY
 
 * put ``export GOOGLE_API_KEY=AIza...`` into ``~/.bash_profile``
+
+## Flask
+
+* ``pip3 install flask --user``
+* ``pip3 install flask-restful --user``

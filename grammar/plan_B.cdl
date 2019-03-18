@@ -12,47 +12,57 @@ season Steven_cruise vessel Trilogy begins in Sant_Carles
 
 cruise  "Sant Carles to Nice" departs Sant_Carles on 2/5/19 at 1000
 	Sant_Carles
-        crew smr joins on 30/4/19 as skipper in Sant_Carles
-        crew isf joins on 30/4/19 in Sant_Carles
+        crew smr joins on 26/4/19 as skipper in Sant_Carles
+        crew isf joins on 26/4/19 in Sant_Carles
         crew po  joins on 1/4/19 as mate in Sant_Carles
+        Tarragona
+        via Barcelona
+        Blanes for 1 night
+        Roses
+        Vendres for 1 nights
 	Toulon for 1 night
 	Hyeres for 1 night
 	Frejus for 1 night
         Antibes for 1 nights
-	Cannes for 1 night
-	Nice for 2 nights
 
-cruise  "Nice to Calvi" departs Nice on 10/5/19 at 1000
-	Nice
-	Monaco for 1 night
-	Menton for 1 night
-	Imperia for 1 night
-	Calvi for 1 night
+cruise  "Antibes to Calvi" departs Antibes on 10/5/19 at 1000
+	Antibes
+	Calvi for 2 night
 
-cruise  "Calvi to Naples via Corsica and Sardinia" departs Calvi on 15/5/19 at 1000
+cruise  "Calvi to Sorrento via Corsica and Sardinia" departs Calvi on 16/5/19 at 1000
         Calvi
-	crew wp joins on 15/5/19 in Naples
-	crew rb joins on 15/5/19 in Naples
-	Propriano for 1 night
+	crew wp joins on 15/5/19 in Sorrento
+	crew rb joins on 15/5/19 in Sorrento
+        via VI_2
+        Crovani
+        via Elbo, VI_3
+        Girolata for 2 nights
+        via Arone
+        Cargese for 1 night
+        via VI_4
+        Ajaccio
+        via VI_5
+	Propriano for 2 night
+        via VI_6, VI_7, VI_8
 	Banifacio for 1 night
 	Gallura for 1 night
 	Maddalena for 1 night
 	Cervo for 1 night
 	Arbatax for 1 night
 	Cagliari for 1 night
+        via IWP3_12
 	Capri for 1 night
-	Naples for 1 night
-	crew wp leaves on 2/6/19 in Naples
-	crew rb leaves on 2/6/19 in Naples
-
-
-cruise  "Naples to Genoa via Amalfi Coast and Cinque Terre" departs Naples on 4/6/19 at 1000
-	crew kmt joins on 2/6/19 in Naples
-	crew sgr joins on 2/6/19 in Naples
-	Naples
 	Sorrento for 1 night
+	crew wp leaves on 2/6/19 in Sorrento
+	crew rb leaves on 2/6/19 in Sorrento
+
+
+cruise  "Sorrento to Genoa via Amalfi Coast and Cinque Terre" departs Sorrento on 4/6/19 at 1000
+	crew kmt joins on 2/6/19 in Sorrento
+	crew sgr joins on 2/6/19 in Sorrento
+	Sorrento
 	Termini for 1 night
-	Amalfi for 1 night
+	Amalfi for 2 night
 	Salerno for 1 night
 	Capri for 1 night
 	Ischia for 1 night
