@@ -278,6 +278,11 @@ class PlanDao(Dao):
         self.content_base = content_base
         self.account_id = account_id
         self.vessel_id = vessel_id
+    
+    def _check_context(self, plan):
+        if (self.account_id != plan.account_id) or \
+           (self.vessel_id != plan.vessel_id):
+           raise IllegalOperatin("Plan does not match DAO context")
 
     def get_random_id(self, width=4):
         chars = 'abcdefghjklmnpqrstuvwxyz'.upper()
@@ -287,7 +292,6 @@ class PlanDao(Dao):
                 j = randint(0, len(chars)-1)
                 plan_id += chars[j]
             if not self._get_json_path(plan_id).exists():
-                print("returning plan_id={}".format(plan_id))
                 return plan_id
 
         
@@ -296,6 +300,7 @@ class PlanDao(Dao):
             self.account_id, self.vessel_id, plan_id))
 
     def create(self, plan):
+        self._check_context(plan)
         plan_file = self._get_json_path(plan.plan_id)
         if plan_file.exists():
             raise ValueError("Plan {} already exists".format(str(plan.plan_id)))
@@ -304,6 +309,7 @@ class PlanDao(Dao):
         self.save(plan)
 
     def save(self, plan):
+        self._check_context(plan)
         json_path = self._get_json_path(plan.plan_id)
         with open(json_path, 'w') as outfile:
             schema = self.get_schema()
