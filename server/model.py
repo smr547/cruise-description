@@ -1,8 +1,15 @@
 #!/usr/bin/env python3
+
+from math import isclose
 import datetime as dt
 from random import randint
 from marshmallow import Schema, fields, pprint, post_load
 from pathlib import Path
+from timezonefinder import TimezoneFinder
+import pytz
+from geolocator import CachedGeoLocator
+from geopy.distance import great_circle
+
 
 
 class IllegalOperation(Exception):
@@ -282,7 +289,7 @@ class PlanDao(Dao):
     def _check_context(self, plan):
         if (self.account_id != plan.account_id) or \
            (self.vessel_id != plan.vessel_id):
-           raise IllegalOperatin("Plan does not match DAO context")
+           raise IllegalOperations("Plan does not match DAO context")
 
     def get_random_id(self, width=4):
         chars = 'abcdefghjklmnpqrstuvwxyz'.upper()
@@ -320,6 +327,226 @@ class PlanDao(Dao):
         if not json_path.exists():
             raise ValueError("Plan {} doesn't exist in account {} for vessel {}".format(plan_id, 
                 self.account_id, self.vessel_id))
+        with open(json_path, 'r', encoding='utf-8') as infile:
+            schema = self.get_schema()
+            return schema.loads(infile.read())
+
+#############################################################
+###                                                       ###
+###                 REGION                                ###
+###                                                       ###
+#############################################################
+
+class RegionSchema(Schema):
+
+    class Meta:
+        ordered = True
+
+    account_id = fields.Integer(required=True)
+    region_id = fields.String(required=True)
+    description = fields.String(required=False)
+    polygon = fields.String(required=False)
+    created_at = fields.DateTime()
+
+    @post_load
+    def make_region(self, data):
+        return Region(**data)
+
+class Region(object):
+    def __init__(self, account_id, region_id, description, polygon="Not implemented", created_at=None):
+        self.account_id = account_id
+        self.region_id = region_id
+        self.description = description
+        self.polygon = polygon
+        if created_at is None:
+            self.created_at = dt.datetime.now()
+        else:
+            self.created_at = created_at
+
+    def __repr__(self):
+        return '<Region(reegion_id={self.region_id!r})>'.format(self=self)
+
+class RegionDao(Dao):
+    def __init__(self, content_base, account_id):
+        self.schema = RegionSchema
+        self.content_base = content_base
+        self.account_id = account_id
+    
+    def _check_context(self, region):
+        if (self.account_id != region.account_id):
+           raise IllegalOperations("Region does not match DAO context")
+
+    def _get_json_path(self, region_id):
+        return Path("{}/accounts/{}/regions/{}/region.json".format(self.content_base, 
+            self.account_id, region_id))
+
+    def create(self, region):
+        self._check_context(region)
+        region_file = self._get_json_path(region.region_id)
+        if region_file.exists():
+            raise ValueError("Regions {} already exists".format(str(region.region_id)))
+        if not region_file.parent.exists():
+            region_file.parent.mkdir(parents=True)
+        self.save(region)
+
+    def save(self, region):
+        self._check_context(region)
+        json_path = self._get_json_path(region.region_id)
+        with open(json_path, 'w') as outfile:
+            schema = self.get_schema()
+            outfile.write(schema.dumps(region, indent=2))
+    
+    def retrieve(self, region_id):
+        json_path = self._get_json_path(region_id)
+        if not json_path.exists():
+            raise ValueError("Region {} doesn't exist in account {}".format(region_id, 
+                self.account_id))
+        with open(json_path, 'r', encoding='utf-8') as infile:
+            schema = self.get_schema()
+            return schema.loads(infile.read())
+
+#############################################################
+###                                                       ###
+###         COORDS and LOCATION                           ###
+###                                                       ###
+#############################################################
+
+class CoordsSchema(Schema):
+    class Meta:
+        ordered = True
+
+    longitude = fields.Float(required=True)
+    latitude = fields.Float(required=True)
+    altitude = fields.Float(required=False)
+
+    @post_load
+    def make_coords(self, data):
+        return Coords(**data)
+    
+
+class Coords(object):
+    def __init__(self, longitude, latitude, altitude=0.0):
+        self.longitude = longitude
+        self.latitude = latitude
+        self.altitude = altitude
+
+    def __repr__(self):
+        return '<Coords(long={self.longitude}, lat={self.latitude})>'.format(self=self)
+
+    def __eq__(self, rhs):
+        return isclose(self.longitude, rhs.longitude, rel_tol=1e-7) and \
+               isclose(self.latitude, rhs.latitude, rel_tol=1e-7) and \
+               isclose(self.altitude, rhs.altitude, rel_tol=1e-7)
+
+class LocationSchema(Schema):
+
+    class Meta:
+        ordered = True
+
+    account_id = fields.Integer(required=True)
+    region_id = fields.String(required=True)
+    identifier = fields.String(requred=True)
+    name = fields.Str(required=True)
+    coords = fields.Nested(CoordsSchema, required=False)
+    timezone_name = fields.String(required=False)
+    created_at = fields.DateTime()
+
+    @post_load
+    def make_location(self, data):
+        return Location(**data)
+
+class Location(object):
+    
+    _locator = CachedGeoLocator().load()
+    _tf = TimezoneFinder()
+
+    @classmethod
+    def save_cache(cls):
+        if cls._locator is not None:
+            cls._locator.save()
+
+    def __init__(self, account_id, region_id, identifier, name, coords=None, timezone_name=None, created_at=None):
+        self.account_id = account_id
+        self.region_id = region_id
+        self.identifier = identifier
+        self.name = name
+        self.coords = coords
+        self.timezone_name = timezone_name
+        if created_at is None:
+            self.created_at = dt.datetime.now()
+        else:
+            self.created_at = created_at
+
+        if self.coords is None:
+            # Use geolocation service to determine coords based on name of location
+            loc = self._locator.get_location(name)
+            self.coords = Coords(loc['lng'],  loc['lat'])
+            self.timezone_name = None
+
+        if self.timezone_name is None:
+            self.timezone_name = self._tf.timezone_at(lng=self.lng(), lat=self.lat())
+
+    def lat(self):
+        return self.coords.latitude
+
+    def lng(self):
+        return self.coords.longitude
+
+    def alt(self):
+        return self.coords.altitude
+
+    def asLatLongTuple(self):
+        return (coords.latitude, coords.longitude)
+
+    def get_timezone(self):
+        return pytz.timezone(self.timezone_name)
+
+    def distance_NM(self, to_location):
+        return great_circle(self.asLatLongTuple(), self.to_location.asLatLongTuple()).miles
+
+    def __repr__(self):
+        return '<Location(region={self.region_id}, id={self.identifier}, name={self.name!r}, coords={self.coords}, tz={self.timezone_name})>'.format(self=self)
+
+class LocationDao(Dao):
+    def __init__(self, content_base, account_id, region_id):
+        self.schema = LocationSchema
+        self.content_base = content_base
+        self.account_id = account_id
+        self.region_id = region_id
+
+        # check region exists
+        region = RegionDao(content_base, account_id).retrieve(region_id)
+    
+    def _check_context(self, location):
+        if (self.account_id != location.account_id) or \
+           (self.region_id != location.region_id):
+           raise IllegalOperation("Location does not match DAO context")
+
+    def _get_json_path(self, identifier):
+        return Path("{}/accounts/{}/locations/{}/{}.json".format(self.content_base, 
+            self.account_id, self.region_id, identifier))
+
+    def create(self, location : Location):
+        self._check_context(location)
+        json_path = self._get_json_path(location.identifier)
+        if json_path.exists():
+            raise ValueError("{} exists on Location creation".format(str(location.identifier)))
+        region_dir = json_path.parent
+        if not region_dir.exists():
+            region_dir.mkdir(parents=True)
+        self.save(location)
+
+    def save(self, location : Location):
+        self._check_context(location)
+        json_path = self._get_json_path(location.identifier)
+        with open(json_path, 'w') as outfile:
+            schema = self.get_schema()
+            outfile.write(schema.dumps(location, indent=2))
+    
+    def retrieve(self, identifier):
+        json_path = self._get_json_path(identifier)
+        if not json_path.exists():
+            raise ValueError("Location {} doesn't exist in account {}".format(identifier, account_id))
         with open(json_path, 'r', encoding='utf-8') as infile:
             schema = self.get_schema()
             return schema.loads(infile.read())

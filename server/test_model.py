@@ -7,6 +7,8 @@ from model import IllegalOperation,  \
     Vessel, VesselDao, \
     Person, PersonDao, \
     Plan, PlanDao, \
+    Region, RegionDao, \
+    Location, LocationDao, \
     Season, SeasonDao
 
 from marshmallow.exceptions import ValidationError
@@ -77,6 +79,92 @@ class TestVessel(unittest.TestCase):
         self.assertEqual(x.flag, trilogy.flag)
         self.assertEqual(x.rego, trilogy.rego)
         self.assertEqual(x.speed_kts, trilogy.speed_kts)
+
+class TestRegion(unittest.TestCase):
+
+    def setUp(self):
+        os.system("rm -rf ./test_content/*")
+        self.account_dao = AccountDao(Path("./test_content"))
+        trilogy = self.account_dao.load({'identifier':'1', 'name':'Trilogy Partners', 'email':'svtrilogy@gmail.com'})
+        self.account_dao.create(trilogy)
+        self.region_dao = RegionDao(Path("./test_content"), trilogy.identifier)
+
+    def test_create(self):
+        # Note -- don't use the Account constructor directly. Use the AccountDao instead
+        italy = self.region_dao.load({
+            'account_id':1, 
+            'region_id':'Italy', 
+            'description':'Locations in Italy', 
+            'polygon':'Not implemented'
+            })
+        self.region_dao.create(italy)
+        x = self.region_dao.retrieve('Italy')
+        self.assertEqual(type(x.region_id), type(italy.region_id))
+        self.assertEqual(x.region_id, italy.region_id)
+        self.assertEqual(x.account_id, italy.account_id)
+        self.assertEqual(x.description, italy.description)
+        self.assertEqual(x.polygon, italy.polygon)
+
+class TestLocation(unittest.TestCase):
+
+    def setUp(self):
+        os.system("rm -rf ./test_content/*")
+        self.account_dao = AccountDao(Path("./test_content"))
+        trilogy_acc = self.account_dao.load({'identifier':'1', 'name':'Trilogy Partners', 'email':'svtrilogy@gmail.com'})
+        self.account_dao.create(trilogy_acc)
+        self.region_dao = RegionDao(Path("./test_content"), trilogy_acc.identifier)
+
+        italy = self.region_dao.load({
+            'account_id':1, 
+            'region_id':'italy', 
+            'description':'Locations in Italy', 
+            'polygon':'Not implemented'
+            })
+        self.region_dao.create(italy)
+
+
+    def test_create(self):
+        location_dao = LocationDao("./test_content", 1, 'italy')
+        rome = location_dao.load({
+            'account_id':1, 
+            'region_id':'italy', 
+            'identifier':'Rome', 
+            'name':'Rome, Italy', 
+            'coords' : {'longitude': 20.0, 'latitude': 40.0, 'altitude': 200.0},
+            'timezone_name':'Europe/Rome'
+            })
+        location_dao.create(rome)
+            
+        x = location_dao.retrieve('Rome' )
+        self.assertEqual(type(x.region_id), type(rome.region_id))
+        self.assertEqual(x.region_id, rome.region_id)
+        self.assertEqual(x.account_id, rome.account_id)
+        self.assertEqual(x.name, rome.name)
+
+        # can't create twice
+
+        try:
+            location_dao.create(rome)
+        except ValueError as e:
+            return
+        self.fail("Should have got a duplication ValueError")
+
+    def test_geocode(self):
+        location_dao = LocationDao("./test_content", 1, 'italy')
+        rome = Location(1, 'italy', 'Rome', 'Rome, Italy')
+        print(rome)
+        location_dao.create(rome)
+        x = location_dao.retrieve('Rome' )
+        print(x)
+        self.assertEqual(type(x.region_id), type(rome.region_id))
+        self.assertEqual(x.region_id, rome.region_id)
+        self.assertEqual(x.account_id, rome.account_id)
+        self.assertEqual(x.name, rome.name)
+        self.assertEqual(x.timezone_name, rome.timezone_name)
+        self.assertEqual(x.coords, rome.coords)
+
+
+
 
 class TestPlan(unittest.TestCase):
 
