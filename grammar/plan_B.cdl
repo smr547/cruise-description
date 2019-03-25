@@ -1,11 +1,16 @@
 vessel Trilogy name: "Trilogy" flag: "Australia" rego: 12345 speed: 7.5
 
-use http://ws.planacruise.online:5000/locations/corsica.txt
-use http://ws.planacruise.online:5000/locations/france_med_coast.txt
-use http://ws.planacruise.online:5000/locations/sardinia.txt
-use http://ws.planacruise.online:5000/locations/italy.txt
-use http://ws.planacruise.online:5000/locations/spain_med_coast.txt
+#use http://ws.planacruise.online:5000/locations/corsica.txt
+#use http://ws.planacruise.online:5000/locations/france_med_coast.txt
+#use http://ws.planacruise.online:5000/locations/sardinia.txt
+#use http://ws.planacruise.online:5000/locations/italy.txt
+#use http://ws.planacruise.online:5000/locations/spain_med_coast.txt
 
+use file:///Users/stevenring/projects/locations/docs/corsica.txt
+use file:///Users/stevenring/projects/locations/docs/france_med_coast.txt
+use file:///Users/stevenring/projects/locations/docs/sardinia.txt
+use file:///Users/stevenring/projects/locations/docs/italy.txt
+use file:///Users/stevenring/projects/locations/docs/spain_med_coast.txt
 use file:///Users/stevenring/projects/cruise-description/grammar/people.cdl
 
 season Steven_cruise vessel Trilogy begins in Sant_Carles
@@ -65,7 +70,7 @@ cruise  "Sorrento to Genoa via Amalfi Coast and Cinque Terre" departs Sorrento o
 	Amalfi for 2 night
 	Salerno for 1 night
 	Capri for 1 night
-	Ischia for 1 night
+	Ischia for 2 night
 	Formia for 1 night
 	Anzio for 1 night
 	Ostia for 1 night
@@ -73,10 +78,12 @@ cruise  "Sorrento to Genoa via Amalfi Coast and Cinque Terre" departs Sorrento o
 	Orbetello for 1 night
 	Follonica for 1 night
 	Piombino for 1 night
-	Portoferraio for 1 night
-	Livorno for 1 night
+	Portoferraio for 2 night
+	Livorno for 2 night
 	La_Spezia for 1 night
+        Moneglia for 1 night
 	Chiavari for 1 night
+        Portofino for 2 nights
 	Genoa
 	crew smr leaves on 30/6/19 in Genoa
 	crew isf leaves on 30/6/19 in Genoa
