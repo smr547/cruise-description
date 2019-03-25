@@ -32,11 +32,18 @@ class Dao(object):
         raise IllegalOperation("'next_sequential_id' not permitted on {} object".format(type(self)))
 
     def get_schema(self):
+        '''
+        Return an instance of the Schema for the Entity related to this Data Access Object
+        '''
         return self.schema()
 
     def load(self, aDict):
         schema = self.get_schema()
         return schema.load(aDict)
+
+    def from_json(self, json_string):
+        schema = self.get_schema()
+        return schema.loads(json_string)
 
 #############################################################
 ###                                                       ###
@@ -94,6 +101,12 @@ class AccountDao(Dao):
         if account_dir.exists():
             raise ValueError("{} exists on Account creation".format(str(account_dir)))
         account_dir.mkdir(parents=True)
+        account_dir.joinpath("persons").mkdir()
+        account_dir.joinpath("vessels").mkdir()
+        account_dir.joinpath("seasons").mkdir()
+        account_dir.joinpath("plans").mkdir()
+        account_dir.joinpath("regions").mkdir()
+        account_dir.joinpath("locations").mkdir()
         self.save(account)
 
     def save(self, account):
@@ -150,34 +163,50 @@ class Vessel(object):
         return '<Vessel(name={self.name!r})>'.format(self=self)
 
 class VesselDao(Dao):
-    def __init__(self, content_base):
+    def __init__(self, content_base, account_id):
         self.schema = VesselSchema
         self.content_base = content_base
+        self.account_id = account_id
+    
+    def _check_context(self, vessel):
+        if (self.account_id != vessel.account_id):
+           raise IllegalOperation("Account id for vessel ({}) does not match DAO context (Account id={})".\
+               format(vessel.account_id, self.account_id))
 
-    def _get_json_path(self, account_id, vessel_id):
-        return Path("{}/accounts/{}/vessels/{}/vessel.json".format(self.content_base, 
-            account_id, vessel_id))
+    def _get_json_path(self, vessel_id=None):
+        dir_path = Path("{}/accounts/{}/vessels".format(self.content_base, self.account_id))
+        if vessel_id is None:
+            return dir_path
+        return dir_path.joinpath("{}/vessel.json".format(vessel_id))
 
     def create(self, vessel):
-        vessel_dir = self._get_json_path(vessel.account_id, vessel.identifier ).parent
+        self._check_context(vessel)
+        vessel_dir = self._get_json_path(vessel.identifier).parent
         if vessel_dir.exists():
             raise ValueError("{} exists on Vessel creation".format(str(vessel.identifier)))
         vessel_dir.mkdir(parents=True)
         self.save(vessel)
 
     def save(self, vessel):
-        json_path = self._get_json_path(vessel.account_id, vessel.identifier)
+        self._check_context(vessel)
+        json_path = self._get_json_path(vessel.identifier)
         with open(json_path, 'w') as outfile:
             schema = self.get_schema()
             outfile.write(schema.dumps(vessel, indent=2))
     
-    def retrieve(self, account_id, vessel_id):
-        json_path = self._get_json_path(account_id, vessel_id)
+    def retrieve(self, vessel_id):
+        json_path = self._get_json_path(vessel_id)
         if not json_path.exists():
-            raise ValueError("Vessel {} doesn't exist in account {}".format(vessel_id, account_id))
+            raise ValueError("Vessel {} doesn't exist in account {}".format(vessel_id, self.account_id))
         with open(json_path, 'r', encoding='utf-8') as infile:
             schema = self.get_schema()
             return schema.loads(infile.read())
+
+    def find_all(self):
+        return [self.retrieve(p.name) for p in self._get_json_path().iterdir()]
+        
+        
+
 
 #############################################################
 ###                                                       ###
@@ -280,15 +309,13 @@ class Plan(object):
         return '<Plan(plan_id={self.plan_id!r})>'.format(self=self)
 
 class PlanDao(Dao):
-    def __init__(self, content_base, account_id, vessel_id):
+    def __init__(self, content_base, account_id):
         self.schema = PlanSchema
         self.content_base = content_base
         self.account_id = account_id
-        self.vessel_id = vessel_id
     
     def _check_context(self, plan):
-        if (self.account_id != plan.account_id) or \
-           (self.vessel_id != plan.vessel_id):
+        if (self.account_id != plan.account_id): 
            raise IllegalOperations("Plan does not match DAO context")
 
     def get_random_id(self, width=4):
@@ -301,18 +328,18 @@ class PlanDao(Dao):
             if not self._get_json_path(plan_id).exists():
                 return plan_id
 
+    def _get_json_path(self, plan_id=None):
+        dir_path = Path("{}/accounts/{}/plans".format(self.content_base, self.account_id))
+        if plan_id is None:
+            return dir_path
+        return dir_path.joinpath("{}.json".format(plan_id))
         
-    def _get_json_path(self, plan_id):
-        return Path("{}/accounts/{}/vessels/{}/plans/{}.json".format(self.content_base, 
-            self.account_id, self.vessel_id, plan_id))
-
     def create(self, plan):
         self._check_context(plan)
+        plan.plan_id = self.get_random_id()
         plan_file = self._get_json_path(plan.plan_id)
         if plan_file.exists():
             raise ValueError("Plan {} already exists".format(str(plan.plan_id)))
-        if not plan_file.parent.exists():
-            plan_file.parent.mkdir(parents=True)
         self.save(plan)
 
     def save(self, plan):
@@ -325,11 +352,14 @@ class PlanDao(Dao):
     def retrieve(self, plan_id):
         json_path = self._get_json_path(plan_id)
         if not json_path.exists():
-            raise ValueError("Plan {} doesn't exist in account {} for vessel {}".format(plan_id, 
-                self.account_id, self.vessel_id))
+            raise ValueError("Plan {} doesn't exist in account {}".format(plan_id, 
+                self.account_id))
         with open(json_path, 'r', encoding='utf-8') as infile:
             schema = self.get_schema()
             return schema.loads(infile.read())
+
+    def find_all(self):
+        return [self.retrieve(p.stem) for p in self._get_json_path().iterdir()]
 
 #############################################################
 ###                                                       ###
@@ -646,34 +676,46 @@ class Person(object):
         return '<Person(id={self.identifier!r})>'.format(self=self)
 
 class PersonDao(Dao):
-    def __init__(self, content_base):
+    def __init__(self, content_base, account_id):
         self.schema = PersonSchema
         self.content_base = content_base
+        self.account_id = account_id
+    
+    def _check_context(self, person):
+        if (self.account_id != person.account_id):
+           raise IllegalOperation("Account id for Person ({}) does not match DAO context (Account id={})".\
+               format(person.account_id, self.account_id))
 
-    def _get_json_path(self, account_id, person_id):
-        return Path("{}/accounts/{}/persons/{}.json".format(self.content_base, 
-            account_id, person_id))
+    def _get_json_path(self, person_id=None):
+        dir_path = Path("{}/accounts/{}/persons".format(self.content_base, self.account_id))
+        if person_id is None:
+            return dir_path
+        return dir_path.joinpath("{}.json".format(person_id))
 
     def create(self, person):
-        person_path = self._get_json_path(person.account_id, person.identifier )
+        self._check_context(person)
+        person_path = self._get_json_path(person.identifier )
         if person_path.exists():
-            raise ValueError("Person file for {} already exists".format(str(person.identifier)))
-        person_path.parent.mkdir(parents=True)
+            raise ValueError("Person '{}' already exists on server".format(str(person.identifier)))
         self.save(person)
 
     def save(self, person):
-        json_path = self._get_json_path(person.account_id, person.identifier )
+        self._check_context(person)
+        json_path = self._get_json_path(person.identifier )
         with open(json_path, 'w') as outfile:
             schema = self.get_schema()
             outfile.write(schema.dumps(person, indent=2))
     
-    def retrieve(self, account_id, person_id):
-        json_path = self._get_json_path(account_id, person_id)
+    def retrieve(self, person_id):
+        json_path = self._get_json_path(person_id)
         if not json_path.exists():
-            raise ValueError("Person {} doesn't exist in account {}".format(person_id, account_id))
+            raise ValueError("Person {} doesn't exist in account {}".format(person_id, self.account_id))
         with open(json_path, 'r', encoding='utf-8') as infile:
             schema = self.get_schema()
             return schema.loads(infile.read())
+
+    def find_all(self):
+        return [self.retrieve(p.stem) for p in self._get_json_path().iterdir()]
 
 #############################################################
 

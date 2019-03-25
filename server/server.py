@@ -1,18 +1,34 @@
 #!/usr/bin/env python3
 
 import os
-from flask import Flask, request
+from flask import Flask, request, jsonify
+from pathlib import Path
+from model import VesselDao, PersonDao, PlanDao
+
 app = Flask(__name__)
+content = Path("./test_content")
 
-content = "/home/smring/planacruise/content"
+class InvalidUsage(Exception):
+    status_code = 400
 
-@app.route("/hello", methods=['POST', 'GET'])
-def hello():
-    print(request)
-    for h in request.headers:
-        print(h)
-    print(request.get_data())
-    return  "Hello World"
+    def __init__(self, message, status_code=None, payload=None):
+        Exception.__init__(self)
+        self.message = message
+        if status_code is not None:
+            self.status_code = status_code
+        self.payload = payload
+
+    def to_dict(self):
+        rv = dict(self.payload or ())
+        rv['message'] = self.message
+        return rv
+
+@app.errorhandler(InvalidUsage)
+def handle_invalid_usage(error):
+    response = jsonify(error.to_dict())
+    response.status_code = error.status_code
+    return response
+
 
 @app.route("/publish_locations", methods=['POST'])
 def publish_locations():
@@ -51,3 +67,84 @@ def locations_file(subpath):
             return  r, 200, headers
     except Exception:
         return "", 404
+
+@app.route("/<int:account_id>/vessel/", methods=['GET'])
+def vessel_list(account_id):
+    dao = VesselDao(content, account_id)
+    vessels = dao.find_all()
+    return dao.get_schema().dumps(vessels, many=True, indent=2), 200
+
+@app.route("/<int:account_id>/vessel/", methods=['POST'])
+def vessel_add(account_id):
+    dao = VesselDao(content, account_id)
+    vessel = dao.from_json(request.data)
+    dao.create(vessel)
+    vessel = dao.retrieve(vessel.identifier)
+    return dao.get_schema().dumps(vessel, indent=2), 200
+
+
+@app.route("/<int:account_id>/vessel/<identifier>/", methods=['GET'])
+def vessel(account_id, identifier):
+    dao = VesselDao(content, account_id)
+    vessel = dao.retrieve(identifier)
+    return dao.get_schema().dumps(vessel, indent=2), 200
+
+@app.route("/<int:account_id>/person/", methods=['GET'])
+def person_list(account_id):
+    dao = PersonDao(content, account_id)
+    people = dao.find_all()
+    return dao.get_schema().dumps(people, many=True, indent=2), 200
+
+@app.route("/<int:account_id>/person/", methods=['POST'])
+def person_add(account_id):
+    dao = PersonDao(content, account_id)
+    person = dao.from_json(request.data)
+    dao.create(person)
+    person = dao.retrieve(person.identifier)
+    return dao.get_schema().dumps(person, indent=2), 200
+
+@app.route("/<int:account_id>/person/<identifier>/", methods=['GET'])
+def person(account_id, identifier):
+    dao = PersonDao(content, account_id)
+    person = dao.retrieve(identifier)
+    return dao.get_schema().dumps(person, indent=2), 200
+
+@app.route("/<int:account_id>/plan/", methods=['GET'])
+def plan_list(account_id):
+    dao = PlanDao(content, account_id)
+    plans = dao.find_all()
+    return dao.get_schema().dumps(plans, many=True, indent=2), 200
+
+@app.route("/<int:account_id>/plan/", methods=['POST'])
+def plan_add(account_id):
+    dao = PlanDao(content, account_id)
+    plan = dao.from_json(request.data)
+    dao.create(plan)
+    plan = dao.retrieve(plan.plan_id)
+    return dao.get_schema().dumps(plan, indent=2), 200
+
+@app.route("/<int:account_id>/plan/<plan_id>/", methods=['GET'])
+def plan(account_id, plan_id):
+    dao = PlanDao(content, account_id)
+    plan = dao.retrieve(plan_id)
+    return dao.get_schema().dumps(plan, indent=2), 200
+
+@app.route("/<int:account_id>/plan/<plan_id>/", methods=['PUT'])
+def plan_update(account_id, plan_id):
+    try:
+        dao = PlanDao(content, account_id)
+        plan = dao.retrieve(plan_id)
+        plan = dao.from_json(request.data)
+        if plan_id !=  plan.plan_id:
+            raise Exception("Cannot change the plan ID")
+        dao.save(plan)
+    except Exception as e:
+        raise InvalidUsage(str(e))
+    
+    return dao.get_schema().dumps(plan, indent=2), 200
+
+@app.route("/<int:account_id>/plan/<plan_id>.cdl/", methods=['GET'])
+def plan_cdl(account_id, plan_id):
+    dao = PlanDao(content, account_id)
+    plan = dao.retrieve(plan_id)
+    return plan.cdl, 200

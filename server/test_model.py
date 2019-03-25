@@ -34,9 +34,10 @@ class TestAccount(unittest.TestCase):
     def test_create(self):
 
         # Note -- don't use the Account constructor directly. Use the AccountDao instead
-        trilogy = self.dao.load({'identifier':'1', 'name':'Trilogy Partners', 'email':'svtrilogy@gmail.com'})
+        trilogy = self.dao.load({'identifier':1, 'name':'Trilogy Partners', 'email':'svtrilogy@gmail.com'})
         self.dao.create(trilogy)
         x = self.dao.retrieve(1)
+        print(type(x.identifier))
         self.assertEqual(type(x.identifier), type(trilogy.identifier))
         self.assertEqual(x.identifier, trilogy.identifier)
         self.assertEqual(x.name, trilogy.name)
@@ -57,8 +58,8 @@ class TestVessel(unittest.TestCase):
     def setUp(self):
         os.system("rm -rf ./test_content/*")
         self.account_dao = AccountDao(Path("./test_content"))
-        self.vessel_dao = VesselDao(Path("./test_content"))
-        trilogy = self.account_dao.load({'identifier':'1', 'name':'Trilogy Partners', 'email':'svtrilogy@gmail.com'})
+        trilogy = self.account_dao.load({'identifier':1, 'name':'Trilogy Partners', 'email':'svtrilogy@gmail.com'})
+        self.vessel_dao = VesselDao(Path("./test_content"), trilogy.identifier)
         self.account_dao.create(trilogy)
 
     def test_create(self):
@@ -72,7 +73,7 @@ class TestVessel(unittest.TestCase):
             'speed_kts':7.6,
             })
         self.vessel_dao.create(trilogy)
-        x = self.vessel_dao.retrieve(1, 'trilogy')
+        x = self.vessel_dao.retrieve('trilogy')
         self.assertEqual(type(x.identifier), type(trilogy.identifier))
         self.assertEqual(x.identifier, trilogy.identifier)
         self.assertEqual(x.name, trilogy.name)
@@ -80,12 +81,34 @@ class TestVessel(unittest.TestCase):
         self.assertEqual(x.rego, trilogy.rego)
         self.assertEqual(x.speed_kts, trilogy.speed_kts)
 
+    def test_find_all(self):
+        trilogy = self.vessel_dao.load({
+            'account_id':1, 
+            'identifier':'trilogy', 
+            'name':'SV Trilogy', 
+            'flag':'Australian',
+            'rego':'806176',
+            'speed_kts':7.6,
+            })
+        self.vessel_dao.create(trilogy)
+        namadgi = self.vessel_dao.load({
+            'account_id':1, 
+            'identifier':'namadgi', 
+            'name':'Namadgi 3', 
+            'flag':'Australian',
+            'rego':'1234',
+            'speed_kts':7.0,
+            })
+        self.vessel_dao.create(namadgi)
+        r = self.vessel_dao.find_all()
+        self.assertEqual(len(r), 2)
+
 class TestRegion(unittest.TestCase):
 
     def setUp(self):
         os.system("rm -rf ./test_content/*")
         self.account_dao = AccountDao(Path("./test_content"))
-        trilogy = self.account_dao.load({'identifier':'1', 'name':'Trilogy Partners', 'email':'svtrilogy@gmail.com'})
+        trilogy = self.account_dao.load({'identifier':1, 'name':'Trilogy Partners', 'email':'svtrilogy@gmail.com'})
         self.account_dao.create(trilogy)
         self.region_dao = RegionDao(Path("./test_content"), trilogy.identifier)
 
@@ -110,7 +133,7 @@ class TestLocation(unittest.TestCase):
     def setUp(self):
         os.system("rm -rf ./test_content/*")
         self.account_dao = AccountDao(Path("./test_content"))
-        trilogy_acc = self.account_dao.load({'identifier':'1', 'name':'Trilogy Partners', 'email':'svtrilogy@gmail.com'})
+        trilogy_acc = self.account_dao.load({'identifier':1, 'name':'Trilogy Partners', 'email':'svtrilogy@gmail.com'})
         self.account_dao.create(trilogy_acc)
         self.region_dao = RegionDao(Path("./test_content"), trilogy_acc.identifier)
 
@@ -165,15 +188,14 @@ class TestLocation(unittest.TestCase):
 
 
 
-
 class TestPlan(unittest.TestCase):
 
     def setUp(self):
         os.system("rm -rf ./test_content/*")
         self.account_dao = AccountDao(Path("./test_content"))
-        self.vessel_dao = VesselDao(Path("./test_content"))
-        account = self.account_dao.load({'identifier':'1', 'name':'Trilogy Partners', 'email':'svtrilogy@gmail.com'})
+        account = self.account_dao.load({'identifier':1, 'name':'Trilogy Partners', 'email':'svtrilogy@gmail.com'})
         self.account_dao.create(account)
+        self.vessel_dao = VesselDao(Path("./test_content"), account.identifier)
         trilogy = self.vessel_dao.load({
             'account_id':1, 
             'identifier':'trilogy', 
@@ -183,8 +205,8 @@ class TestPlan(unittest.TestCase):
             'speed_kts':7.6,
             })
         self.vessel_dao.create(trilogy)
-        x = self.vessel_dao.retrieve(1, 'trilogy')
-        self.plan_dao = PlanDao(Path("./test_content"), account.identifier, trilogy.identifier)
+        x = self.vessel_dao.retrieve('trilogy')
+        self.plan_dao = PlanDao(Path("./test_content"), account.identifier)
 
     def test_create(self):
         # Note -- don't use the Account constructor directly. Use the AccountDao instead
@@ -204,13 +226,32 @@ class TestPlan(unittest.TestCase):
         self.assertEqual(x.season_id, plan.season_id)
         self.assertEqual(x.cdl, plan.cdl)
 
+    def test_create_with_cdl(self):
+        with open("../grammar/plan_B.cdl", 'r') as infile:
+            cdl = infile.read()
+        plan = self.plan_dao.load({
+            'account_id':1, 
+            'vessel_id':'trilogy', 
+            'season_id': 'med_summer_2019',
+            'plan_id': self.plan_dao.get_random_id(), 
+            'cdl': cdl
+            })
+        self.plan_dao.create(plan)
+        x = self.plan_dao.retrieve(plan.plan_id)
+        self.assertEqual(type(x.plan_id), type(plan.plan_id))
+        self.assertEqual(x.plan_id, plan.plan_id)
+        self.assertEqual(x.account_id, plan.account_id)
+        self.assertEqual(x.vessel_id, plan.vessel_id)
+        self.assertEqual(x.season_id, plan.season_id)
+        self.assertEqual(x.cdl, plan.cdl)
+
 class TestPerson(unittest.TestCase):
 
     def setUp(self):
         os.system("rm -rf ./test_content/*")
         self.account_dao = AccountDao(Path("./test_content"))
-        self.person_dao = PersonDao(Path("./test_content"))
-        trilogy = self.account_dao.load({'identifier':'1', 'name':'Trilogy Partners', 'email':'svtrilogy@gmail.com'})
+        trilogy = self.account_dao.load({'identifier':1, 'name':'Trilogy Partners', 'email':'svtrilogy@gmail.com'})
+        self.person_dao = PersonDao(Path("./test_content"), trilogy.identifier)
         self.account_dao.create(trilogy)
 
     def test_create(self):
@@ -238,7 +279,7 @@ class TestPerson(unittest.TestCase):
       #      'next_flight_out=None,
             })
         self.person_dao.create(fred)
-        x = self.person_dao.retrieve(1, 'fas')
+        x = self.person_dao.retrieve('fas')
         self.assertEqual(type(x.identifier), type(fred.identifier))
         self.assertEqual(x.identifier, fred.identifier)
 
@@ -247,9 +288,9 @@ class TestSeason(unittest.TestCase):
     def setUp(self):
         os.system("rm -rf ./test_content/*")
         self.account_dao = AccountDao(Path("./test_content"))
-        self.vessel_dao = VesselDao(Path("./test_content"))
+        trilogy = self.account_dao.load({'identifier':1, 'name':'Trilogy Partners', 'email':'svtrilogy@gmail.com'})
+        self.vessel_dao = VesselDao(Path("./test_content"), trilogy.identifier)
         self.season_dao = SeasonDao(Path("./test_content"))
-        trilogy = self.account_dao.load({'identifier':'1', 'name':'Trilogy Partners', 'email':'svtrilogy@gmail.com'})
         self.account_dao.create(trilogy)
         trilogy = self.vessel_dao.load({
             'account_id':1, 
@@ -260,7 +301,7 @@ class TestSeason(unittest.TestCase):
             'speed_kts':7.6,
             })
         self.vessel_dao.create(trilogy)
-        x = self.vessel_dao.retrieve(1, 'trilogy')
+        x = self.vessel_dao.retrieve('trilogy')
 
     def test_create(self):
         season = self.season_dao.load({
