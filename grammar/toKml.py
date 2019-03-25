@@ -5,27 +5,20 @@
 
 __author__ = 'smr'
 
-#!/usr/bin/env python3
-
-from sys import argv
+from sys import argv, stderr, stdout
+from cdl_preprocessor import preprocess_named_file
 from CdlFileAnalyser import CdlFileAnalyser
 from scheduler import schedule_season
 from datetime import datetime, timedelta
 import simplekml
 from math import ceil
+from model import CdlFile
 
-# def hours(td : timedelta):
-#     secs = td.total_seconds()
-#     hours = round(secs/3600.0)
-#     return hours
+def die(message):
+    stderr.write(str(message) + "\n")
+    exit(1)
 
-if __name__ == '__main__':
-    filename = None
-    if len(argv) > 1 :
-        filename = argv[1]
-    analyser = CdlFileAnalyser()
-    content = analyser.analyse(filename)
-
+def cdlfile_to_KML(content : CdlFile):
     dt_format = "%Y-%m-%d %H%M"
 
     # document
@@ -58,16 +51,6 @@ if __name__ == '__main__':
                 round(c.distance_NM()), 
                 int(ceil(c.elapsed_time_td().total_seconds()/86400.0)))
             c_folder = vs_folder.newfolder(name=c.name, description=desc, open=0, visibility=1)
-
-#            # draw the route
-#            route = []
-#            for v in c.get_visitations():
-#                route.append(v.location.coords)
-#
-#            ls = c_folder.newlinestring(name=c.name)
-#            ls.coords = route
-#            ls.style.linestyle.width = 10
-#            ls.style.linestyle.color = simplekml.Color.red
 
             # draw it as legs
             leg_no = 0
@@ -114,10 +97,19 @@ if __name__ == '__main__':
                     pnt.style.iconstyle.icon.href = 'http://maps.google.com/mapfiles/kml/shapes/flag.png'
                 else:
                     pnt.style.iconstyle.icon.href = 'http://maps.google.com/mapfiles/kml/shapes/marina.png'
-            
 
+    # all done, return the kml
 
-    # all done, output the kml
+    return kml.kml()
 
-    print(kml.kml())
-
+if __name__ == '__main__':
+    filename = None
+    if len(argv) > 1 :
+        filename = argv[1]
+    try:
+        analyser = CdlFileAnalyser()
+        fin = preprocess_named_file(filename)
+        content = analyser.analyse(fin)
+        stdout.write(cdlfile_to_KML(content))
+    except Exception as e:
+        die(str(e))

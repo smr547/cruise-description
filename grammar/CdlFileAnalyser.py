@@ -2,11 +2,6 @@
 
 __author__ = 'smr'
 
-
-# Utilities
-#
-
-
 from sys import stdin, stdout, stderr, exit, argv
 from io import StringIO
 from cdl_preprocessor import preprocess
@@ -288,23 +283,15 @@ class StaySpecVisitor(CdlVisitor):
     def visitStay_spec(self, ctx:CdlParser.Stay_specContext):
         return StaySpec(int(ctx.stay_duration().getText()), ctx.duration_units().getText())
 
-    
-
 class CdlFileAnalyser(object):
     def __init__(self):
         pass
 
-    def analyse(self, cdl_filename=None):
+    def analyse(self, fin):
         '''
-        Build a CdlFile instance from the CDL file
+        Build a CdlFile instance from the CDL file-like object fin
         '''
-        # run source through the preprocessor
-
-        output = preprocess(cdl_filename)
-
-        # now process CDL source from memory 
-
-        lexer = CdlLexer(InputStream(output.getvalue()))
+        lexer = CdlLexer(InputStream(fin.read()))
         token_stream = CommonTokenStream(lexer)
         parser = CdlParser(token_stream)
         tree = parser.cdl_file()
@@ -312,16 +299,15 @@ class CdlFileAnalyser(object):
         visitor = CdlFileVisitor()
         cdl_file = visitor.visit(tree)
         Location.save_cache()
-        output.close()
         return cdl_file
 
 if __name__ == '__main__':
-    filename = None
-    if len(argv) > 1:
-        filename = argv[1]
+    fin = stdin
     try:
+        if len(argv) > 1:
+            fin = open(argv[1], 'r')
         analyser = CdlFileAnalyser()
-        tree = analyser.analyse(filename)
+        tree = analyser.analyse(fin)
     except ValueError as e:
         Location.save_cache()
         die(e)
