@@ -705,6 +705,12 @@ class PersonDao(Dao):
         with open(json_path, 'w') as outfile:
             schema = self.get_schema()
             outfile.write(schema.dumps(person, indent=2))
+
+    def delete(self, person_identifier):
+        json_path = self._get_json_path(person_identifier)
+        if not json_path.exists():
+            raise ValueError("Person '{}' does not exist".format(person_identifier))
+        json_path.unlink()
     
     def retrieve(self, person_id):
         json_path = self._get_json_path(person_id)

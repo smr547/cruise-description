@@ -15,7 +15,7 @@ from CdlParser import CdlParser
 from datetime import datetime
 
 import simplekml
-from model import CdlFile, Location, Person, Vessel, VesselSeason, Cruise, Visitation, CrewEvent, Leg, Crew, CrewRole
+from grammar_model import CdlFile, Location, Person, Vessel, VesselSeason, Cruise, Visitation, CrewEvent, Leg, Crew, CrewRole
 
 def die(message):
     stderr.write(str(message) + "\n")

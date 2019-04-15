@@ -11,6 +11,9 @@ use file:///Users/stevenring/projects/locations/docs/france_med_coast.txt
 use file:///Users/stevenring/projects/locations/docs/sardinia.txt
 use file:///Users/stevenring/projects/locations/docs/italy.txt
 use file:///Users/stevenring/projects/locations/docs/spain_med_coast.txt
+location Positano is "Positano, Italy"
+location Portovenere is "Portovenere, Italy"
+location Paraggi is "Paraggi, Italy"
 use file:///Users/stevenring/projects/cruise-description/grammar/people.cdl
 
 season Steven_cruise vessel Trilogy begins in Sant_Carles
@@ -53,9 +56,7 @@ cruise  "Calvi to Sorrento via Corsica and Sardinia" departs Calvi on 16/5/19 at
 	Gallura for 1 night
 	Maddalena for 1 night
 	Cervo for 1 night
-	Arbatax for 1 night
-	Cagliari for 1 night
-        via IWP3_12
+        Olbia for 1 night
 	Capri for 1 night
 	Sorrento for 1 night
 	crew wp leaves on 2/6/19 in Sorrento
@@ -66,7 +67,7 @@ cruise  "Sorrento to Genoa via Amalfi Coast and Cinque Terre" departs Sorrento o
 	crew kmt joins on 2/6/19 in Sorrento
 	crew sgr joins on 2/6/19 in Sorrento
 	Sorrento
-        via IWP3_13
+        via IWP3_13, Positano
 	Amalfi for 2 night
 	Salerno for 1 night
 	Capri for 1 night
@@ -81,8 +82,10 @@ cruise  "Sorrento to Genoa via Amalfi Coast and Cinque Terre" departs Sorrento o
 	Portoferraio for 2 night
 	Livorno for 2 night
 	La_Spezia for 1 night
+        via Portovenere
         Moneglia for 1 night
 	Chiavari for 1 night
+	Paraggi for 1 night
         Portofino for 2 nights
 	Genoa
 	crew smr leaves on 30/6/19 in Genoa

@@ -12,20 +12,20 @@ from scheduler import schedule_season
 from datetime import datetime, timedelta
 import simplekml
 from math import ceil
-from model import CdlFile
+from grammar_model import CdlFile
 
 def die(message):
     stderr.write(str(message) + "\n")
     exit(1)
 
-def cdlfile_to_KML(content : CdlFile):
+def cdlfile_to_KML(content : CdlFile, identifier):
     dt_format = "%Y-%m-%d %H%M"
 
     # document
 
     kml = simplekml.Kml(open=1)
-    desc = "Generated from CDL file %s at %s" % (filename, datetime.now().isoformat())
-    doc = kml.newdocument(name=filename, description=desc, open=1)
+    desc = "Generated from CDL file at %s" % (datetime.now().isoformat())
+    doc = kml.newdocument(name=identifier, description=desc, open=1)
 
     # locations
 
@@ -110,6 +110,6 @@ if __name__ == '__main__':
         analyser = CdlFileAnalyser()
         fin = preprocess_named_file(filename)
         content = analyser.analyse(fin)
-        stdout.write(cdlfile_to_KML(content))
+        stdout.write(cdlfile_to_KML(content, filename or "stdin"))
     except Exception as e:
         die(str(e))

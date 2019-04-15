@@ -11,6 +11,11 @@ use file:///Users/stevenring/projects/locations/docs/france_med_coast.txt
 use file:///Users/stevenring/projects/locations/docs/sardinia.txt
 use file:///Users/stevenring/projects/locations/docs/italy.txt
 use file:///Users/stevenring/projects/locations/docs/spain_med_coast.txt
+location Porquerolles is "Marina Porquerolles, France"
+location Positano is "Positano, Italy"
+location Portovenere is "Portovenere, Italy"
+location Paraggi is "Paraggi, Italy"
+location Cadaques is "Cadaques, Spain"
 use file:///Users/stevenring/projects/cruise-description/grammar/people.cdl
 
 season Steven_cruise vessel Trilogy begins in Sant_Carles
@@ -19,14 +24,15 @@ cruise  "Sant Carles to Nice" departs Sant_Carles on 2/5/19 at 1000
 	Sant_Carles
         crew smr joins on 26/4/19 as skipper in Sant_Carles
         crew isf joins on 26/4/19 in Sant_Carles
-        crew po  joins on 1/4/19 as mate in Sant_Carles
+        crew po  joins on 1/5/19 as mate in Sant_Carles
         Tarragona
         via Barcelona
         Blanes for 1 night
         Roses
+        Cadaques for 1 night 
         Vendres for 1 nights
 	Toulon for 1 night
-	Hyeres for 1 night
+	Porquerolles for 1 night
 	Frejus for 1 night
         Antibes for 1 nights
 
@@ -36,8 +42,8 @@ cruise  "Antibes to Calvi" departs Antibes on 10/5/19 at 1000
 
 cruise  "Calvi to Sorrento via Corsica and Sardinia" departs Calvi on 16/5/19 at 1000
         Calvi
-	crew wp joins on 15/5/19 in Sorrento
-	crew rb joins on 15/5/19 in Sorrento
+	crew wp joins on 15/5/19 in Calvi
+	crew rb joins on 15/5/19 in Calvi
         via VI_2
         Crovani
         via Elbo, VI_3
@@ -53,9 +59,7 @@ cruise  "Calvi to Sorrento via Corsica and Sardinia" departs Calvi on 16/5/19 at
 	Gallura for 1 night
 	Maddalena for 1 night
 	Cervo for 1 night
-	Arbatax for 1 night
-	Cagliari for 1 night
-        via IWP3_12
+        Olbia for 1 night
 	Capri for 1 night
 	Sorrento for 1 night
 	crew wp leaves on 2/6/19 in Sorrento
@@ -66,14 +70,13 @@ cruise  "Sorrento to Genoa via Amalfi Coast and Cinque Terre" departs Sorrento o
 	crew kmt joins on 2/6/19 in Sorrento
 	crew sgr joins on 2/6/19 in Sorrento
 	Sorrento
-        via IWP3_13
+        via IWP3_13, Positano
 	Amalfi for 2 night
 	Salerno for 1 night
 	Capri for 1 night
 	Ischia for 2 night
 	Formia for 1 night
 	Anzio for 1 night
-	Ostia for 1 night
 	Fanciullo for 1 night
 	Orbetello for 1 night
 	Follonica for 1 night
@@ -81,8 +84,11 @@ cruise  "Sorrento to Genoa via Amalfi Coast and Cinque Terre" departs Sorrento o
 	Portoferraio for 2 night
 	Livorno for 2 night
 	La_Spezia for 1 night
+        crew eif joins on 21/6/19 in La_Spezia
+        via Portovenere
         Moneglia for 1 night
 	Chiavari for 1 night
+	Paraggi for 1 night
         Portofino for 2 nights
 	Genoa
 	crew smr leaves on 30/6/19 in Genoa
@@ -90,3 +96,4 @@ cruise  "Sorrento to Genoa via Amalfi Coast and Cinque Terre" departs Sorrento o
 	crew po leaves on 30/6/19 in Genoa
 	crew kmt leaves on 30/6/19 in Genoa
 	crew sgr leaves on 30/6/19 in Genoa
+	crew eif leaves on 30/6/19 in Genoa

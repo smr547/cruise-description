@@ -6,7 +6,7 @@ from cdl_preprocessor import preprocess_named_file
 from CdlFileAnalyser import CdlFileAnalyser
 from scheduler import schedule_season
 from datetime import timedelta
-from model import CdlFile
+from grammar_model import CdlFile
 
 def hours(td : timedelta):
     secs = td.total_seconds()
@@ -17,7 +17,7 @@ def die(message):
     stderr.write(str(message) + "\n")
     exit(1)
 
-def cdlfile_to_MD(content : CdlFile):
+def cdlfile_to_MD(content : CdlFile, identifier):
     
     output = StringIO()
 
@@ -26,7 +26,7 @@ def cdlfile_to_MD(content : CdlFile):
     #dt_short_format = "%m-%d&nbsp;%H%M"
     for vs in content.vesselSeasons.values():
         output.write("# %s\n" % (vs.identifier(), ))
-        output.write("Generated from file %s\n" % (filename, ))
+        output.write("Generated from file %s\n" % (identifier, ))
         schedule_season(vs)
           
         # display some results
@@ -98,7 +98,7 @@ if __name__ == '__main__':
         analyser = CdlFileAnalyser()
         fin = preprocess_named_file(filename)
         content = analyser.analyse(fin)
-        output = cdlfile_to_MD(content)
+        output = cdlfile_to_MD(content, filename or "stdin")
         for line in output:
             stdout.write(line)
     except Exception as e:

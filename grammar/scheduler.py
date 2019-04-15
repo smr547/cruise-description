@@ -1,5 +1,5 @@
 
-from model import VesselSeason, Cruise, Hop, Warning
+from grammar_model import VesselSeason, Cruise, Hop, Warning
 from datetime import datetime, timedelta, time
 
 

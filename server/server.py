@@ -4,8 +4,16 @@ import os
 from flask import Flask, request, jsonify
 from pathlib import Path
 from model import VesselDao, PersonDao, PlanDao
+from io import StringIO
+
+from cdl_preprocessor import preprocess
+from CdlFileAnalyser import CdlFileAnalyser
+from toKml import cdlfile_to_KML
+from flask_restful import Api
 
 app = Flask(__name__)
+api = Api(app)
+
 content = Path("./test_content")
 
 class InvalidUsage(Exception):
@@ -90,24 +98,57 @@ def vessel(account_id, identifier):
     return dao.get_schema().dumps(vessel, indent=2), 200
 
 @app.route("/<int:account_id>/person/", methods=['GET'])
+@api.representation('application/json')
 def person_list(account_id):
-    dao = PersonDao(content, account_id)
-    people = dao.find_all()
-    return dao.get_schema().dumps(people, many=True, indent=2), 200
+    try:
+        dao = PersonDao(content, account_id)
+        people = dao.find_all()
+        return dao.get_schema().dumps(people, many=True, indent=2), 200
+    except Exception as e:
+        raise InvalidUsage(str(e))
 
 @app.route("/<int:account_id>/person/", methods=['POST'])
-def person_add(account_id):
-    dao = PersonDao(content, account_id)
-    person = dao.from_json(request.data)
-    dao.create(person)
-    person = dao.retrieve(person.identifier)
-    return dao.get_schema().dumps(person, indent=2), 200
+def person_create(account_id):
+    try:
+        dao = PersonDao(content, account_id)
+        person = dao.from_json(request.data)
+        dao.create(person)
+        person = dao.retrieve(person.identifier)
+        return dao.get_schema().dumps(person, indent=2), 200
+    except Exception as e:
+        raise InvalidUsage(str(e))
 
 @app.route("/<int:account_id>/person/<identifier>/", methods=['GET'])
-def person(account_id, identifier):
-    dao = PersonDao(content, account_id)
-    person = dao.retrieve(identifier)
-    return dao.get_schema().dumps(person, indent=2), 200
+def person_read(account_id, identifier):
+    try:
+        dao = PersonDao(content, account_id)
+        person = dao.retrieve(identifier)
+        return dao.get_schema().dumps(person, indent=2), 200
+    except Exception as e:
+        raise InvalidUsage(str(e))
+
+@app.route("/<int:account_id>/person/<identifier>/", methods=['PUT'])
+def person_update(account_id, identifier):
+    try:
+        dao = PersonDao(content, account_id)
+        person = dao.retrieve(identifier)
+        new_person = dao.from_json(request.data)
+        if new_person.identifier != person.identifier:
+            raise ValueError("Cannot change idenitifier from {} to {}".format(person.identifier, new_person.identifier))
+        dao.save(new_person)
+        return dao.get_schema().dumps(new_person, indent=2), 200
+    except Exception as e:
+        raise InvalidUsage(str(e))
+
+@app.route("/<int:account_id>/person/<identifier>/", methods=['DELETE'])
+def person_delete(account_id, identifier):
+    try:
+        dao = PersonDao(content, account_id)
+        person = dao.retrieve(identifier)
+        dao.delete(identifier)
+        return dao.get_schema().dumps(person, indent=2), 200
+    except Exception as e:
+        raise InvalidUsage(str(e))
 
 @app.route("/<int:account_id>/plan/", methods=['GET'])
 def plan_list(account_id):
@@ -125,9 +166,12 @@ def plan_add(account_id):
 
 @app.route("/<int:account_id>/plan/<plan_id>/", methods=['GET'])
 def plan(account_id, plan_id):
-    dao = PlanDao(content, account_id)
-    plan = dao.retrieve(plan_id)
-    return dao.get_schema().dumps(plan, indent=2), 200
+    try:
+        dao = PlanDao(content, account_id)
+        plan = dao.retrieve(plan_id)
+        return dao.get_schema().dumps(plan, indent=2), 200
+    except Exception as e:
+        raise InvalidUsage(str(e))
 
 @app.route("/<int:account_id>/plan/<plan_id>/", methods=['PUT'])
 def plan_update(account_id, plan_id):
@@ -144,7 +188,28 @@ def plan_update(account_id, plan_id):
     return dao.get_schema().dumps(plan, indent=2), 200
 
 @app.route("/<int:account_id>/plan/<plan_id>.cdl/", methods=['GET'])
-def plan_cdl(account_id, plan_id):
+def get_plan_cdl(account_id, plan_id):
     dao = PlanDao(content, account_id)
     plan = dao.retrieve(plan_id)
     return plan.cdl, 200
+
+@app.route("/<int:account_id>/plan/<plan_id>.cdl/", methods=['PUT'])
+def update_plan_cdl(account_id, plan_id):
+    try:
+        dao = PlanDao(content, account_id)
+        plan = dao.retrieve(plan_id)
+        plan.cdl = request.data
+        dao.save(plan)
+        return plan.cdl, 200
+    except Exception as e:
+        raise InvalidUsage(str(e))
+
+@app.route("/<int:account_id>/plan/<plan_id>.kml/", methods=['GET'])
+def plan_kml(account_id, plan_id):
+    dao = PlanDao(content, account_id)
+    plan = dao.retrieve(plan_id)
+    fin = preprocess(StringIO(plan.cdl))
+    analyser = CdlFileAnalyser()
+    cdl_file = analyser.analyse(fin)
+    kml = cdlfile_to_KML(cdl_file, plan_id)
+    return kml, 200, {'Content-Type': 'application/vnd.google-earth.kml+xml; charset=utf-8'}
