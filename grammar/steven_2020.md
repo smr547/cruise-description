@@ -1,12 +1,13 @@
 # Trilogy/Steven_cruise
 Generated from file stdin
 ## Sant Carles to Palma
-Cruise from Sant_Carles to Palma departs 2020-04-01 distance 140 NM
+Cruise from Sant_Carles to Palma departs 2020-04-01 distance 180 NM
 
 Date/time    | Event | From<br/>To | Comment
 ------------ | ----- | --------- | ------------------
-01/04&nbsp;1000<br/>02/04&nbsp;0228 | depart<br/>arrive | Sant_Carles<br/>Soller | stay in Soller is  80 hours (expected 72)<br/>&#x1F534; WARNING: Overnight passage<br/>&#x1F534; WARNING: Nightime arrival
-05/04&nbsp;1000<br/>05/04&nbsp;1211 | depart<br/>arrive | Soller<br/>Palma | stay in Palma is  70 hours (expected 72)<br/>&#x1F534; WARNING: Early arrival in Palma means a 5 days stay (not 3 as planned)
+01/04&nbsp;1000<br/>01/04&nbsp;1558 | depart<br/>arrive | Sant_Carles<br/>Tarragona | stay in Tarragona is  18 hours (expected 24)
+02/04&nbsp;1000<br/>03/04&nbsp;0148 | depart<br/>arrive | Tarragona<br/>Soller | stay in Soller is  80 hours (expected 72)<br/>&#x1F534; WARNING: Overnight passage<br/>&#x1F534; WARNING: Nightime arrival
+06/04&nbsp;1000<br/>06/04&nbsp;1211 | depart<br/>arrive | Soller<br/>Palma | stay in Palma is  70 hours (expected 72)<br/>&#x1F534; WARNING: Early arrival in Palma means a 4 days stay (not 3 as planned)
 ## Palma to Cagliaria
 Cruise from Palma to Cagliari departs 2020-04-10 distance 428 NM
 
