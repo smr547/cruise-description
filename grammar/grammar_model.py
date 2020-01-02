@@ -219,8 +219,17 @@ class Cruise(object):
         return dist
 
     def elapsed_time_td(self):
+        # the cruise ``elapsed_time`` includes the duration of the stay at the destination port
         visits = self.get_visitations()
-        return visits[-1].get_arrival_dt() - visits[0].get_departure_dt()
+        return visits[-1].get_arrival_dt() - visits[0].get_departure_dt() + visits[-1].get_computed_duration()
+
+    def get_destination_stay_dt(self):
+        visits = self.get_visitations()
+        return visits[-1].get_computed_duration()
+
+    def get_arrival_dt(self):
+        visits = self.get_visitations()
+        return visits[-1].get_arrival_dt()
 
     def get_visitations(self):
         visitations = []
