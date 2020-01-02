@@ -1,0 +1,110 @@
+vessel Trilogy name: "Trilogy" flag: "Australia" rego: 12345 speed: 7.5
+
+#use http://ws.planacruise.online:5000/locations/corsica.txt
+#use http://ws.planacruise.online:5000/locations/france_med_coast.txt
+#use http://ws.planacruise.online:5000/locations/sardinia.txt
+#use http://ws.planacruise.online:5000/locations/italy.txt
+#use http://ws.planacruise.online:5000/locations/spain_med_coast.txt
+
+use file:///Users/stevenring/projects/locations/docs/corsica.txt
+use file:///Users/stevenring/projects/locations/docs/france_med_coast.txt
+use file:///Users/stevenring/projects/locations/docs/sardinia.txt
+use file:///Users/stevenring/projects/locations/docs/italy.txt
+use file:///Users/stevenring/projects/locations/docs/spain_med_coast.txt
+use file:///Users/stevenring/projects/locations/docs/sicily.txt
+use file:///Users/stevenring/projects/locations/docs/balearics.txt
+use file:///Users/stevenring/projects/locations/docs/north_africa.txt
+use file:///Users/stevenring/projects/locations/docs/malta.txt
+use file:///Users/stevenring/projects/cruise-description/grammar/people.cdl
+
+season steven_2020 vessel Trilogy begins in Sant_Carles
+
+cruise  "Shakedown - Sant Carles to Tarragona" departs Sant_Carles on 2/4/20 at 1000
+	Sant_Carles
+        crew smr joins on 22/3/20 as skipper in Sant_Carles
+        crew isf joins on 22/3/20 in Sant_Carles
+	via Calafat
+        Tarragona for 1 night
+
+cruise  "Passage - Tarragona to Majorca" departs Tarragona on 3/4/20 at 1600
+	Tarragona
+        Soller for 3 nights
+
+
+cruise  "Cruising Majorca" departs Soller on 7/4/20 at 1000
+        Soller
+	via Sant_Elm
+	Camp_de_Mar for 1 night
+	via Sol_de_Mallorca
+        Palma for 2 nights
+	Cabrera for 1 night
+	via Cala_Millor
+        Alcudia for 1 night
+
+
+cruise  "Cruising Menorca" departs Alcudia on 12/4/20 at 0800
+	Alcudia
+	Ciutadella for 1 night
+	via Xoriguer
+	Serpentona for 1 night
+	via Punta_Prima
+        Mahon for 2 nights
+
+cruise  "Passage - Menorca to Sardina" departs Mahon on 17/4/20 at 0900
+	Mahon
+	Alghero for 2 nights
+
+cruise  "Cruising Sardina" departs Alghero on 19/4/20 at 0800
+	Alghero
+	Bosa for 1 night
+	Torregrande for 2 nights 
+        Portoscuso for 1 night
+        Carloforte for 1 night
+        Calsetta for 1 night
+        Tuelada for 1 night
+	Cagliari for 3 night
+
+cruise  "Passage - Sardina to Tunisia" departs Cagliari on 27/4/20 at 1000
+        Cagliari
+        Goulette for 3 nights
+
+
+cruise  "Passage - Tunisa to Silicy" departs Goulette on 1/5/20 at 1300
+	Goulette
+        Marsala for 3 nights
+
+cruise "North Sicily" departs Marsala on 5/5/20 at 1000
+	Marsala
+	Trapani for 2 nights
+        Palermo for 3 nights
+        Cefalu for 1 nights
+        Gregorio for 2 nights
+
+cruise "Aeolian Islands" departs Gregorio on 15/5/20 at 0900
+	Gregorio
+	Lipari for 10 nights
+
+
+cruise "South Sicily" departs Lipari on 24/5/20 at 1000
+	Lipari
+        Messina for 3 nights
+        Catania for 3 nights
+        Siracusa for 3 nights
+	Pozzallo for 3 nights
+	Gela for 3 nights
+        Licata for 2 nights
+        Empedocle for 2 nights
+
+cruise "Sicily to Malta" departs Empedocle on 14/6/20 at 1700
+	Empedocle
+	Marsalforn for 1 night
+
+cruise "Malta Miandering" departs Marsalforn on 16/6/20 at 1000
+	Marsalforn
+	Mgarr for 1 night
+	Blue_Lagoon for 1 night
+	Santa_Marija for 1 night
+	Mellieha for 1 night
+	Portomaso for 3 nights
+	Valetta for 3 nights
+	Marsaxloki for 3 nights
