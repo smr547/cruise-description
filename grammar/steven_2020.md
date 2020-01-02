@@ -1,5 +1,5 @@
-# Trilogy/Steven_cruise
-Generated from file stdin
+# Trilogy/steven_2020
+Generated from file steven_2020_tmp.cdl
 ## Shakedown - Sant Carles to Tarragona
 Cruise from Sant_Carles to Tarragona departs 2020-04-02 distance 46 NM
 
@@ -53,7 +53,7 @@ Cruise from Cagliari to Goulette departs 2020-04-27 distance 178 NM
 Date/time    | Event | From<br/>To | Comment
 ------------ | ----- | --------- | ------------------
 27/04&nbsp;1000<br/>28/04&nbsp;0844 | depart<br/>arrive | Cagliari<br/>Goulette | stay in Goulette is  73 hours (expected 72)<br/>&#x1F534; WARNING: Overnight passage
-## Passage - Tunisa to Malta
+## Passage - Tunisa to Silicy
 Cruise from Goulette to Marsala departs 2020-05-01 distance 135 NM
 
 Date/time    | Event | From<br/>To | Comment
@@ -67,13 +67,13 @@ Date/time    | Event | From<br/>To | Comment
 05/05&nbsp;1000<br/>05/05&nbsp;1205 | depart<br/>arrive | Marsala<br/>Trapani | stay in Trapani is  46 hours (expected 48)
 07/05&nbsp;1000<br/>07/05&nbsp;1616 | depart<br/>arrive | Trapani<br/>Palermo | stay in Palermo is  66 hours (expected 72)
 10/05&nbsp;1000<br/>10/05&nbsp;1448 | depart<br/>arrive | Palermo<br/>Cefalu | stay in Cefalu is  19 hours (expected 24)
-11/05&nbsp;1000<br/>11/05&nbsp;1532 | depart<br/>arrive | Cefalu<br/>Gregorio | stay in Gregorio is  18 hours (expected 24)<br/>&#x1F534; WARNING: Early arrival in Gregorio means a 2 days stay (not 1 as planned)
+11/05&nbsp;1000<br/>11/05&nbsp;1532 | depart<br/>arrive | Cefalu<br/>Gregorio | stay in Gregorio is  42 hours (expected 48)<br/>&#x1F534; WARNING: Early arrival in Gregorio means a 4 days stay (not 2 as planned)
 ## Aeolian Islands
-Cruise from Gregorio to Lipari departs 2020-05-13 distance 24 NM
+Cruise from Gregorio to Lipari departs 2020-05-15 distance 24 NM
 
 Date/time    | Event | From<br/>To | Comment
 ------------ | ----- | --------- | ------------------
-13/05&nbsp;0900<br/>13/05&nbsp;1209 | depart<br/>arrive | Gregorio<br/>Lipari | stay in Lipari is  238 hours (expected 240)<br/>&#x1F534; WARNING: Early arrival in Lipari means a 11 days stay (not 10 as planned)
+15/05&nbsp;0900<br/>15/05&nbsp;1209 | depart<br/>arrive | Gregorio<br/>Lipari | stay in Lipari is  238 hours (expected 240)<br/>&#x1F534; WARNING: Late arrival in Lipari allows only 9 days stay (not 10 as planned)
 ## South Sicily
 Cruise from Lipari to Empedocle departs 2020-05-24 distance 243 NM
 
