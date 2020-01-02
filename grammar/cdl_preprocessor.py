@@ -40,7 +40,7 @@ def preprocess(fin):
             # check that's its a valid URL
             p = urlparse(url)
             if len(p.scheme) == 0:
-                raise Exemption("Cannot understand the URL in the 'use' statement at line %s (%s)" % (
+                raise Exception("Cannot understand the URL in the 'use' statement at line %s (%s)" % (
                     line_no,
                     url ))
             try:
@@ -52,7 +52,7 @@ def preprocess(fin):
                         else:
                             output.write(rec)
             except Exception as e:
-                raise Exemption("Cannot use URL at line %s (%s)\n%s" % (
+                raise Exception("Cannot use URL at line %s (%s)\n%s" % (
                     line_no,
                     url,
                     str(e)))
