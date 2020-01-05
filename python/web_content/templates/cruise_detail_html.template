@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Schedule from {{ filename }}</title>
+</head>
+<body>
+    <h1>{{ vs.identifier() }}</h1>
+    <p>Generated from file {{ filename }} last modified at {{ file_modified_timestamp }}</p>
+    {% for cruise in vs.cruises %}
+        <h2>{{ cruise.name }}</h2>
+        <p>{{ cruise.get_description() }}</p>
+
+        <table border="1">
+        <tr>
+           <th>Date/time</th>
+           <th>Event</th>
+           <th>From<br/>To</th>
+           <th>Comment</th>
+        </tr>
+
+        {% for leg in cruise.legs %}
+            <tr>
+                <td>{{ leg.origin_visitation().get_departure_dt().strftime("%d/%m&nbsp;%H%M")}}<br/>
+                    {{ leg.destination_visitation().get_arrival_dt().strftime("%d/%m&nbsp;%H%M")}}
+                </td>
+                <td>depart<br/>arrive</td>
+                <td>{{ leg.origin().identifier }}<br/>{{ leg.destination().identifier }}</td>
+                <td>
+                   {{ leg.destination_stay_description() }} 
+                   <p style="color:red;">
+                    {% for w in leg.get_warnings() %}
+                        {{ w.get_message() }}<br/>
+                    {% endfor %}
+                    </p>
+                </td>
+            </tr>
+        {% endfor %}
+        </table>
+            
+    {% endfor %}
+
+    <h2>Please note</h2>
+<p>Please note that yacht cruising is subject to weather, crew health and other saftey concerns. 
+The published schedule is subject to change without notice. Please include flexibility in your flight and accommodation bookings</p>
+</body>
+</html>
