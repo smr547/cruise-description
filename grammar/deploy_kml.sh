@@ -24,9 +24,8 @@ mkdir -p ${tmppath}
 
 ./toKml.py /tmp/${season_id}.cdl > ${tmppath}/chart.kml 
 ./toMd.py /tmp/${season_id}.cdl > ${tmppath}/schedule.md 
-cp ${tmppath}/schedule.md .
 ./summary_HTML.py /tmp/${season_id}.cdl > ${tmppath}/summary.html 
-./md_html.py ${tmppath}/schedule.md > ${tmppath}/schedule.html
+./create_schedule_html.py /tmp/${season_id}.cdl > ${tmppath}/schedule.html 
 ./make_source_html.py ${cdl_file} > ${tmppath}/source.html
 cp ${cdl_file} ${tmppath}
 rm /tmp/${season_id}.cdl 

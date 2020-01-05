@@ -279,6 +279,12 @@ class Leg(object):
         self._hops = None
         self._warnings = []
 
+    def origin_visitation(self):
+        return self.visitations[0]
+
+    def destination_visitation(self):
+        return self.visitations[-1]
+
     def origin(self):
         return self.visitations[0].location
 
@@ -287,6 +293,19 @@ class Leg(object):
 
     def name(self):
         return "%s to %s" % (self.origin().identifier, self.destination().identifier)
+
+    def destination_stay_description(self):
+
+        def hours(td : timedelta):
+            secs = td.total_seconds()
+            hours = round(secs/3600.0)
+            return hours
+
+        to_v = self.destination_visitation()
+        return "stay in %s is  %s hours (expected %d)" % (
+                    self.destination().identifier,
+                    hours(to_v.get_computed_duration()),
+                    hours(to_v.get_planned_duration_td()))
 
     def distance_NM(self):
         dist = 0.0
