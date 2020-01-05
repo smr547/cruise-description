@@ -3,3 +3,4 @@
 *.swp
 *.pyc
 .DS_Store
+locator_cache.json
