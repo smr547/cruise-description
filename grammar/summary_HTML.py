@@ -88,8 +88,16 @@ def cdlfile_to_HTML(content : CdlFile, identifier):
         output.write("</p>\n")
         output.write("<ul>\n")
         output.write('<li><a href="./schedule.html">Season schedule</a></li>\n')
-        output.write('<li><a href="./chart.kml">Chart</a> via (Google Earth)</li>\n')
+        output.write('<li><a href="./chart.kml">Chart</a> (via Google Earth) -- once the chart.kml file has downloaded, double-click on it to launch Google Earth. ')
+        output.write('You may need to load <a href="https://support.google.com/earth/answer/21955?hl=en">install Google Earth</a> on your computer</li>\n')
         output.write("</ul>\n")
+
+        output.write("<h2>Goolge Earth link</h2>\n")
+        output.write("<p>To view the chart in Google Earth, use menus options <bold>Add ... Network Link</bold> and paste in the following URL.\n")
+        output.write('<textarea rows="1" cols="60" readonly>')
+        output.write("http://planacruise.online/%s/%s/chart.kml\n" % (vs.vessel.identifier, vs.season))
+        output.write("</textarea>")
+
 
     output.write("</body>\n")
     output.write("</html>\n")
