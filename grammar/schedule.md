@@ -48,17 +48,17 @@ Date/time    | Event | From<br/>To | Comment
 25/04&nbsp;1000<br/>25/04&nbsp;1250 | depart<br/>arrive | Calsetta<br/>Tuelada | stay in Tuelada is  21 hours (expected 24)
 26/04&nbsp;1000<br/>26/04&nbsp;1339 | depart<br/>arrive | Tuelada<br/>Cagliari | stay in Cagliari is  68 hours (expected 72)<br/>&#x1F534; WARNING: Late arrival in Cagliari allows only 1 days stay (not 3 as planned)
 ## Passage - Sardina to Tunisia
-Cruise from Cagliari to Goulette departs 2020-04-27 distance 178 NM
+Cruise from Cagliari to Tunis_Marina departs 2020-04-27 distance 176 NM
 
 Date/time    | Event | From<br/>To | Comment
 ------------ | ----- | --------- | ------------------
-27/04&nbsp;1000<br/>28/04&nbsp;0844 | depart<br/>arrive | Cagliari<br/>Goulette | stay in Goulette is  73 hours (expected 72)<br/>&#x1F534; WARNING: Overnight passage
+27/04&nbsp;1000<br/>28/04&nbsp;0828 | depart<br/>arrive | Cagliari<br/>Tunis_Marina | stay in Tunis_Marina is  74 hours (expected 72)<br/>&#x1F534; WARNING: Overnight passage
 ## Passage - Tunisa to Silicy
-Cruise from Goulette to Marsala departs 2020-05-01 distance 135 NM
+Cruise from Tunis_Marina to Marsala departs 2020-05-01 distance 131 NM
 
 Date/time    | Event | From<br/>To | Comment
 ------------ | ----- | --------- | ------------------
-01/05&nbsp;1300<br/>02/05&nbsp;0801 | depart<br/>arrive | Goulette<br/>Marsala | stay in Marsala is  74 hours (expected 72)<br/>&#x1F534; WARNING: Overnight passage
+01/05&nbsp;1300<br/>02/05&nbsp;0728 | depart<br/>arrive | Tunis_Marina<br/>Marsala | stay in Marsala is  75 hours (expected 72)<br/>&#x1F534; WARNING: Overnight passage
 ## North Sicily
 Cruise from Marsala to Gregorio departs 2020-05-05 distance 141 NM
 
