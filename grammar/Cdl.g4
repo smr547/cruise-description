@@ -11,7 +11,7 @@ A CDL file specifies the cruising plan for one or more vessels. A single file ca
 
 cdl_file            : fleet_spec location_list person_list (vessel_season_spec)+ EOF;
 
-vessel_spec         : VESSEL identifier NAME COLON name FLAG COLON flag REGO COLON rego SPEED COLON speed NEWLINE ;
+vessel_spec         : VESSEL identifier NAME COLON name FLAG COLON flag REGO COLON rego SPEED COLON speed (cabin_list) NEWLINE ;
 
 person_spec         : PERSON identifier NAME COLON name NEWLINE ;
 
@@ -21,7 +21,10 @@ location_list       : (location)+ ;
 
 location            : LOCATION identifier (AT position)? IS placename NEWLINE;
 
+cabin_list          : (cabin_spec)* ;
 person_list         : (person_spec)* ;
+
+cabin_spec          : CABIN identifier SLEEPS max_persons;
 
 vessel_season_spec  : SEASON season_identifier VESSEL vessel_identifier BEGINS IN location_identifier NEWLINE (cruise)+;
 
@@ -69,6 +72,8 @@ placename           : PHRASE ;
 
 
 identifier          : WORD ;
+
+
 duration_units      : NIGHT | NIGHTS | HOURS ;
 visitation_spec     : location_identifier (stay_spec)? ;
 stay_duration       : UNSIGNED_INT ;
@@ -76,13 +81,15 @@ stay_spec           : FOR stay_duration duration_units ;
 location_identifier : WORD ;
 vessel_identifier   : WORD ;
 season_identifier   : WORD ;
-joining_spec        : (CREW | GUEST) identifier JOINS (ON date)? (AS role_spec)? (IN location_identifier)?;
+joining_spec        : (CREW | GUEST) identifier JOINS (ON date)? (AS role_spec)? (IN location_identifier)? (cabin_allocation)?;
 leaving_spec        : (CREW | GUEST) identifier LEAVES (ON date)?  (IN location_identifier)?;
+cabin_allocation    : OCCUPIES identifier CABIN;
 role_spec           : SKIPPER | MATE ;
 title               : PHRASE ;
 name                : PHRASE ;
 flag                : PHRASE ;
 rego                : UNSIGNED_INT ;
+max_persons         : UNSIGNED_INT ;
 date                : DATE ;
 time                : TIME ;
 
@@ -141,6 +148,9 @@ LEAVES          : L E A V E S;
 BEGINS          : B E G I N S;
 VIA             : V I A;
 SPEED           : S P E E D ;
+CABIN           : C A B I N ;
+SLEEPS          : S L E E P S ;
+OCCUPIES        : O C C U P I E S ;
 
 /* Roles */
 
