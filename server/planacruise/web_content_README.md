@@ -25,3 +25,11 @@ Contains:
 * Google maps ``kml`` file providing a detailed chart of the season (with filename ``<season_id>.kml``)
 * Season summary ``html`` file providing a summary of all cruises in the season (with filename ``<season_id>_summary.html``)
 * Details of all cruises planned for the Season in a ``pdf`` file (with filename ``<season_id>.pdf`)
+
+## cruise_maps
+
+* directory in ``web_content``
+* used for prototype testing of charts implemented using [OpenLayers](https://openlayers.org)
+* contents manually loaded from 
+* project/openlayers
+

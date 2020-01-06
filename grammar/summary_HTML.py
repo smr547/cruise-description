@@ -29,6 +29,17 @@ def cdlfile_to_HTML(content : CdlFile, identifier):
     output.write("<title>Season Summary</title>\n")
     output.write("</head>\n")
 
+    # framework code for OpenLayers mapping integration
+
+    output.write("<style>#map {\n")
+    output.write("width: 900px;\n")
+    output.write("height: 500px;\n")
+    output.write("}</style>\n")
+    output.write('<link rel="stylesheet" href="/cruise_maps/openlayers.e31bb0bc.css">\n')
+
+
+
+
     output.write("<body>\n")
     output.write("<p>\n")
 
@@ -52,6 +63,9 @@ def cdlfile_to_HTML(content : CdlFile, identifier):
         output.write("<p>The following table lists the series of cruises planned for the season<br/></p>\n")
 
 
+        output.write('<table>\n')
+        output.write('<tr>\n')
+        output.write('<td>\n')
         output.write('<table border="1">\n')
         output.write("<tr><th>Cruise</th><th>Cruise name</th><th>Departure</th><th>Destination</th><th>Duration</th></tr>\n")
 
@@ -80,6 +94,20 @@ def cdlfile_to_HTML(content : CdlFile, identifier):
             output.write("</tr>\n")
             
         output.write("</table>\n")
+        output.write('</td>\n')
+        output.write('<td>\n')
+
+        # Open layers chart goes here
+
+        output.write('<div id="map"></div>\n')
+        output.write('<script src="/cruise_maps/openlayers.e31bb0bc.js"></script>\n') 
+
+        output.write('</td>\n')
+        output.write('</tr>\n')
+        output.write('</table>\n')
+
+
+
         output.write("<h2>Warning</h2> \n")
         output.write("<p>Please note that yacht cruising is subject to weather, crew health and other saftey concerns.\n")
         output.write("The published schedule is subject to change without notice. Please include flexibility in your flight and accommodation bookings</p>\n")
