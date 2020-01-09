@@ -15,7 +15,7 @@ from CdlParser import CdlParser
 from datetime import datetime
 
 import simplekml
-from grammar_model import CdlFile, Location, Person, Vessel, VesselSeason, Cruise, Visitation, CrewEvent, Leg, Crew, CrewRole
+from grammar_model import CdlFile, Location, Person, Vessel, VesselSeason, Cruise, Visitation, CrewEvent, Leg, Crew, CrewRole, Cabin
 
 def die(message):
     stderr.write(str(message) + "\n")
@@ -56,12 +56,18 @@ class VesselVisitor(CdlVisitor):
         super(VesselVisitor, self).__init__()
 
     def visitVessel_spec(self, ctx:CdlParser.Vessel_specContext):
-        return Vessel(
+        vessel = Vessel(
             ctx.identifier().getText(),
             ctx.name().getText(),
             remove_quotes(ctx.flag().getText()),
             remove_quotes(ctx.rego().getText()),
             float(ctx.speed().getText()))
+
+        visitor = CabinSpecVisitor()
+        for cabin_ctx in ctx.cabin_list().cabin_spec():
+            vessel.add_cabin(visitor.visit(cabin_ctx))
+        return vessel
+            
 
 class LocationVisitor(CdlVisitor):
     def __init__(self):
@@ -145,7 +151,7 @@ class CdlFileVisitor(CdlVisitor):
         for person_spec in ctx.person_list().person_spec():
             self.result.add_person(visitor.visit(person_spec))
 
-        # hand vessel_season_specs
+        # handle vessel_season_specs
 
         visitor = VesselSeasonVisitor(self.result)
         for vsc in ctx.vessel_season_spec():
@@ -174,25 +180,26 @@ class VesselSeasonVisitor(CdlVisitor):
 
         crew = Crew() 
         cruises = []
-        result = VesselSeason(vessel, season_id, cruises)
-        visitor = CruiseVisitor(self.cdl_file)
+        vessel_season = VesselSeason(vessel, season_id, cruises)
+        visitor = CruiseVisitor(self.cdl_file, vessel_season)
         for c in ctx.cruise():
             cruise = visitor.visit(c)
-            cruise.vesselSeason = result
             cruises.append(cruise)
 
-        return result
+        return vessel_season
 
 class CruiseVisitor(CdlVisitor):
 
-    def __init__(self, cdl_file : CdlFile):
+    def __init__(self, cdl_file : CdlFile, vessel_season: VesselSeason):
         super(CruiseVisitor, self).__init__();
         self.cdl_file = cdl_file
+        self.vessel_season = vessel_season
 
     def visitCruise(self, ctx:CdlParser.CruiseContext):
         dep_date = datetime.strptime(ctx.date().getText(), date_format)
         dep_time = datetime.strptime(ctx.time().getText(), time_format)
-        cruise =  Cruise(name=remove_quotes(ctx.title().getText()),
+        cruise =  Cruise(vesselSeason=self.vessel_season,
+            name=remove_quotes(ctx.title().getText()),
             departure_date=dep_date.date(),
             departure_time=dep_time.time(),
             departure_port=self.cdl_file.get_location(ctx.location_identifier().getText())
@@ -232,14 +239,35 @@ class EventVisitor(CdlVisitor):
         global crew
         person = self.cdl_file.get_person(ctx.identifier().getText())
         location = self.cdl_file.get_location(get_text(ctx.location_identifier()))
+  
+        # cabin allocation in a 'join'
 
+        cabin = None
+        ca = ctx.cabin_allocation()
+        if ca is not None:
+            cabin_id = ca.identifier().getText()
+            print("cabin_id=%s" % (cabin_id))
+            try:
+                cabin = self.cruise.vesselSeason.vessel.cabins[cabin_id]
+            except KeyError:
+                raise Exception("Cabin %s is undefined for vessel %s" % 
+                    (cabin_id, self.cruise.vesselSeason.vessel.identifier))
+
+        # role
 
         role =  get_text(ctx.role_spec())
+
+        # create a CrewEvent object and add to this cruise
+
         e = CrewEvent(person, join_not_leave=True,
             role=role,
             scheduled=get_text(ctx.date()),
-            location=location)
+            location=location,
+            cabin=cabin)
         self.cruise.add_event(e)
+
+        # why do we need this global?
+
         crew = crew.add_crewRole(CrewRole(person, role))
         return
 
@@ -282,6 +310,14 @@ class StaySpecVisitor(CdlVisitor):
 
     def visitStay_spec(self, ctx:CdlParser.Stay_specContext):
         return StaySpec(int(ctx.stay_duration().getText()), ctx.duration_units().getText())
+
+class CabinSpecVisitor(CdlVisitor):
+
+    def __init__(self):
+        super(CabinSpecVisitor, self).__init__();
+
+    def visitCabin_spec(self, ctx:CdlParser.Cabin_specContext):
+        return Cabin(ctx.identifier().getText(), int(ctx.max_occupants().getText()))
 
 class CdlFileAnalyser(object):
     def __init__(self):

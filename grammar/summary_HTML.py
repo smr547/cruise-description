@@ -145,4 +145,5 @@ if __name__ == '__main__':
         for line in output:
             stdout.write(line)
     except Exception as e:
+        raise e
         die(str(e))

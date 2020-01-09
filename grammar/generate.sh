@@ -1,3 +1,5 @@
-#!/usr/bin/bin
+#!/bin/bash
 
-antlr4 -Dlanguage=Python3 Cdl.g4
+echo "Usage: source generate.sh"
+
+antlr4 -visitor -Dlanguage=Python3 Cdl.g4

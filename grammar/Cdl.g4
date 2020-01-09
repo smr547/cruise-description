@@ -24,7 +24,7 @@ location            : LOCATION identifier (AT position)? IS placename NEWLINE;
 cabin_list          : (cabin_spec)* ;
 person_list         : (person_spec)* ;
 
-cabin_spec          : CABIN identifier SLEEPS max_persons;
+cabin_spec          : CABIN identifier SLEEPS max_occupants;
 
 vessel_season_spec  : SEASON season_identifier VESSEL vessel_identifier BEGINS IN location_identifier NEWLINE (cruise)+;
 
@@ -89,7 +89,7 @@ title               : PHRASE ;
 name                : PHRASE ;
 flag                : PHRASE ;
 rego                : UNSIGNED_INT ;
-max_persons         : UNSIGNED_INT ;
+max_occupants       : UNSIGNED_INT ;
 date                : DATE ;
 time                : TIME ;
 

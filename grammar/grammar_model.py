@@ -62,16 +62,30 @@ class Person(object):
         return "%s: identifier=%s, name=%s" % (type(self).__name__, self.identifier, self.name)
 
 class Vessel(object):
-    def __init__(self, identifier, name, flag, rego, speed_kts):
+    def __init__(self, identifier, name, flag, rego, speed_kts, cabins={}):
         self.identifier = identifier
         self.name = name
         self.flag = flag
         self.rego = rego
         self.speed_kts = speed_kts
+        self.cabins = cabins
         # todo: expand attributes
+
+    def add_cabin(self, cabin):
+        if cabin.identifier in self.cabins.keys():
+            raise Exception("Cabin %s duplicated" % (cabin.identifier))
+        self.cabins[cabin.identifier] = cabin
 
     def __str__(self):
         return "%s: identifier=%s, name=%s" % (type(self).__name__, self.identifier, self.name)
+
+class Cabin(object):
+    def __init__(self, identifier, max_occupants):
+        self.identifier = identifier
+        self.max_occupants = max_occupants
+
+    def __str__(self):
+        return "%s: identifier=%s, max_occupants=%s" % (type(self).__name__, self.identifier, self.max_occupants)
 
 class VesselSeason(object):
     def __init__(self, vessel, season, cruises):
@@ -86,7 +100,7 @@ class VesselSeason(object):
         return "%s" % (self.key(), )
 
     def __str__(self):
-        return "%s: identifier=%s, name=%s" % (type(self).__name__, self.identifier())
+        return "%s: identifier=%s" % (type(self).__name__, self.identifier())
 
 class CdlFile(object):
     def __init__(self):
@@ -401,15 +415,17 @@ class Visitation(object):
 
 
     def __str__(self):
-        return "%s: location=%s (stay %d days)" % (type(self).__name__, self.location.identifier, self.duration_days)
+        arrival = self._arrival_dt.strftime("%d/%m/%Y, %H:%M")
+        return "%s: location=%s, arriving %s (stay %d days)" % (type(self).__name__, self.location.identifier, arrival, self._computed_duration.days)
 
 class CrewEvent(object):
-    def __init__(self, person, join_not_leave=True, role=None, scheduled=None, location=None):
+    def __init__(self, person, join_not_leave=True, role=None, scheduled=None, location=None, cabin=None):
         self.person = person
         self.join_not_leave = join_not_leave
         self.role = role
         self.scheduled = scheduled
         self.location = location
+        self.cabin = cabin
 
     def event_name(self):
         if self.join_not_leave:
@@ -420,8 +436,11 @@ class CrewEvent(object):
         loc_id = None
         if self.location is not None:
             loc_id = self.location.identifier
-        return "%s: %s %s (role: %s, scheduled: %s, location: %s)" % (type(self).__name__, self.person.identifier,
-            self.event_name(), self.role, self.scheduled, loc_id)
+        cabin_id = "unallocated"
+        if self.cabin is not None:
+            cabin_id = self.cabin.identifier
+        return "%s: %s %s (role: %s, scheduled: %s, location: %s, cabin: %s)" % (type(self).__name__, 
+            self.person.identifier, self.event_name(), self.role, self.scheduled, loc_id, cabin_id)
 
 class Warning(object):
     def __init__(self, message : str):
