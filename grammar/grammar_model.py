@@ -61,6 +61,9 @@ class Person(object):
     def __str__(self):
         return "%s: identifier=%s, name=%s" % (type(self).__name__, self.identifier, self.name)
 
+    def __repr__(self):
+        return self.__str__()
+
 class Vessel(object):
     def __init__(self, identifier, name, flag, rego, speed_kts, cabins={}):
         self.identifier = identifier
@@ -83,9 +86,31 @@ class Cabin(object):
     def __init__(self, identifier, max_occupants):
         self.identifier = identifier
         self.max_occupants = max_occupants
+        self.crew_events = []
 
     def __str__(self):
         return "%s: identifier=%s, max_occupants=%s" % (type(self).__name__, self.identifier, self.max_occupants)
+
+    def get_occupants(self, as_at : datetime):
+        '''
+        Returns a Set containing a Person object for each occupant of the Cabin as at midnight on the specified date
+        '''
+
+        occupants = set()
+        for event in self.crew_events:
+            print("Type of event.scheduled = ", type(event.scheduled()))
+            if event.scheduled().date() > as_at.date():
+                break
+            if event.join_not_leave:
+                occupants.add(event.person)
+            else:
+                if event.person in occupants:
+                    occupants.remove(event.person)
+                else:
+                    raise Exception("Departing crew %s is not occupant of cabin %s as at %s" %
+                        event.person.identifier, self.identifier, event.scheduled.date().strftime("%d/%m/%Y"))
+
+        return occupants
 
 class VesselSeason(object):
     def __init__(self, vessel, season, cruises):
@@ -338,6 +363,10 @@ class Leg(object):
         return self._hops
 
     def get_warnings(self):
+        warnings = []
+        warnings.append(self._warnings)
+        for v in self.visitations:
+            warnings.append(v.get_warnings())
         return self._warnings
 
     def clear_warnings(self):
@@ -410,8 +439,25 @@ class Visitation(object):
         return
 
     def add_warning(self, warning : Warning):
+        print("Adding warning: ", warning)
         self._warnings.append(warning)
         return
+
+    def includes_date(self, a_date : datetime):
+        if a_date.tzinfo is None or a_date.tzinfo.utcoffset(a_date) is None:
+            raise Exception("a_date is naive")
+        if self._arrival_dt.tzinfo is None or self._arrival_dt.tzinfo.utcoffset(self._arrival_dt) is None:
+            raise Exception("self._arrival_dt is naive")
+        end_dt = self._arrival_dt + self._computed_duration
+        print("checking crew movement on %s is withing visitation period: %s to %s in %s" % (a_date, self._arrival_dt, end_dt, self.location.identifier))
+        return self._arrival_dt <= a_date <= end_dt
+
+    def period_str(self):
+        date_fmt = "%d/%m/%y"
+        end_dt = self._arrival_dt + self._computed_duration
+
+        return "%s to %s" % (self._arrival_dt.strftime(date_fmt), end_dt.strftime(date_fmt))
+
 
 
     def __str__(self):
@@ -423,9 +469,25 @@ class CrewEvent(object):
         self.person = person
         self.join_not_leave = join_not_leave
         self.role = role
-        self.scheduled = scheduled
+        self._scheduled = None
         self.location = location
         self.cabin = cabin
+
+        self.set_scheduled(scheduled)
+
+    def set_scheduled(self, dt):
+
+        if dt is None:
+            self._scheduled = dt
+        elif dt.tzinfo is None or dt.tzinfo.utcoffset(d) is None:
+            self._scheduled = self.location.get_timezone().localize(dt)
+        else:
+            self._scheduled = dt
+  
+    def scheduled(self):
+        return self._scheduled
+
+        
 
     def event_name(self):
         if self.join_not_leave:
@@ -440,7 +502,7 @@ class CrewEvent(object):
         if self.cabin is not None:
             cabin_id = self.cabin.identifier
         return "%s: %s %s (role: %s, scheduled: %s, location: %s, cabin: %s)" % (type(self).__name__, 
-            self.person.identifier, self.event_name(), self.role, self.scheduled, loc_id, cabin_id)
+            self.person.identifier, self.event_name(), self.role, self.scheduled(), loc_id, cabin_id)
 
 class Warning(object):
     def __init__(self, message : str):
@@ -449,6 +511,39 @@ class Warning(object):
 
     def get_message(self):
         return "WARNING: %s" % (self._message, )
+
+    def __str__(self):
+        return self.get_message()
+
+    def __repr__(self):
+        return self.get_message()
+
+# Better event handling
+
+class Event(object):
+    '''
+    Something that happens at a specific date and time and has zero duration
+    '''
+
+    def __init__(self, event_dt : datetime):
+        self.event_dt = event_dt
+
+    def duration(self):
+        # zero duration
+        return timedelta()
+
+class DepartureEvent(Event):
+
+    def __init__(self, event_dt : datetime, locations : Location):
+        super(self, DepartureEvent).__init__(event_dt)    
+        self.location = location
+
+class ArrivalEvent(Event):
+
+    def __init__(self, event_dt : datetime, locations : Location):
+        super(self, ArrivalEvent).__init__(event_dt)    
+        self.location = location
+
 
     
      

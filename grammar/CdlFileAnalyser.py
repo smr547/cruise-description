@@ -238,6 +238,7 @@ class EventVisitor(CdlVisitor):
     def visitJoining_spec(self, ctx:CdlParser.Joining_specContext):
         global crew
         person = self.cdl_file.get_person(ctx.identifier().getText())
+        print("Person is ", person)
         location = self.cdl_file.get_location(get_text(ctx.location_identifier()))
   
         # cabin allocation in a 'join'
@@ -261,7 +262,7 @@ class EventVisitor(CdlVisitor):
 
         e = CrewEvent(person, join_not_leave=True,
             role=role,
-            scheduled=get_text(ctx.date()),
+            scheduled=datetime.strptime(get_text(ctx.date()), date_format),
             location=location,
             cabin=cabin)
         self.cruise.add_event(e)
@@ -277,7 +278,7 @@ class EventVisitor(CdlVisitor):
         location = self.cdl_file.get_location(get_text(ctx.location_identifier()))
 
         e = CrewEvent(person, join_not_leave=False,
-            scheduled=get_text(ctx.date()),
+            scheduled=datetime.strptime(get_text(ctx.date()), date_format),
             location=location)
         self.cruise.add_event(e)
         crew = crew.del_crewRole(CrewRole(person))

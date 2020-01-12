@@ -1,5 +1,5 @@
 
-from grammar_model import VesselSeason, Cruise, Hop, Warning
+from grammar_model import VesselSeason, Cruise, Hop, Warning, CrewEvent, Visitation
 from datetime import datetime, timedelta, time
 
 
@@ -7,6 +7,7 @@ def schedule_season(vessel_season : VesselSeason):
     '''
     schedule all cruises in the specified vessel's season
     '''
+    all_events = [] 
     last_cruise = None
     for ci in range(0, len(vessel_season.cruises)):
         c = vessel_season.cruises[ci]
@@ -16,6 +17,47 @@ def schedule_season(vessel_season : VesselSeason):
             next_cruise = None
         schedule_cruise(c, last_cruise, next_cruise)
         last_cruise = c
+        all_events.extend(c.events)
+
+    # allocate CrewEvents to cabins and check crew movement date
+
+    cabins = vessel_season.vessel.cabins
+    current_visitation = None
+    for ei in range(0, len(all_events)):
+        event = all_events[ei]
+        if isinstance(event, Visitation):
+            current_visitation = event
+
+        if isinstance(event, CrewEvent):
+            # print("processing ", event)
+            person = event.person
+            cabin = event.cabin
+
+            # find the last cabin event for this person
+
+            if cabin is None:
+                # print("Bactracking to find cabin for  ", event)
+                for i in range(ei-1, -1, -1):
+                    this_event = all_events[i]
+
+                    # print("Examining ", this_event)
+                    if isinstance(this_event, CrewEvent) and this_event.join_not_leave and this_event.person == person:
+                        cabin = this_event.cabin
+                        break
+
+                if cabin is None:
+                    raise Exception("Unknown cabin allocation for %s" % 
+                        (person.identifier))
+                event.cabin = cabin
+
+            cabin.crew_events.append(event)
+
+            # check the date is reasonable with the current visitation
+
+            if not current_visitation.includes_dates(event.scheduled()):
+                current_visitation.add_warning(Warning("Crew movement for %s schedule for %s is not in %s visitation period (%s)" %
+                    (event.person.identifier, event.scheduled().strftime("%d/%m/%y"), current_visitation.location.identifier, current_visitation.period_str())))
+            
 
 
 def schedule_cruise(this_cruise, last_cruise=None, next_cruise=None):
