@@ -238,7 +238,6 @@ class EventVisitor(CdlVisitor):
     def visitJoining_spec(self, ctx:CdlParser.Joining_specContext):
         global crew
         person = self.cdl_file.get_person(ctx.identifier().getText())
-        print("Person is ", person)
         location = self.cdl_file.get_location(get_text(ctx.location_identifier()))
   
         # cabin allocation in a 'join'
@@ -247,7 +246,7 @@ class EventVisitor(CdlVisitor):
         ca = ctx.cabin_allocation()
         if ca is not None:
             cabin_id = ca.identifier().getText()
-            print("cabin_id=%s" % (cabin_id))
+            # print("cabin_id=%s" % (cabin_id))
             try:
                 cabin = self.cruise.vesselSeason.vessel.cabins[cabin_id]
             except KeyError:

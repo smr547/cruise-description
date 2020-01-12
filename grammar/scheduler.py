@@ -54,7 +54,7 @@ def schedule_season(vessel_season : VesselSeason):
 
             # check the date is reasonable with the current visitation
 
-            if not current_visitation.includes_dates(event.scheduled()):
+            if not current_visitation.includes_date(event.scheduled().date()):
                 current_visitation.add_warning(Warning("Crew movement for %s schedule for %s is not in %s visitation period (%s)" %
                     (event.person.identifier, event.scheduled().strftime("%d/%m/%y"), current_visitation.location.identifier, current_visitation.period_str())))
             

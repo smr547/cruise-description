@@ -7,7 +7,7 @@ __author__ = 'smr'
 
 from geolocator import CachedGeoLocator
 from geopy.distance import great_circle
-from datetime import timedelta, datetime
+from datetime import timedelta, datetime, date
 from timezonefinder import TimezoneFinder
 import pytz
 from math import ceil
@@ -98,7 +98,7 @@ class Cabin(object):
 
         occupants = set()
         for event in self.crew_events:
-            print("Type of event.scheduled = ", type(event.scheduled()))
+            # print("Type of event.scheduled = ", type(event.scheduled()))
             if event.scheduled().date() > as_at.date():
                 break
             if event.join_not_leave:
@@ -364,10 +364,12 @@ class Leg(object):
 
     def get_warnings(self):
         warnings = []
-        warnings.append(self._warnings)
+        warnings.extend(self._warnings)
         for v in self.visitations:
-            warnings.append(v.get_warnings())
-        return self._warnings
+            warnings.extend(v.get_warnings())
+
+        # print("Warnings for leg %s : \n  %s" % (str(self), warnings))
+        return warnings
 
     def clear_warnings(self):
         self._warnings = []
@@ -439,18 +441,14 @@ class Visitation(object):
         return
 
     def add_warning(self, warning : Warning):
-        print("Adding warning: ", warning)
+        # print("Adding warning: ", warning)
         self._warnings.append(warning)
         return
 
-    def includes_date(self, a_date : datetime):
-        if a_date.tzinfo is None or a_date.tzinfo.utcoffset(a_date) is None:
-            raise Exception("a_date is naive")
-        if self._arrival_dt.tzinfo is None or self._arrival_dt.tzinfo.utcoffset(self._arrival_dt) is None:
-            raise Exception("self._arrival_dt is naive")
-        end_dt = self._arrival_dt + self._computed_duration
-        print("checking crew movement on %s is withing visitation period: %s to %s in %s" % (a_date, self._arrival_dt, end_dt, self.location.identifier))
-        return self._arrival_dt <= a_date <= end_dt
+    def includes_date(self, a_date : date):
+        end_d = (self._arrival_dt + self._computed_duration).date()
+        # print("checking crew movement on %s is withing visitation period: %s to %s in %s" % (a_date, self._arrival_dt.date(), end_d, self.location.identifier))
+        return self._arrival_dt.date() <= a_date <= end_d
 
     def period_str(self):
         date_fmt = "%d/%m/%y"
