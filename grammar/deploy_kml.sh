@@ -26,6 +26,7 @@ mkdir -p ${tmppath}
 ./toMd.py /tmp/${season_id}.cdl > ${tmppath}/schedule.md 
 ./summary_HTML.py /tmp/${season_id}.cdl > ${tmppath}/summary.html 
 ./create_schedule_html.py /tmp/${season_id}.cdl > ${tmppath}/schedule.html 
+./create_crew_movement_html.py /tmp/${season_id}.cdl > ${tmppath}/crew_movement.html 
 ./make_source_html.py ${cdl_file} > ${tmppath}/source.html
 cp ${cdl_file} ${tmppath}
 rm /tmp/${season_id}.cdl 

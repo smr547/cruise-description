@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Crew Movements from {{ filename }}</title>
+</head>
+<body>
+    {% for vs in vessel_seasons %}
+    <h1>Crew movements for {{ vs.vessel.identifier }} season {{ vs.season.identifier }}</h1>
+    <p>Generated from file {{ filename }} last modified at {{ file_modified_timestamp }}</p>
+    {% for person in vs.get_crew_events() %}
+        <h2>{{ person.name }} ({{ person.identifier }})</h2>
+        <p>Events</p>
+
+        <table border="1">
+        <tr>
+           <th>Date/time</th>
+           <th>Actions</th>
+           <th>Location<br/>To</th>
+           <th>Comment</th>
+        </tr>
+        {% for event in vs.get_crew_events()[person] %}
+        <tr>
+            <td>{{ event.scheduled().date().strftime("%d/%m/%y") }}</td>
+            <td>{{ event.event_name() }}</td>
+            <td>{{ event.location.identifier }}</td>
+        </tr>
+        {% endfor %}
+        </table>
+    {% endfor %}
+            
+
+    <h2>Please note</h2>
+<p>Please note that yacht cruising is subject to weather, crew health and other saftey concerns. 
+The published schedule is subject to change without notice. Please include flexibility in your flight and accommodation bookings</p>
+    {% endfor %}
+</body>
+</html>

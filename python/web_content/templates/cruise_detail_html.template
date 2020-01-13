@@ -4,6 +4,7 @@
     <title>Schedule from {{ filename }}</title>
 </head>
 <body>
+    {% for vs in vessel_seasons %}
     <h1>{{ vs.identifier() }}</h1>
     <p>Generated from file {{ filename }} last modified at {{ file_modified_timestamp }}</p>
     {% for cruise in vs.cruises %}
@@ -36,11 +37,12 @@
             </tr>
         {% endfor %}
         </table>
-            
     {% endfor %}
+            
 
     <h2>Please note</h2>
 <p>Please note that yacht cruising is subject to weather, crew health and other saftey concerns. 
 The published schedule is subject to change without notice. Please include flexibility in your flight and accommodation bookings</p>
+    {% endfor %}
 </body>
 </html>

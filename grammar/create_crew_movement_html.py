@@ -25,7 +25,7 @@ def cdlfile_to_html(content : CdlFile, identifier):
         autoescape=select_autoescape(['html', 'xml'])
     )
 
-    template = env.get_template('cruise_detail_html.template')
+    template = env.get_template('crew_movements_html.template')
     
 
     dt_format = "%Y-%m-%d&nbsp;%H%M"

@@ -124,6 +124,21 @@ class VesselSeason(object):
     def identifier(self):
         return "%s" % (self.key(), )
 
+    def get_crew_events(self):
+        ''' 
+        Return a dict containing a list of CrewEvents for each crew member
+        '''
+        result = {}
+        for cruise in self.cruises:
+            for event in cruise.events:
+                if isinstance(event, CrewEvent):
+                    person = event.person
+                    if person not in result:
+                        result[person] = []
+                    result[person].append(event)
+        return result
+                        
+
     def __str__(self):
         return "%s: identifier=%s" % (type(self).__name__, self.identifier())
 
