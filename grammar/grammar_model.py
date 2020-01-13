@@ -137,6 +137,12 @@ class VesselSeason(object):
                         result[person] = []
                     result[person].append(event)
         return result
+
+    def distance_NM(self):
+        dist = 0.0
+        for cruise  in self.cruises :
+            dist += cruise.distance_NM()
+        return dist
                         
 
     def __str__(self):

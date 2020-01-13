@@ -60,6 +60,7 @@ def cdlfile_to_HTML(content : CdlFile, identifier):
         output.write("<h1>Summary for season %s on vessel %s</h1> \n" % (vs.season, vs.vessel.name))
 
         output.write("<h2>Season summary</h2> \n")
+        output.write("<p>A total of %d nautical miles</p>\n" % (int(vs.distance_NM())))
         output.write("<p>The following table lists the series of cruises planned for the season<br/></p>\n")
 
 
