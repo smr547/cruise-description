@@ -355,17 +355,28 @@ class Leg(object):
         return "%s to %s" % (self.origin().identifier, self.destination().identifier)
 
     def destination_stay_description(self):
-
-        def hours(td : timedelta):
+        def days_and_hours(td: timedelta):
             secs = td.total_seconds()
             hours = round(secs/3600.0)
-            return hours
+            days = int(hours/24)
+            hours -= days * 24
+
+            result = ""
+            if days > 0:
+                result = "%d day" % (days)
+            if days > 1:
+                result += "s"
+            if hours > 0:
+                result += " %d hour" % (hours)
+            if hours > 1:
+                result += "s"
+            return result
 
         to_v = self.destination_visitation()
-        return "stay in %s is  %s hours (expected %d)" % (
+        return "stay in %s is %s (expected %s)" % (
                     self.destination().identifier,
-                    hours(to_v.get_computed_duration()),
-                    hours(to_v.get_planned_duration_td()))
+                    days_and_hours(to_v.get_computed_duration()),
+                    days_and_hours(to_v.get_planned_duration_td()))
 
     def distance_NM(self):
         dist = 0.0
