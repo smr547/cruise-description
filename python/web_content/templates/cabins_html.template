@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Cabin occupation from {{ filename }}</title>
+</head>
+<body>
+    {% for vs in vessel_seasons %}
+    <a href="./summary.html">Return to summary</a>
+    <h1>Cabin occupation for {{ vs.identifier() }}</h1>
+    <p>Generated from file {{ filename }} last modified at {{ file_modified_timestamp }}</p>
+    <table border="1">
+    <tr>
+       <th>Date</th>
+       {% for cabin in vs.vessel.cabins.keys() %}
+           <th>{{ cabin }}</th>
+       {% endfor %}
+    </tr>
+        {% for entry in vs["cabin_manifest"] %}
+        <tr>
+            <td>{{ entry["date"] }}</td>
+            {% for cabin_id in vs.vessel.cabins.keys() %}
+                <td>{{ entry[cabin_id] }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="./summary.html">Return to summary</a>
+    {% endfor %}
+</body>
+</html>

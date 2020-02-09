@@ -97,9 +97,11 @@ class Cabin(object):
         '''
 
         occupants = set()
+        if isinstance(as_at, datetime):
+            as_at = as_at.date()
         for event in self.crew_events:
             # print("Type of event.scheduled = ", type(event.scheduled()))
-            if event.scheduled().date() > as_at.date():
+            if event.scheduled().date() > as_at:
                 break
             if event.join_not_leave:
                 occupants.add(event.person)
@@ -123,6 +125,12 @@ class VesselSeason(object):
 
     def identifier(self):
         return "%s" % (self.key(), )
+
+    def get_first_event_date(self):
+        return self.cruises[0].get_first_event_date()
+
+    def get_last_event_date(self):
+        return self.cruises[-1].get_last_event_date()
 
     def get_crew_events(self):
         ''' 
@@ -272,6 +280,12 @@ class Cruise(object):
     def add_event(self, event):
         self.events.append(event)
 
+    def get_first_event_date(self):
+        return self.events[0].get_event_dt().date()
+
+    def get_last_event_date(self):
+        return self.events[-1].get_event_dt().date()
+
     def distance_NM(self):
         dist = 0.0
         for leg in self.legs:
@@ -321,12 +335,17 @@ class Cruise(object):
         dt = datetime.combine(self._departure_date , self._departure_time)
         dt = self.departure_port.get_timezone().localize(dt)
         return dt
+
+    def get_length_days(self):
+        duration_td = self.get_last_event_date() - self.get_first_event_date()
+        return duration_td.days
             
     def get_description(self):
-        return "Cruise from %s to %s departs %s distance %d NM" % (
+        return "Cruise from %s to %s departs %s distance %d NM in %d days" % (
             self.departure_port.identifier, 
             self.get_destination_port().identifier,
-            self._departure_date, round(self.distance_NM()))
+            self._departure_date, round(self.distance_NM()),
+            self.get_length_days())
 
     def __str__(self):
         return "%s: name=%s departs %s on %s %d events, distance %d NM" % (type(self).__name__, self.name,
@@ -439,7 +458,9 @@ class Visitation(object):
        
     def get_planned_duration_td(self):
         return timedelta(days=self.stay_spec.get_duration_days())
-        
+
+    def get_event_dt(self):
+        return self._arrival_dt        
    
     def get_arrival_dt(self):
         return self._arrival_dt 
@@ -517,6 +538,9 @@ class CrewEvent(object):
     def scheduled(self):
         return self._scheduled
 
+
+    def get_event_dt(self):
+        return self._scheduled        
         
 
     def event_name(self):
