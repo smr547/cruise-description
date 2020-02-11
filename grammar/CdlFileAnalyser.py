@@ -15,7 +15,7 @@ from CdlParser import CdlParser
 from datetime import datetime
 
 import simplekml
-from grammar_model import CdlFile, Location, Person, Vessel, VesselSeason, Cruise, Visitation, CrewEvent, Leg, Crew, CrewRole, Cabin
+from grammar_model import CdlFile, Location, Person, Vessel, VesselSeason, Cruise, Visitation, CrewEvent, Leg, Crew, CrewRole, Cabin, StaySpec
 
 def die(message):
     stderr.write(str(message) + "\n")
@@ -38,18 +38,6 @@ def get_text(ctx):
     if ctx is not None:
         return ctx.getText()
     return None
-
-class StaySpec(object):
-    def __init__(self, period, units):
-        self.period = period
-        self.units = units
-
-    def get_duration_days(self):
-        # only support days at the moment
-        return self.period
-
-    def __str__(self):
-        return "%s: period=%s units=%s" % (type(self).__name__, str(self.period), self.units)
 
 class VesselVisitor(CdlVisitor):
     def __init__(self):
@@ -210,22 +198,7 @@ class CruiseVisitor(CdlVisitor):
         eventVisitor = EventVisitor(self.cdl_file, cruise)
         for event_line in ctx.event_line():
             eventVisitor.visit(event_line)
-
-        # build the legs for this cruise
-         
-        current_leg = None
-        for event in cruise.events:
-            if isinstance(event, CrewEvent):
-                continue
-            if current_leg is None:
-                current_leg = Leg(cruise)
-                current_leg.visitations.append(event)
-            else:
-                current_leg.visitations.append(event)
-                if event.is_stopover():   # which ends this leg
-                    cruise.legs.append(current_leg)
-                    current_leg = Leg(cruise)
-                    current_leg.visitations.append(event)
+        
         return cruise
 
 class EventVisitor(CdlVisitor):

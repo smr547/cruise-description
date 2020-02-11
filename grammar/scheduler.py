@@ -29,18 +29,15 @@ def schedule_season(vessel_season : VesselSeason):
             current_visitation = event
 
         if isinstance(event, CrewEvent):
-            # print("processing ", event)
             person = event.person
             cabin = event.cabin
 
             # find the last cabin event for this person
 
             if cabin is None:
-                # print("Bactracking to find cabin for  ", event)
                 for i in range(ei-1, -1, -1):
                     this_event = all_events[i]
 
-                    # print("Examining ", this_event)
                     if isinstance(this_event, CrewEvent) and this_event.join_not_leave and this_event.person == person:
                         cabin = this_event.cabin
                         break
@@ -114,7 +111,7 @@ def schedule_cruise(this_cruise, last_cruise=None, next_cruise=None):
         v.clear_warnings()
 
     # consider each leg
-    for leg in c.legs:
+    for leg in c.get_legs():
 
         # nightime departure
 

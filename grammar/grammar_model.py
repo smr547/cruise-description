@@ -7,11 +7,21 @@ __author__ = 'smr'
 
 from geolocator import CachedGeoLocator
 from geopy.distance import great_circle
+from shapely.geometry import Point, LineString, MultiLineString
 from datetime import timedelta, datetime, date
 from timezonefinder import TimezoneFinder
 import pytz
 from math import ceil
 
+def remove_repeats(aList):
+    '''
+    Remove repeated elements in a list
+    '''
+    result = []
+    for item in aList:
+        if len(result) == 0 or item != result[-1]:
+            result.append(item)
+    return result
 
 class Location(object):
 
@@ -49,6 +59,10 @@ class Location(object):
         if self.timezone is None:
             self.timezone = pytz.timezone(self.timezone_name())
         return self.timezone
+  
+    def as_geometry(self):
+        return Point(self.coords)
+
 
     def __str__(self):
         return "%s: identifier=%s, name=%s" % (type(self).__name__, self.identifier, self.name)
@@ -132,6 +146,9 @@ class VesselSeason(object):
     def get_last_event_date(self):
         return self.cruises[-1].get_last_event_date()
 
+    def add_cruise(self, cruise):
+        self.cruises.append(cruise)
+
     def get_crew_events(self):
         ''' 
         Return a dict containing a list of CrewEvents for each crew member
@@ -151,7 +168,26 @@ class VesselSeason(object):
         for cruise  in self.cruises :
             dist += cruise.distance_NM()
         return dist
+        
+        return MultiLineString([cruise.as_geometry() for cruise in self.cruises])
                         
+
+    def get_location_list(self):
+        '''
+        Return an array of all locations visited
+        '''
+        result = []
+        for cruise in self.cruises:
+            result.extend(cruise.get_location_list())
+        return remove_repeats(result)
+
+
+    def as_geometry(self):
+        '''
+        A VesselSeason is represented by a MultiLineString representing the aggregation of Cruises
+        within the VesselSeason
+        '''
+        return LineString([loc.as_geometry() for loc in self.get_location_list()])
 
     def __str__(self):
         return "%s: identifier=%s" % (type(self).__name__, self.identifier())
@@ -274,7 +310,7 @@ class Cruise(object):
         self._departure_date = departure_date  # should be datetime.date
         self._departure_time = departure_time  # should be datetime.time
         self.departure_port = departure_port
-        self.legs = []   # not defined in grammar yet
+        self._legs = None   # not defined in grammar yet
         self.events = [] # ordered list of events - An Event is a Visitation or Crew movement
 
     def add_event(self, event):
@@ -288,7 +324,7 @@ class Cruise(object):
 
     def distance_NM(self):
         dist = 0.0
-        for leg in self.legs:
+        for leg in self.get_legs():
             dist += leg.distance_NM()
         return dist
 
@@ -320,9 +356,25 @@ class Cruise(object):
 
     def distance_NM(self):
         dist = 0.0 
-        for leg in self.legs:
+        for leg in self.get_legs():
             dist += leg.distance_NM()
         return dist
+
+    def get_location_list(self):
+        '''
+        Return an array of all locations visited
+        '''
+        result = []
+        for leg in self.get_legs():
+            result.extend(leg.get_location_list())
+        return remove_repeats(result)
+
+
+    def as_geometry(self):
+        '''
+        A cruise is represented by a LineString
+        '''
+        return LineString([loc.as_geometry() for loc in self.get_location_list()])
     
     def get_departure_dt(self):
         '''
@@ -347,11 +399,48 @@ class Cruise(object):
             self._departure_date, round(self.distance_NM()),
             self.get_length_days())
 
+    def get_legs(self):
+        if self._legs is None:
+
+            # build the legs for this cruise
+            legs = []
+            current_leg = None
+            for event in self.events:
+                print("processing ", event)
+                if isinstance(event, CrewEvent):
+                    continue
+                if current_leg is None:
+                    current_leg = Leg(self)
+                    current_leg.visitations.append(event)
+                else:
+                    current_leg.visitations.append(event)
+                    if event.is_stopover():   # which ends this leg
+                        legs.append(current_leg)
+                        current_leg = Leg(self)
+                        current_leg.visitations.append(event)
+
+            self._legs = legs
+
+        return self._legs
+
     def __str__(self):
         return "%s: name=%s departs %s on %s %d events, distance %d NM" % (type(self).__name__, self.name,
             self.departure_port, self._departure_date, len(self.events), round(self.distance_NM()))
 
 class Leg(object):
+    '''
+    A Leg is the movement of the vessel from one place to another where the origin and destiations are
+    each "Visitations" which involve a stay (aka: Visitation of non-zero duration).  
+
+    The duration of a Leg begins at the time of departure from the origin and includes the sailing time
+    to the destination plus the visitation time at that desination.
+
+    Legs are significant to crew and NOK because they represent significant movements of the vessel with
+    pre-planned timing.
+
+    A Cruise is made up of one or more Legs. The timing of the Cruise is the sum of the timing for 
+    each leg.
+    '''
     def __init__(self, cruise):
         self.cruise = cruise
         self.visitations = []
@@ -363,6 +452,9 @@ class Leg(object):
 
     def destination_visitation(self):
         return self.visitations[-1]
+
+    def add_visitation(self, visit):
+        self.visitations.append(visit)
 
     def origin(self):
         return self.visitations[0].location
@@ -406,12 +498,37 @@ class Leg(object):
     def sailing_time(self):
         return timedelta(hours=self.distance_NM()/self.cruise.cruising_speed_KTS())
 
+    def stopover_time(self):
+        '''
+        The stopover period is the time spend at the final destination of the Leg
+        '''
+        return self.visitations[-1].get_computed_duration()
+
     def hops(self):
         if self._hops is None:
             self._hops = []
             for i in range(1,len(self.visitations)):
                 self._hops.append(Hop(self.visitations[i-1].location, self.visitations[i].location))
         return self._hops
+
+    def get_location_list(self):
+        '''
+        Return an array of all locations visited
+        '''
+        result = [self.origin()]
+        for hop in self.hops():
+            result.append(hop.get_destination())
+        return result
+
+    def as_geometry(self):
+        '''
+        The Geometry of a Leg is the LineString between origin and destination and including all of the
+        waypoints along the way
+        '''
+        points = [self.origin().as_geometry()]
+        for hop in self.hops():
+            points.append(hop.get_destination().as_geometry())
+        return LineString(points)
 
     def get_warnings(self):
         warnings = []
@@ -434,16 +551,43 @@ class Leg(object):
         return "%s: from %s to %s dist_NM=%f time=%s" % (type(self).__name__, self.origin().identifier, self.destination().identifier, self.distance_NM(), str(self.sailing_time()))
 
 class Hop(object):
+    '''
+    A Hop is the movement of the vessel from one location to another without any waypoints in between
+    
+    Currently a Hop has no timing information
+    '''
     def __init__(self, from_location : Location, to_location : Location):
         self.from_location = from_location
         self.to_location = to_location
 
+    def get_origin(self):
+        return self.from_location
+
+    def get_destination(self):
+        return self.to_location
+
+    def as_geometry(self):
+        '''
+        The Geometry of a leg is a simple LineString between the origin and destination
+        '''
+        return LineString([self.from_location.as_geometry(), self.to_location.as_geometry()])
+
     def distance_NM(self):
         return great_circle(self.from_location.asLatLongTuple(), self.to_location.asLatLongTuple()).miles
 
+    def __str__(self):
+        return "%s: from %s to %s dist_NM=%f" % (type(self).__name__, self.from_location.identifier, self.to_location.identifier, self.distance_NM())
+
 
 class Visitation(object):
+    '''
+    Represents the vessel visiting a Location and (optionally) staying for a period of time
+    If there is no "stay" then the visitation has zero duration and the location is regarded 
+    as a waypoint in the current Leg
+    '''
     def __init__(self, location : Location, crew : Crew, stay_spec=None, description=None):
+        if location is None:
+            raise Exception("location argument to Visitation construction is required")
         self.location = location
         self.description = description
         self.crew = crew
@@ -500,7 +644,6 @@ class Visitation(object):
 
     def includes_date(self, a_date : date):
         end_d = (self._arrival_dt + self._computed_duration).date()
-        # print("checking crew movement on %s is withing visitation period: %s to %s in %s" % (a_date, self._arrival_dt.date(), end_d, self.location.identifier))
         return self._arrival_dt.date() <= a_date <= end_d
 
     def period_str(self):
@@ -512,8 +655,24 @@ class Visitation(object):
 
 
     def __str__(self):
-        arrival = self._arrival_dt.strftime("%d/%m/%Y, %H:%M")
-        return "%s: location=%s, arriving %s (stay %d days)" % (type(self).__name__, self.location.identifier, arrival, self._computed_duration.days)
+        if self._arrival_dt is None:
+            arrival = "unscheduled"
+        else:
+            arrival = self._arrival_dt.strftime("%d/%m/%Y, %H:%M")
+
+        if self.is_stopover(): 
+            if self._computed_duration is None:
+                days = "unknown"
+            else:
+                days = str(self._computed_durations.days)
+            stay_desc =  "(stay %s days - planned %d)" % (days, self.duration_days)
+
+        else:
+            stay_desc = "is waypoint"
+
+        
+        return "%s: location=%s, arriving %s %s" % (type(self).__name__, self.location.identifier, arrival, stay_desc)
+        
 
 class CrewEvent(object):
     def __init__(self, person, join_not_leave=True, role=None, scheduled=None, location=None, cabin=None):
@@ -558,6 +717,17 @@ class CrewEvent(object):
         return "%s: %s %s (role: %s, scheduled: %s, location: %s, cabin: %s)" % (type(self).__name__, 
             self.person.identifier, self.event_name(), self.role, self.scheduled(), loc_id, cabin_id)
 
+class StaySpec(object):
+    def __init__(self, period, units):
+        self.period = period
+        self.units = units
+
+    def get_duration_days(self):
+        # only support days at the moment
+        return int(self.period)
+
+    def __str__(self):
+        return "%s: period=%s units=%s" % (type(self).__name__, str(self.period), self.units)
 class Warning(object):
     def __init__(self, message : str):
         self._message = message
