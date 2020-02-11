@@ -78,19 +78,27 @@ class TestLocation(unittest.TestCase):
         wlg = Location('wlg', 'Wollongong, NSW', [150.905285, -34.420143])
         pt_hacking = Location('pthack', 'Port Hacking, NSW', [151.187489, -34.066777])
         broughton = Location('broughton', 'Broughton Island, NSW', [152.326456, -32.62500])
-        cruise = Cruise(vs, name="Cruise to Broghton Island and return", departure_port=wlg)
+        cruise = Cruise(vs, name="Cruise to Broghton Island", departure_port=wlg)
 
         no_stay = None
         cruise.add_event(Visitation(wlg, None))
         cruise.add_event(Visitation(pt_hacking, None))
         cruise.add_event(Visitation(broughton, None, stay_spec=StaySpec(3, 'days')))
         self.assertEqual(len(cruise.get_legs()), 1)
-        
+        print(cruise, cruise.as_geometry())
+        vs.add_cruise(cruise)
+
+        # return from Broughton
+
+        cruise = Cruise(vs, name="Return from Broughton Island", departure_port=broughton)
+        cruise.add_event(Visitation(broughton, None))
+        cruise.add_event(Visitation(wlg, None, stay_spec=StaySpec(2, 'days')))
         print(cruise, cruise.as_geometry())
 
         vs.add_cruise(cruise)
 
         print(vs, vs.as_geometry())
+        print(vs, "bounds ", vs.as_geometry().bounds)
         
 
     def test_remove_repeats(self):
