@@ -167,12 +167,11 @@ class VesselSeasonVisitor(CdlVisitor):
         season_id = ctx.season_identifier().getText()
 
         crew = Crew() 
-        cruises = []
-        vessel_season = VesselSeason(vessel, season_id, cruises)
+        vessel_season = VesselSeason(vessel, season_id)
         visitor = CruiseVisitor(self.cdl_file, vessel_season)
         for c in ctx.cruise():
             cruise = visitor.visit(c)
-            cruises.append(cruise)
+            vessel_season.add_cruise(cruise)
 
         return vessel_season
 

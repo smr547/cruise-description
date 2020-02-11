@@ -114,7 +114,6 @@ class Cabin(object):
         if isinstance(as_at, datetime):
             as_at = as_at.date()
         for event in self.crew_events:
-            # print("Type of event.scheduled = ", type(event.scheduled()))
             if event.scheduled().date() > as_at:
                 break
             if event.join_not_leave:
@@ -129,10 +128,10 @@ class Cabin(object):
         return occupants
 
 class VesselSeason(object):
-    def __init__(self, vessel, season, cruises):
+    def __init__(self, vessel, season):
         self.vessel = vessel
         self.season = season
-        self.cruises = cruises
+        self.cruises = []
 
     def key(self):
         return "%s/%s" % (self.vessel.identifier, self.season)
@@ -148,6 +147,7 @@ class VesselSeason(object):
 
     def add_cruise(self, cruise):
         self.cruises.append(cruise)
+        cruise.vessel_season = self
 
     def get_crew_events(self):
         ''' 
@@ -406,7 +406,6 @@ class Cruise(object):
             legs = []
             current_leg = None
             for event in self.events:
-                print("processing ", event)
                 if isinstance(event, CrewEvent):
                     continue
                 if current_leg is None:
@@ -664,7 +663,7 @@ class Visitation(object):
             if self._computed_duration is None:
                 days = "unknown"
             else:
-                days = str(self._computed_durations.days)
+                days = str(self._computed_duration.days)
             stay_desc =  "(stay %s days - planned %d)" % (days, self.duration_days)
 
         else:

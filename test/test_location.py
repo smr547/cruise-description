@@ -43,8 +43,7 @@ class TestLocation(unittest.TestCase):
         
         vessel = Vessel('Trilogy', 'SV Trilogy', 'Australia', '807189', 6.5)
         season = Season("2020")
-        cruises = []
-        vs = VesselSeason(vessel, season, cruises)
+        vs = VesselSeason(vessel, season)
         print(vs)
 
     def test_visitation(self):
@@ -73,8 +72,7 @@ class TestLocation(unittest.TestCase):
     def test_cruise(self):
         vessel = Vessel('Trilogy', 'SV Trilogy', 'Australia', '807189', 6.5)
         season = Season("2020")
-        cruises = []
-        vs = VesselSeason(vessel, season, cruises)
+        vs = VesselSeason(vessel, season)
 
         
         wlg = Location('wlg', 'Wollongong, NSW', [150.905285, -34.420143])
