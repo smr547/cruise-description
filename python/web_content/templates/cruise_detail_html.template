@@ -19,7 +19,7 @@
            <th>Comment</th>
         </tr>
 
-        {% for leg in cruise.legs %}
+        {% for leg in cruise.get_legs() %}
             <tr>
                 <td>{{ leg.origin_visitation().get_departure_dt().strftime("%d/%m&nbsp;%H%M")}}<br/>
                     {{ leg.destination_visitation().get_arrival_dt().strftime("%d/%m&nbsp;%H%M")}}
