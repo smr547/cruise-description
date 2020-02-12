@@ -54,7 +54,7 @@ def cdlfile_to_KML(content : CdlFile, identifier):
 
             # draw it as legs
             leg_no = 0
-            for leg in c.legs:
+            for leg in c.get_legs():
                 leg_no += 1
                 desc = "%d nautical miles in %d hours." % (
                     round(leg.distance_NM()), 
@@ -75,9 +75,9 @@ def cdlfile_to_KML(content : CdlFile, identifier):
             # stopovers
 
             stop_folder = c_folder.newfolder(name="stopovers", visibility=1, open=0)
-            for leg in c.legs:
+            for leg in c.get_legs():
                 ll_comment = ""
-                last_leg = leg == c.legs[-1]
+                last_leg = leg == c.get_legs()[-1]
                 if last_leg:
                     ll_comment = "(end of %s cruise)" % (leg.cruise.name, )
                 sv = leg.visitations[-1]    # stopover visitation

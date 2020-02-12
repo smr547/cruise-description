@@ -43,7 +43,7 @@ def cdlfile_to_MD(content : CdlFile, identifier):
 #            v = visits[0]
 #            print("%s | depart | %s |" % (v.get_arrival_dt().strftime(dt_format), v.location.identifier))
 
-            for leg in c.legs:
+            for leg in c.get_legs():
                 visits = leg.visitations
                 from_v = visits[0]
                 to_v = visits[-1]
