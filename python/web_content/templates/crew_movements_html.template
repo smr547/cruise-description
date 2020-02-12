@@ -15,7 +15,8 @@
         <tr>
            <th>Date/time</th>
            <th>Actions</th>
-           <th>Location<br/>To</th>
+           <th>Location</th>
+           <th>Cabin</th>
            <th>Comment</th>
         </tr>
         {% for event in vs.get_crew_events()[person] %}
@@ -23,6 +24,7 @@
             <td>{{ event.scheduled().date().strftime("%d/%m/%y") }}</td>
             <td>{{ event.event_name() }}</td>
             <td>{{ event.location.identifier }}</td>
+            <td>{{ event.cabin.identifier }}</td>
         </tr>
         {% endfor %}
         </table>
